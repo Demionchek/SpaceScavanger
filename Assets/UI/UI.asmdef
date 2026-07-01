@@ -1,0 +1,17 @@
+{
+    "name": "UI",
+    "rootNamespace": "Game.UI",
+    "references": [
+        "Core",
+        "Gameplay.Shared"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

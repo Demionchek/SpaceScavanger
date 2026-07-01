@@ -1,0 +1,19 @@
+{
+    "name": "Gameplay.Ship",
+    "rootNamespace": "Game.Gameplay.Ship",
+    "references": [
+        "Core",
+        "Data",
+        "Gameplay.Shared",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
