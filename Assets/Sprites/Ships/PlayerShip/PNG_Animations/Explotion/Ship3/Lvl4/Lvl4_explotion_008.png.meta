@@ -1,0 +1,702 @@
+fileFormatVersion: 2
+guid: 7079db40c88c68e42b4effb741eb3fc7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8813080620843468535
+    second: Lvl4_explotion_008_0
+  - first:
+      213: -4139229659063513869
+    second: Lvl4_explotion_008_1
+  - first:
+      213: 552416513097583897
+    second: Lvl4_explotion_008_2
+  - first:
+      213: 5634512821642544707
+    second: Lvl4_explotion_008_3
+  - first:
+      213: -1775622048282177046
+    second: Lvl4_explotion_008_4
+  - first:
+      213: -506403581792437446
+    second: Lvl4_explotion_008_5
+  - first:
+      213: -4981377930027251580
+    second: Lvl4_explotion_008_6
+  - first:
+      213: 2487820322155822648
+    second: Lvl4_explotion_008_7
+  - first:
+      213: 1749626774208956010
+    second: Lvl4_explotion_008_8
+  - first:
+      213: 168412648295020862
+    second: Lvl4_explotion_008_9
+  - first:
+      213: 5862532490921265567
+    second: Lvl4_explotion_008_10
+  - first:
+      213: 500254997759865355
+    second: Lvl4_explotion_008_11
+  - first:
+      213: -3730770488835212996
+    second: Lvl4_explotion_008_12
+  - first:
+      213: -7570092774326376911
+    second: Lvl4_explotion_008_13
+  - first:
+      213: -5244310336089845699
+    second: Lvl4_explotion_008_14
+  - first:
+      213: 8819148531113312149
+    second: Lvl4_explotion_008_15
+  - first:
+      213: 7032269972414418599
+    second: Lvl4_explotion_008_16
+  - first:
+      213: 3531774349993144873
+    second: Lvl4_explotion_008_17
+  - first:
+      213: 6271040217096855010
+    second: Lvl4_explotion_008_18
+  - first:
+      213: 2026577339711179366
+    second: Lvl4_explotion_008_19
+  - first:
+      213: 4187241221196192597
+    second: Lvl4_explotion_008_20
+  - first:
+      213: -2857533470032455701
+    second: Lvl4_explotion_008_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_0
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 131
+        width: 31
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f60146812a5e4a70800000000000000
+      internalID: 8813080620843468535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 133
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fc02cf3e808e86c0800000000000000
+      internalID: -4139229659063513869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_2
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 136
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91dcd3f44e39aa700800000000000000
+      internalID: 552416513097583897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_3
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 138
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3464360fe8fc13e40800000000000000
+      internalID: 5634512821642544707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_4
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 138
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae11acc9729bb57e0800000000000000
+      internalID: -1775622048282177046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_5
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 139
+        width: 9
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3bb64a10a4e8f8f0800000000000000
+      internalID: -506403581792437446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_6
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 140
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48841c44a279edab0800000000000000
+      internalID: -4981377930027251580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_7
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 138
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83e7817e663868220800000000000000
+      internalID: 2487820322155822648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_8
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 136
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a66cc3ef74ce74810800000000000000
+      internalID: 1749626774208956010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_9
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 134
+        width: 22
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e39be4d4962565200800000000000000
+      internalID: 168412648295020862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_10
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 132
+        width: 31
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f994c8d4d36eb5150800000000000000
+      internalID: 5862532490921265567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_11
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 126
+        width: 35
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b02379e154341f600800000000000000
+      internalID: 500254997759865355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_12
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 118
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c397772c104a93cc0800000000000000
+      internalID: -3730770488835212996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_13
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 127
+        width: 35
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1366685dab0a1f690800000000000000
+      internalID: -7570092774326376911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_14
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 110
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d30947de8877837b0800000000000000
+      internalID: -5244310336089845699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_15
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 110
+        width: 28
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59fba6afcd8e36a70800000000000000
+      internalID: 8819148531113312149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_16
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 106
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ae48660844a79160800000000000000
+      internalID: 7032269972414418599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_17
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 103
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9227d262f02630130800000000000000
+      internalID: 3531774349993144873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_18
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 101
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ed1f302ad5370750800000000000000
+      internalID: 6271040217096855010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_19
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 100
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66a475b6a59df1c10800000000000000
+      internalID: 2026577339711179366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_20
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 103
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55b954aa4b11c1a30800000000000000
+      internalID: 4187241221196192597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl4_explotion_008_21
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 106
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be71de8e2700858d0800000000000000
+      internalID: -2857533470032455701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Lvl4_explotion_008_0: 8813080620843468535
+      Lvl4_explotion_008_1: -4139229659063513869
+      Lvl4_explotion_008_10: 5862532490921265567
+      Lvl4_explotion_008_11: 500254997759865355
+      Lvl4_explotion_008_12: -3730770488835212996
+      Lvl4_explotion_008_13: -7570092774326376911
+      Lvl4_explotion_008_14: -5244310336089845699
+      Lvl4_explotion_008_15: 8819148531113312149
+      Lvl4_explotion_008_16: 7032269972414418599
+      Lvl4_explotion_008_17: 3531774349993144873
+      Lvl4_explotion_008_18: 6271040217096855010
+      Lvl4_explotion_008_19: 2026577339711179366
+      Lvl4_explotion_008_2: 552416513097583897
+      Lvl4_explotion_008_20: 4187241221196192597
+      Lvl4_explotion_008_21: -2857533470032455701
+      Lvl4_explotion_008_3: 5634512821642544707
+      Lvl4_explotion_008_4: -1775622048282177046
+      Lvl4_explotion_008_5: -506403581792437446
+      Lvl4_explotion_008_6: -4981377930027251580
+      Lvl4_explotion_008_7: 2487820322155822648
+      Lvl4_explotion_008_8: 1749626774208956010
+      Lvl4_explotion_008_9: 168412648295020862
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

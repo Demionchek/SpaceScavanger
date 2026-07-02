@@ -1,0 +1,15 @@
+using Game.Core;
+using UnityEngine;
+using VContainer;
+
+namespace Game.Gameplay.Shared
+{
+    [CreateAssetMenu(menuName = "Game/Installers/Shared Installer", fileName = "SharedInstaller")]
+    public sealed class SharedInstaller : ScriptableObjectInstaller
+    {
+        public override void Install(IContainerBuilder builder)
+        {
+            builder.Register<ResourceService>(Lifetime.Singleton).As<IResourceService>();
+        }
+    }
+}

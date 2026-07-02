@@ -1,0 +1,702 @@
+fileFormatVersion: 2
+guid: 00f0687ae48640b4fa1d34a89b68614f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2681611702846570870
+    second: Lvl5_explotion_008_0
+  - first:
+      213: -5999205769572428747
+    second: Lvl5_explotion_008_1
+  - first:
+      213: -952044392089001007
+    second: Lvl5_explotion_008_2
+  - first:
+      213: 1598601568673382986
+    second: Lvl5_explotion_008_3
+  - first:
+      213: 8708152036314436471
+    second: Lvl5_explotion_008_4
+  - first:
+      213: 4931618439420506347
+    second: Lvl5_explotion_008_5
+  - first:
+      213: -3478566112095492206
+    second: Lvl5_explotion_008_6
+  - first:
+      213: 123362931309991165
+    second: Lvl5_explotion_008_7
+  - first:
+      213: 6832352015063195114
+    second: Lvl5_explotion_008_8
+  - first:
+      213: 7372048159232793278
+    second: Lvl5_explotion_008_9
+  - first:
+      213: -1941131884858904067
+    second: Lvl5_explotion_008_10
+  - first:
+      213: 4496376826511068896
+    second: Lvl5_explotion_008_11
+  - first:
+      213: 2600040580775446057
+    second: Lvl5_explotion_008_12
+  - first:
+      213: 8168398539765697566
+    second: Lvl5_explotion_008_13
+  - first:
+      213: -1186968404509249771
+    second: Lvl5_explotion_008_14
+  - first:
+      213: 8558150914629841023
+    second: Lvl5_explotion_008_15
+  - first:
+      213: -4089506053866597432
+    second: Lvl5_explotion_008_16
+  - first:
+      213: -6957554412325640408
+    second: Lvl5_explotion_008_17
+  - first:
+      213: -129528719141419084
+    second: Lvl5_explotion_008_18
+  - first:
+      213: 7604119692798473904
+    second: Lvl5_explotion_008_19
+  - first:
+      213: -6948527295999229649
+    second: Lvl5_explotion_008_20
+  - first:
+      213: -2713667312515453516
+    second: Lvl5_explotion_008_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_0
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 131
+        width: 31
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8ebc423d5009cad0800000000000000
+      internalID: -2681611702846570870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 133
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5345922432a8ebca0800000000000000
+      internalID: -5999205769572428747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_2
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 136
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d3e1276ba8a9c2f0800000000000000
+      internalID: -952044392089001007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_3
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 138
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a42c82e28af5f2610800000000000000
+      internalID: 1598601568673382986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_4
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 138
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 773dd96a32299d870800000000000000
+      internalID: 8708152036314436471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_5
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 139
+        width: 9
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be0fc6187d0a07440800000000000000
+      internalID: 4931618439420506347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_6
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 140
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29726d02d86a9bfc0800000000000000
+      internalID: -3478566112095492206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_7
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 138
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df4de23bee546b100800000000000000
+      internalID: 123362931309991165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_8
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 136
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aed144655f361de50800000000000000
+      internalID: 6832352015063195114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_9
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 134
+        width: 22
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eba9426fdb6ce4660800000000000000
+      internalID: 7372048159232793278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_10
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 132
+        width: 31
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df1fcc4d5d6bf05e0800000000000000
+      internalID: -1941131884858904067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_11
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 126
+        width: 35
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ee8d70a6e6566e30800000000000000
+      internalID: 4496376826511068896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_12
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 118
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92688b2f123351420800000000000000
+      internalID: 2600040580775446057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_13
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 127
+        width: 35
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1ccd82a13bfb5170800000000000000
+      internalID: 8168398539765697566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_14
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 110
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51f2d91668a078fe0800000000000000
+      internalID: -1186968404509249771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_15
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 110
+        width: 28
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7032b0f9e8a4c670800000000000000
+      internalID: 8558150914629841023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_16
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 106
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c3d87049e72f37c0800000000000000
+      internalID: -4089506053866597432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_17
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 103
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 827e0ebef1dc17f90800000000000000
+      internalID: -6957554412325640408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_18
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 101
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b74d53f052d33ef0800000000000000
+      internalID: -129528719141419084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_19
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 100
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b63ece7292478960800000000000000
+      internalID: 7604119692798473904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_20
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 103
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f214cd93d3fd19f90800000000000000
+      internalID: -6948527295999229649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl5_explotion_008_21
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 106
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bd6de6f4fd175ad0800000000000000
+      internalID: -2713667312515453516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Lvl5_explotion_008_0: -2681611702846570870
+      Lvl5_explotion_008_1: -5999205769572428747
+      Lvl5_explotion_008_10: -1941131884858904067
+      Lvl5_explotion_008_11: 4496376826511068896
+      Lvl5_explotion_008_12: 2600040580775446057
+      Lvl5_explotion_008_13: 8168398539765697566
+      Lvl5_explotion_008_14: -1186968404509249771
+      Lvl5_explotion_008_15: 8558150914629841023
+      Lvl5_explotion_008_16: -4089506053866597432
+      Lvl5_explotion_008_17: -6957554412325640408
+      Lvl5_explotion_008_18: -129528719141419084
+      Lvl5_explotion_008_19: 7604119692798473904
+      Lvl5_explotion_008_2: -952044392089001007
+      Lvl5_explotion_008_20: -6948527295999229649
+      Lvl5_explotion_008_21: -2713667312515453516
+      Lvl5_explotion_008_3: 1598601568673382986
+      Lvl5_explotion_008_4: 8708152036314436471
+      Lvl5_explotion_008_5: 4931618439420506347
+      Lvl5_explotion_008_6: -3478566112095492206
+      Lvl5_explotion_008_7: 123362931309991165
+      Lvl5_explotion_008_8: 6832352015063195114
+      Lvl5_explotion_008_9: 7372048159232793278
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,780 @@
+fileFormatVersion: 2
+guid: d6459e50a873b3a4aa7e4a97eb36dde0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2679755509152347932
+    second: Lvl7_explotion_008_0
+  - first:
+      213: -9002123706175846065
+    second: Lvl7_explotion_008_1
+  - first:
+      213: -3994332836385828491
+    second: Lvl7_explotion_008_2
+  - first:
+      213: 6004890865295608747
+    second: Lvl7_explotion_008_3
+  - first:
+      213: 6325366455272215876
+    second: Lvl7_explotion_008_4
+  - first:
+      213: 7283623004553457146
+    second: Lvl7_explotion_008_5
+  - first:
+      213: 6869005808425979823
+    second: Lvl7_explotion_008_6
+  - first:
+      213: -8440651606758835559
+    second: Lvl7_explotion_008_7
+  - first:
+      213: 2646039897757934267
+    second: Lvl7_explotion_008_8
+  - first:
+      213: -2217851224756725334
+    second: Lvl7_explotion_008_9
+  - first:
+      213: 1088827858582971259
+    second: Lvl7_explotion_008_10
+  - first:
+      213: 1371669478652939293
+    second: Lvl7_explotion_008_11
+  - first:
+      213: 2069704948663370633
+    second: Lvl7_explotion_008_12
+  - first:
+      213: -582408328549461831
+    second: Lvl7_explotion_008_13
+  - first:
+      213: -278181529123071756
+    second: Lvl7_explotion_008_14
+  - first:
+      213: 3742842432525208370
+    second: Lvl7_explotion_008_15
+  - first:
+      213: -9170194733600225195
+    second: Lvl7_explotion_008_16
+  - first:
+      213: -586196658251777435
+    second: Lvl7_explotion_008_17
+  - first:
+      213: -7324463424806694488
+    second: Lvl7_explotion_008_18
+  - first:
+      213: -2129793982629744568
+    second: Lvl7_explotion_008_19
+  - first:
+      213: 7402622713379390579
+    second: Lvl7_explotion_008_20
+  - first:
+      213: 623477278883103104
+    second: Lvl7_explotion_008_21
+  - first:
+      213: 3946116852612690078
+    second: Lvl7_explotion_008_22
+  - first:
+      213: -3290094349436272181
+    second: Lvl7_explotion_008_23
+  - first:
+      213: 55760967964810683
+    second: Lvl7_explotion_008_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_0
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 131
+        width: 42
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e80418ff889fcad0800000000000000
+      internalID: -2679755509152347932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 134
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f49044d3f28021380800000000000000
+      internalID: -9002123706175846065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_2
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 136
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5715b8cb2774198c0800000000000000
+      internalID: -3994332836385828491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_3
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 138
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: babceec3d68a55350800000000000000
+      internalID: 6004890865295608747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_4
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 140
+        width: 16
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4451ca0274738c750800000000000000
+      internalID: 6325366455272215876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_5
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 141
+        width: 11
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afda5484880a41560800000000000000
+      internalID: 7283623004553457146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_6
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 141
+        width: 10
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faf4353a36c935f50800000000000000
+      internalID: 6869005808425979823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_7
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 141
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99a3f4a8518ccda80800000000000000
+      internalID: -8440651606758835559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_8
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 140
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb26f57844f98b420800000000000000
+      internalID: 2646039897757934267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_9
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 139
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa9d5bfcf0c9831e0800000000000000
+      internalID: -2217851224756725334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_10
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 136
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7323642b2b4c1f00800000000000000
+      internalID: 1088827858582971259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_11
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 134
+        width: 32
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1c8a589f16290310800000000000000
+      internalID: 1371669478652939293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_12
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 128
+        width: 46
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 983c2fe5fa119bc10800000000000000
+      internalID: 2069704948663370633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_13
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 128
+        width: 46
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b0949ef5bedae7f0800000000000000
+      internalID: -582408328549461831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_14
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 114
+        width: 45
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f85b858f53b32cf0800000000000000
+      internalID: -278181529123071756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_15
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 103
+        width: 45
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23b8ce8ac5f31f330800000000000000
+      internalID: 3742842432525208370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_16
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 107
+        width: 38
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 558c99eb97cecb080800000000000000
+      internalID: -9170194733600225195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_17
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 104
+        width: 27
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ab160ce396dd7f0800000000000000
+      internalID: -586196658251777435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_18
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 98
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a15e0262574a5a90800000000000000
+      internalID: -7324463424806694488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_19
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 94
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 840f69c28a37172e0800000000000000
+      internalID: -2129793982629744568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_20
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 92
+        width: 10
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 374873513266bb660800000000000000
+      internalID: 7402622713379390579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_21
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 90
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 081ca55284907a800800000000000000
+      internalID: 623477278883103104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_22
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 92
+        width: 9
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e90792abe5c63c630800000000000000
+      internalID: 3946116852612690078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_23
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 94
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc1c450fe9c3752d0800000000000000
+      internalID: -3290094349436272181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lvl7_explotion_008_24
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 98
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbddfdf0e4a16c000800000000000000
+      internalID: 55760967964810683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Lvl7_explotion_008_0: -2679755509152347932
+      Lvl7_explotion_008_1: -9002123706175846065
+      Lvl7_explotion_008_10: 1088827858582971259
+      Lvl7_explotion_008_11: 1371669478652939293
+      Lvl7_explotion_008_12: 2069704948663370633
+      Lvl7_explotion_008_13: -582408328549461831
+      Lvl7_explotion_008_14: -278181529123071756
+      Lvl7_explotion_008_15: 3742842432525208370
+      Lvl7_explotion_008_16: -9170194733600225195
+      Lvl7_explotion_008_17: -586196658251777435
+      Lvl7_explotion_008_18: -7324463424806694488
+      Lvl7_explotion_008_19: -2129793982629744568
+      Lvl7_explotion_008_2: -3994332836385828491
+      Lvl7_explotion_008_20: 7402622713379390579
+      Lvl7_explotion_008_21: 623477278883103104
+      Lvl7_explotion_008_22: 3946116852612690078
+      Lvl7_explotion_008_23: -3290094349436272181
+      Lvl7_explotion_008_24: 55760967964810683
+      Lvl7_explotion_008_3: 6004890865295608747
+      Lvl7_explotion_008_4: 6325366455272215876
+      Lvl7_explotion_008_5: 7283623004553457146
+      Lvl7_explotion_008_6: 6869005808425979823
+      Lvl7_explotion_008_7: -8440651606758835559
+      Lvl7_explotion_008_8: 2646039897757934267
+      Lvl7_explotion_008_9: -2217851224756725334
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
