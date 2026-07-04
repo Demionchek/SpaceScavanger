@@ -1,0 +1,572 @@
+fileFormatVersion: 2
+guid: a28f119616412834e99e5605023c2aac
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1155337244390137515
+    second: Ship3_explotion_8_0
+  - first:
+      213: 1135629499014522301
+    second: Ship3_explotion_8_1
+  - first:
+      213: 6049720909290072781
+    second: Ship3_explotion_8_2
+  - first:
+      213: -3401226537781510797
+    second: Ship3_explotion_8_3
+  - first:
+      213: 7172351133478925134
+    second: Ship3_explotion_8_4
+  - first:
+      213: -8040430697993408081
+    second: Ship3_explotion_8_5
+  - first:
+      213: -7339864990202866282
+    second: Ship3_explotion_8_6
+  - first:
+      213: 5628642976146599297
+    second: Ship3_explotion_8_7
+  - first:
+      213: 5159593530471311303
+    second: Ship3_explotion_8_8
+  - first:
+      213: -6941407494878401111
+    second: Ship3_explotion_8_9
+  - first:
+      213: 3615252289681837808
+    second: Ship3_explotion_8_10
+  - first:
+      213: 4476742146581265153
+    second: Ship3_explotion_8_11
+  - first:
+      213: 6323049817842556242
+    second: Ship3_explotion_8_12
+  - first:
+      213: 7528665551063448914
+    second: Ship3_explotion_8_13
+  - first:
+      213: 1793460574069046886
+    second: Ship3_explotion_8_14
+  - first:
+      213: -3355449145685984004
+    second: Ship3_explotion_8_15
+  - first:
+      213: -8196649595755099367
+    second: Ship3_explotion_8_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ship3_explotion_8_0
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 73
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 551e850c5ea67ffe0800000000000000
+      internalID: -1155337244390137515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 87
+        width: 24
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db52735330192cf00800000000000000
+      internalID: 1135629499014522301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_2
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 77
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcaec7c3d1de4f350800000000000000
+      internalID: 6049720909290072781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_3
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 85
+        width: 6
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37db6eefb7a6cc0d0800000000000000
+      internalID: -3401226537781510797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_4
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 83
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e43b16bea5f498360800000000000000
+      internalID: 7172351133478925134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_5
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 75
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa1f4f451e6aa6090800000000000000
+      internalID: -8040430697993408081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_6
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 77
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 695d1affdaf832a90800000000000000
+      internalID: -7339864990202866282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_7
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 60
+        width: 26
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18d27b807f4fc1e40800000000000000
+      internalID: 5628642976146599297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_8
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 60
+        width: 21
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c76521bafe8a9740800000000000000
+      internalID: 5159593530471311303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_9
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 69
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ade98a19aa2baf90800000000000000
+      internalID: -6941407494878401111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_10
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 39
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fe47e39dc4fb2230800000000000000
+      internalID: 3615252289681837808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_11
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 31
+        width: 13
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10bfef57345902e30800000000000000
+      internalID: 4476742146581265153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_12
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 44
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25d9a91fe4cffb750800000000000000
+      internalID: 6323049817842556242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_13
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 24
+        width: 9
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25d7bdb1e613b7860800000000000000
+      internalID: 7528665551063448914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_14
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 33
+        width: 8
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66ebd04d3e6a3e810800000000000000
+      internalID: 1793460574069046886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_15
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 37
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfcbf79a7cc0f61d0800000000000000
+      internalID: -3355449145685984004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship3_explotion_8_16
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 46
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b0ba0de96af3e80800000000000000
+      internalID: -8196649595755099367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Ship3_explotion_8_0: -1155337244390137515
+      Ship3_explotion_8_1: 1135629499014522301
+      Ship3_explotion_8_10: 3615252289681837808
+      Ship3_explotion_8_11: 4476742146581265153
+      Ship3_explotion_8_12: 6323049817842556242
+      Ship3_explotion_8_13: 7528665551063448914
+      Ship3_explotion_8_14: 1793460574069046886
+      Ship3_explotion_8_15: -3355449145685984004
+      Ship3_explotion_8_16: -8196649595755099367
+      Ship3_explotion_8_2: 6049720909290072781
+      Ship3_explotion_8_3: -3401226537781510797
+      Ship3_explotion_8_4: 7172351133478925134
+      Ship3_explotion_8_5: -8040430697993408081
+      Ship3_explotion_8_6: -7339864990202866282
+      Ship3_explotion_8_7: 5628642976146599297
+      Ship3_explotion_8_8: 5159593530471311303
+      Ship3_explotion_8_9: -6941407494878401111
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

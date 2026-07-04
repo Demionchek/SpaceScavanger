@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: 004551bd792275c4e9b5204e994f681b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1540008265250439729
+    second: Ship4_explotion_7_0
+  - first:
+      213: -583648691449717396
+    second: Ship4_explotion_7_1
+  - first:
+      213: -7661322106376099523
+    second: Ship4_explotion_7_2
+  - first:
+      213: -7373258089587636835
+    second: Ship4_explotion_7_3
+  - first:
+      213: -6764487661111454755
+    second: Ship4_explotion_7_4
+  - first:
+      213: -1171148368851589319
+    second: Ship4_explotion_7_5
+  - first:
+      213: 7817232632094683615
+    second: Ship4_explotion_7_6
+  - first:
+      213: 3042199577978927562
+    second: Ship4_explotion_7_7
+  - first:
+      213: -757715349791864012
+    second: Ship4_explotion_7_8
+  - first:
+      213: -4341158986486593719
+    second: Ship4_explotion_7_9
+  - first:
+      213: 9155410394053321454
+    second: Ship4_explotion_7_10
+  - first:
+      213: -2852282096370507981
+    second: Ship4_explotion_7_11
+  - first:
+      213: 4930406471922336884
+    second: Ship4_explotion_7_12
+  - first:
+      213: -6906187282561758940
+    second: Ship4_explotion_7_13
+  - first:
+      213: 8282252424701633141
+    second: Ship4_explotion_7_14
+  - first:
+      213: -6796759825592724032
+    second: Ship4_explotion_7_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ship4_explotion_7_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 65
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcdf49e54aac0aae0800000000000000
+      internalID: -1540008265250439729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 72
+        width: 19
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6d94808b9676e7f0800000000000000
+      internalID: -583648691449717396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_2
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 89
+        width: 6
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d39ea9bb2248da590800000000000000
+      internalID: -7661322106376099523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_3
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 70
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d958adc25dceca990800000000000000
+      internalID: -7373258089587636835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_4
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 68
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd350ffdf46bf12a0800000000000000
+      internalID: -6764487661111454755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_5
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 53
+        width: 39
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 937a25773ce3fbfe0800000000000000
+      internalID: -1171148368851589319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_6
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 68
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd1789259a36c7c60800000000000000
+      internalID: 7817232632094683615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_7
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 63
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac9f64dd560183a20800000000000000
+      internalID: 3042199577978927562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_8
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 70
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43b8bc667ed0c75f0800000000000000
+      internalID: -757715349791864012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_9
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 32
+        width: 29
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 947c8f8f6ea11c3c0800000000000000
+      internalID: -4341158986486593719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_10
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 21
+        width: 22
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee2a776fe3d8e0f70800000000000000
+      internalID: 9155410394053321454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_11
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 54
+        width: 26
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33f11ae9b88aa68d0800000000000000
+      internalID: -2852282096370507981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_12
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 39
+        width: 28
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 474c73550925c6440800000000000000
+      internalID: 4930406471922336884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_13
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 42
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 429069ec14b4820a0800000000000000
+      internalID: -6906187282561758940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_14
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 15
+        width: 15
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5726572f2b870f270800000000000000
+      internalID: 8282252424701633141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ship4_explotion_7_15
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 26
+        width: 13
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c556eb03fe0da1a0800000000000000
+      internalID: -6796759825592724032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Ship4_explotion_7_0: -1540008265250439729
+      Ship4_explotion_7_1: -583648691449717396
+      Ship4_explotion_7_10: 9155410394053321454
+      Ship4_explotion_7_11: -2852282096370507981
+      Ship4_explotion_7_12: 4930406471922336884
+      Ship4_explotion_7_13: -6906187282561758940
+      Ship4_explotion_7_14: 8282252424701633141
+      Ship4_explotion_7_15: -6796759825592724032
+      Ship4_explotion_7_2: -7661322106376099523
+      Ship4_explotion_7_3: -7373258089587636835
+      Ship4_explotion_7_4: -6764487661111454755
+      Ship4_explotion_7_5: -1171148368851589319
+      Ship4_explotion_7_6: 7817232632094683615
+      Ship4_explotion_7_7: 3042199577978927562
+      Ship4_explotion_7_8: -757715349791864012
+      Ship4_explotion_7_9: -4341158986486593719
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -17,6 +17,7 @@ namespace Game.Gameplay.Flight
             builder.Register<PlayerShipInput>(Lifetime.Singleton).As<IShipInputProvider>();
             builder.RegisterComponentInHierarchy<ShipMovementController>();
             builder.RegisterComponentInHierarchy<HookController>();
+            builder.RegisterComponentInHierarchy<ShipCannon>();
 
             builder.RegisterInstance(_zoneConfig);
             builder.RegisterInstance(new ZoneSeed(_zoneSeed));

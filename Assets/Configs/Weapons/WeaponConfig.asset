@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55438eec39da34f44a9a87a2dd7ce45f, type: 3}
+  m_Name: WeaponConfig
+  m_EditorClassIdentifier: Data::Game.Data.WeaponConfig
+  Damage: 10
+  FireRate: 1
+  ProjectileSpeed: 6
+  ProjectileLifetime: 3
+  DamageType: 0
+  ProjectilePrefab: {fileID: 3680314031896629388, guid: b78944bd4c0405e41bbd18ad920a1ea2, type: 3}
