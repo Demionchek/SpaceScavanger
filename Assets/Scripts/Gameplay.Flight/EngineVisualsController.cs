@@ -6,7 +6,8 @@ namespace Game.Gameplay.Flight
     [RequireComponent(typeof(ShipMovementController))]
     public sealed class EngineVisualsController : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> _engineParticles;
+        [SerializeField] private List<GameObject> _forwardEngineParticles;
+        [SerializeField] private List<GameObject> _backwardEngineParticles;
         [SerializeField] private float _activationThreshold = 0.1f;
 
         private ShipMovementController _movement;
@@ -18,16 +19,22 @@ namespace Game.Gameplay.Flight
 
         private void Update()
         {
-            var isThrusting = Mathf.Abs(_movement.CurrentThrottle) > _activationThreshold;
+            var throttle = _movement.CurrentThrottle;
+            var isThrusting = Mathf.Abs(throttle) > _activationThreshold;
+            var isForward = throttle > 0f;
 
-            if (isThrusting && !_engineParticles[0].activeInHierarchy)
+            SetParticlesActive(_forwardEngineParticles, isThrusting && isForward);
+            SetParticlesActive(_backwardEngineParticles, isThrusting && !isForward);
+        }
+
+        private static void SetParticlesActive(List<GameObject> particles, bool active)
+        {
+            if (particles.Count == 0 || particles[0].activeInHierarchy == active)
             {
-                _engineParticles.ForEach(particle => particle.gameObject.SetActive(true));
+                return;
             }
-            else if (!isThrusting && _engineParticles[0].activeInHierarchy)
-            {
-                _engineParticles.ForEach(particle => particle.gameObject.SetActive(false));
-            }
+
+            particles.ForEach(particle => particle.SetActive(active));
         }
     }
 }

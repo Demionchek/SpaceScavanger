@@ -1209,13 +1209,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3202436085470926017, guid: 390f174cfacdd0d4abfb1ffdc3a10cf5, type: 3}
+      propertyPath: _hookRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202436085470926017, guid: 390f174cfacdd0d4abfb1ffdc3a10cf5, type: 3}
+      propertyPath: _hookSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3463773660517166005, guid: 390f174cfacdd0d4abfb1ffdc3a10cf5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.071
       objectReference: {fileID: 0}
     - target: {fileID: 3463773660517166005, guid: 390f174cfacdd0d4abfb1ffdc3a10cf5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.315
       objectReference: {fileID: 0}
     - target: {fileID: 3463773660517166005, guid: 390f174cfacdd0d4abfb1ffdc3a10cf5, type: 3}
       propertyPath: m_LocalPosition.z
