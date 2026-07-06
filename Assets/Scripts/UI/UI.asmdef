@@ -3,7 +3,10 @@
     "rootNamespace": "Game.UI",
     "references": [
         "Core",
-        "Gameplay.Shared"
+        "Gameplay.Shared",
+        "VContainer",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

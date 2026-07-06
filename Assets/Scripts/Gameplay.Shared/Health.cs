@@ -9,6 +9,9 @@ namespace Game.Gameplay.Shared
 
         private float _currentHealth;
 
+        public float CurrentHealth => _currentHealth;
+        public float MaxHealth => _maxHealth;
+
         private void Awake()
         {
             _currentHealth = _maxHealth;

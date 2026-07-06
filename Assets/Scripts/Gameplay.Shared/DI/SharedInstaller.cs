@@ -1,6 +1,7 @@
 using Game.Core;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace Game.Gameplay.Shared
 {
@@ -10,6 +11,7 @@ namespace Game.Gameplay.Shared
         public override void Install(IContainerBuilder builder)
         {
             builder.Register<ResourceService>(Lifetime.Singleton).As<IResourceService>();
+            builder.RegisterComponentInHierarchy<Health>();
         }
     }
 }
