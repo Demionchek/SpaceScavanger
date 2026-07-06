@@ -9,6 +9,7 @@ namespace Game.Gameplay.Flight
     {
         [SerializeField] private float _thrustForce = 10f;
         [SerializeField] private float _torqueStrength = 90f;
+        [SerializeField] private float _maxAngularSpeed = 180f;
 
         private Rigidbody2D _rigidbody;
         private IShipInputProvider _shipInput;
@@ -32,6 +33,7 @@ namespace Game.Gameplay.Flight
         {
             _rigidbody.AddForce(transform.right * (_shipInput.Throttle * _thrustForce));
             _rigidbody.AddTorque(_shipInput.Rotation * _torqueStrength);
+            _rigidbody.angularVelocity = Mathf.Clamp(_rigidbody.angularVelocity, -_maxAngularSpeed, _maxAngularSpeed);
         }
     }
 }

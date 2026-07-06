@@ -10,6 +10,7 @@ namespace Game.Data
         public float FireRate = 4f;
         public float ProjectileSpeed = 20f;
         public float ProjectileLifetime = 2f;
+        public float SpreadDegrees;
         public DamageType DamageType = DamageType.Kinetic;
         public GameObject ProjectilePrefab;
     }

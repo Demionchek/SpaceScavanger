@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd101c3b79697b44a83ae5e77ff2880f, type: 3}
+  m_Name: EnemyCombatConfig_1
+  m_EditorClassIdentifier: Data::Game.Data.EnemyCombatConfig
+  DetectionRadius: 5
+  AlertRadius: 3
+  AlertPropagationDelay: 0.5
+  MovementStyle: 0
+  PreferredRange: 4
+  RangeTolerance: 1
+  KiteDistance: 6
+  AimToleranceDegrees: 5
+  AttackRange: 6
+  TurnResponsiveness: 3
+  TurnDamping: 0.25

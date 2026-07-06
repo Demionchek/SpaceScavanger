@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FlightInstaller
   m_EditorClassIdentifier: Gameplay.Flight::Game.Gameplay.Flight.FlightInstaller
   _zoneConfig: {fileID: 11400000, guid: ee3745f13fbbabb499240c86166e4097, type: 2}
-  _zoneSeed: 12345
+  _zoneSeed: 12233

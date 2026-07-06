@@ -28,8 +28,19 @@ namespace Game.Gameplay.Flight
 
             if (_shipInput.FirePressed && _cooldownRemaining <= 0f)
             {
-                Fire(_muzzle.position, transform.right, gameObject);
+                Fire(_muzzle.position, ApplySpread(transform.right), gameObject);
             }
+        }
+
+        private Vector2 ApplySpread(Vector2 direction)
+        {
+            if (_weaponConfig.SpreadDegrees <= 0f)
+            {
+                return direction;
+            }
+
+            var offset = Random.Range(-_weaponConfig.SpreadDegrees, _weaponConfig.SpreadDegrees);
+            return Quaternion.Euler(0f, 0f, offset) * direction;
         }
 
         public void Fire(Vector2 origin, Vector2 direction, GameObject source)

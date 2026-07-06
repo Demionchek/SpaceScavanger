@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55438eec39da34f44a9a87a2dd7ce45f, type: 3}
-  m_Name: WeaponConfig
+  m_Name: BaseWeaponConfig
   m_EditorClassIdentifier: Data::Game.Data.WeaponConfig
   Damage: 10
   FireRate: 1

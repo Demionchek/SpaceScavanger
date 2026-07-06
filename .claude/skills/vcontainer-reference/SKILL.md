@@ -189,3 +189,79 @@ The coupling happens by dragging the generated `.asset` into `GameLifetimeScope`
 `Feature Installers` list in the Inspector — never via a C# reference. When a new feature
 assembly needs DI registrations, add a new `ScriptableObjectInstaller` subclass in that
 assembly and drag its asset in; don't add anything to `_Core`.
+
+## 9. Per-instance DI for dynamically-spawned prefabs (nested LifetimeScope)
+
+Verified by reading `LifetimeScope.cs` and `ContainerBuilderUnityExtensions.cs` source
+directly. Needed whenever multiple copies of the same prefab (e.g. enemies spawned by
+`ZoneSpawner`) must each get their **own** instance bound to an interface — plain root-scope
+registration only has one binding for the whole container, so every copy would receive the
+same shared instance.
+
+**Why `RegisterComponentInHierarchy<T>()` doesn't work here:** it searches the *entire
+scene* the LifetimeScope's GameObject belongs to (section 6). Calling it inside a
+per-prefab child scope's `Configure` would find every copy of `T` currently in the scene
+(all spawned enemies at once), not just this prefab's own component — wrong.
+
+**The pattern that works — `EnemyLifetimeScope` in `Gameplay.Flight`:**
+
+1. Put a `LifetimeScope` subclass directly on the prefab (e.g. `EnemyLifetimeScope`), with
+   serialized fields pointing at that *same prefab's own* components (dragged in the
+   Inspector, not found via search):
+   ```csharp
+   public sealed class EnemyLifetimeScope : LifetimeScope
+   {
+       [SerializeField] private AiCombatInput _combatInput;
+       [SerializeField] private ShipMovementController _movement;
+       [SerializeField] private ShipCannon _cannon;
+
+       protected override void Configure(IContainerBuilder builder)
+       {
+           builder.RegisterComponent<IShipInputProvider>(_combatInput);
+           builder.RegisterComponent(_movement);
+           builder.RegisterComponent(_cannon);
+       }
+   }
+   ```
+   `builder.RegisterComponent(instance)` (as opposed to `RegisterComponentInHierarchy`)
+   binds one already-known instance and forces its `[Inject]` method to run — scoped to
+   exactly that instance, no scene search involved.
+
+2. Spawn via `LifetimeScope.CreateChildFromPrefab<TScope>(TScope prefab, IInstaller
+   installer = null)`, not `Object.Instantiate`. The caller needs a reference to the
+   *root* scope to call this on — every `LifetimeScope` auto-registers itself as
+   `LifetimeScope` at the end of its own `Configure` (`builder.RegisterInstance<LifetimeScope>
+   (this).AsSelf()`, see `LifetimeScope.InstallTo`), so any singleton/entry point can just
+   take a `LifetimeScope` constructor parameter to get "the scope I live in" — no extra
+   registration needed. `ZoneSpawner` does exactly this:
+   ```csharp
+   public ZoneSpawner(IZoneGenerator generator, ZoneConfig config, ZoneSeed seed, LifetimeScope rootScope)
+   private void SpawnEnemy(Vector2 position)
+   {
+       var prefabScope = _config.EnemyPrefab.GetComponent<LifetimeScope>();
+       var enemyScope = _rootScope.CreateChildFromPrefab(prefabScope);
+       enemyScope.transform.SetParent(null);
+       enemyScope.transform.position = position;
+   }
+   ```
+   Registrations not overridden by the child (anything not explicitly bound in its own
+   `Configure`) fall through to the parent container automatically — e.g. `EventBus` and a
+   `PlayerMarker` singleton registered once in `FlightInstaller` are visible to every
+   dynamically-spawned enemy's child scope without any extra wiring.
+
+3. **Gotcha:** `CreateChildFromPrefab` instantiates the clone as a child of the *calling*
+   scope's own `transform` with `worldPositionStays: false` — so the new instance ends up
+   at the root scope's position, not wherever you want to spawn it. Set
+   `enemyScope.transform.position` explicitly after creation. Reparenting/unparenting the
+   Transform afterward (e.g. `SetParent(null)` to keep the Hierarchy flat) is safe and does
+   **not** break the DI parent/child link — that's tracked separately via
+   `parentReference.Object`, not via Transform hierarchy.
+
+4. The alternative (`autoInjectGameObjects`, a protected `List<GameObject>` field on every
+   `LifetimeScope` that gets `Container.InjectGameObject(target)` — recursive into
+   children — called automatically after Build) also works and needs no per-component
+   serialized fields, at the cost of injecting every `[Inject]` method under that GameObject
+   rather than binding named instances to specific interfaces. Prefer explicit
+   `RegisterComponent` when a component needs to be resolvable *as an interface*
+   (like `IShipInputProvider` here); reach for `autoInjectGameObjects` when you just need
+   `[Inject]` methods on a prefab's components to fire and don't need interface binding.

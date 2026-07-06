@@ -160,6 +160,8 @@ GameObject:
   - component: {fileID: 8947707889212203856}
   - component: {fileID: 3202436085470926017}
   - component: {fileID: 6619411939837387453}
+  - component: {fileID: 3562047366219435898}
+  - component: {fileID: 5864699060488603089}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Untagged
@@ -340,6 +342,31 @@ MonoBehaviour:
   _muzzle: {fileID: 2053539304197329765}
   _weaponConfig: {fileID: 11400000, guid: fef2859fd9e001448bcd2a7cd7dc3211, type: 2}
   _muzzleFlashAnimator: {fileID: 2363907651257156750}
+--- !u!114 &3562047366219435898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4666934199521371935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf702e67da27f8b49beb2a831c7e4dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay.Shared::Game.Gameplay.Shared.Health
+  _maxHealth: 100
+--- !u!114 &5864699060488603089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4666934199521371935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6261af979c92794eb156b4a06698b03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay.Flight::Game.Gameplay.Flight.PlayerMarker
 --- !u!1 &5794553654763531096
 GameObject:
   m_ObjectHideFlags: 0
