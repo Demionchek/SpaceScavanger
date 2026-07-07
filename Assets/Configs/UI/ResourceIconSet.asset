@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 723380af7b7735b489fee50bf92da105, type: 3}
+  m_Name: ResourceIconSet
+  m_EditorClassIdentifier: Data::Game.Data.ResourceIconSet
+  _entries:
+  - Resource: 0
+    Icon: {fileID: 217846362902600935, guid: 22e10c5bcbb9d974981bfc0dd2f6ecc8, type: 3}
+  - Resource: 1
+    Icon: {fileID: -7868944458112193546, guid: b5a1410e1b8cd3f4ba786bf6c14d58ab, type: 3}
+  - Resource: 2
+    Icon: {fileID: -3857231279393018522, guid: 84306f46dffefc641b89bc722f8b9c41, type: 3}
+  - Resource: 3
+    Icon: {fileID: 1051003845431592025, guid: 80a035417604f5c40bc28c39e6c25698, type: 3}
+  - Resource: 4
+    Icon: {fileID: 7933545380834298524, guid: eedc257eb657d8c489a14c8914e6dea9, type: 3}
+  - Resource: 5
+    Icon: {fileID: -8436245186175967270, guid: cbe2e73e6ae873e47ac8c3cef9cb6e40, type: 3}
+  - Resource: 6
+    Icon: {fileID: 3102436254334964476, guid: be13fee6419047646b0c74783ab250fa, type: 3}

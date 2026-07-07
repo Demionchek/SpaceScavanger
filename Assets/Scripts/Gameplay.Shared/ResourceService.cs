@@ -24,5 +24,19 @@ namespace Game.Gameplay.Shared
             _amounts[type] = newAmount;
             _eventBus.Publish(new ResourceChangedEvent(type, newAmount));
         }
+
+        public bool TrySpend(ResourceType type, int amount)
+        {
+            var current = GetAmount(type);
+            if (current < amount)
+            {
+                return false;
+            }
+
+            var newAmount = current - amount;
+            _amounts[type] = newAmount;
+            _eventBus.Publish(new ResourceChangedEvent(type, newAmount));
+            return true;
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace Game.Core
             builder.Register<SpaceFlightState>(Lifetime.Singleton).As<IGameState>();
             builder.Register<BoardingState>(Lifetime.Singleton).As<IGameState>();
             builder.Register<GameStateMachine>(Lifetime.Singleton);
+            builder.Register<PauseService>(Lifetime.Singleton).As<IPauseService>();
 
             // Registration order matters: InputMapSwitcher must subscribe before
             // GameStateMachineBootstrap fires the first state change below.

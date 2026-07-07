@@ -15,6 +15,9 @@ namespace Game.Gameplay.Flight
         [SerializeField] private float _ropeTileLength = 0.5f;
         [SerializeField] private LayerMask _hookableMask;
         [SerializeField] private int _hookLevel;
+        [SerializeField] private AudioSource _hookAudioSource;
+        [SerializeField] private AudioClip _launchClip;
+        [SerializeField] private AudioClip _retractClip;
 
         private PlayerContext _playerContext;
         private InputAction _hookAction;
@@ -54,11 +57,24 @@ namespace Game.Gameplay.Flight
         {
             _activeHook = Instantiate(_hookProjectilePrefab, _hookAnchor.position, transform.rotation);
             _activeHook.Launch(this, transform.right, _hookRange, _hookSpeed, _hookableMask, _hookLevel);
+
+            if (_hookAudioSource != null && _launchClip != null)
+            {
+                _hookAudioSource.PlayOneShot(_launchClip);
+            }
         }
 
         public void OnHookGrabbed(IHookable hookable)
         {
             hookable.OnGrabbed(new HookContext(_playerContext.ResourceService));
+        }
+
+        public void OnHookReturning()
+        {
+            if (_hookAudioSource != null && _retractClip != null)
+            {
+                _hookAudioSource.PlayOneShot(_retractClip);
+            }
         }
 
         public void OnHookReturned(HookProjectile hook)

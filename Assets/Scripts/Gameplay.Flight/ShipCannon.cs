@@ -10,16 +10,19 @@ namespace Game.Gameplay.Flight
         [SerializeField] private Transform _muzzle;
         [SerializeField] private WeaponConfig _weaponConfig;
         [SerializeField] private Animator _muzzleFlashAnimator;
+        [SerializeField] private AudioClip _fireClip;
 
         private static readonly int ShootHash = Animator.StringToHash("Shoot");
 
         private IShipInputProvider _shipInput;
+        private ISoundService _soundService;
         private float _cooldownRemaining;
 
         [Inject]
-        public void Construct(IShipInputProvider shipInput)
+        public void Construct(IShipInputProvider shipInput, ISoundService soundService)
         {
             _shipInput = shipInput;
+            _soundService = soundService;
         }
 
         private void Update()
@@ -58,6 +61,7 @@ namespace Game.Gameplay.Flight
             _cooldownRemaining = 1f / _weaponConfig.FireRate;
 
             _muzzleFlashAnimator.SetTrigger(ShootHash);
+            _soundService.PlayAtPosition(_fireClip, origin);
         }
     }
 }

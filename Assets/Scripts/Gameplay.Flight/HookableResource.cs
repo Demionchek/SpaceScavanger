@@ -1,6 +1,7 @@
 using System;
 using Game.Core;
 using UnityEngine;
+using VContainer;
 using Random = UnityEngine.Random;
 
 namespace Game.Gameplay.Flight
@@ -17,11 +18,19 @@ namespace Game.Gameplay.Flight
         [SerializeField] private Color _color = Color.white;
         [SerializeField] private GameObject[] _visualVariants;
         [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private AudioClip _breakClip;
 
         public int RequiredHookLevel => _requiredHookLevel;
         public Vector2 Position => transform.position;
 
+        private ISoundService _soundService;
         private float _rotatationAngle;
+
+        [Inject]
+        public void Construct(ISoundService soundService)
+        {
+            _soundService = soundService;
+        }
 
         private void Awake()
         {
@@ -55,6 +64,7 @@ namespace Game.Gameplay.Flight
         {
             var amount = _randomAmount ? Random.Range(_minAmount, _maxAmount + 1) : _minAmount;
             ctx.ResourceService.Add(_resourceType, amount);
+            _soundService.PlayAtPosition(_breakClip, transform.position);
             Destroy(gameObject);
         }
     }

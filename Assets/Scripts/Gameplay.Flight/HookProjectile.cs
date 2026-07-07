@@ -78,6 +78,7 @@ namespace Game.Gameplay.Flight
         {
             _returning = true;
             _rigidbody.linearVelocity = Vector2.zero;
+            _owner.OnHookReturning();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Game.UI
         public override void Install(IContainerBuilder builder)
         {
             builder.RegisterComponentInHierarchy<HealthBarUI>();
+            builder.RegisterComponentInHierarchy<TraderUI>();
         }
     }
 }

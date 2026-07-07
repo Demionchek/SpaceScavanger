@@ -11,6 +11,9 @@ namespace Game.Gameplay.Shared
         public override void Install(IContainerBuilder builder)
         {
             builder.Register<ResourceService>(Lifetime.Singleton).As<IResourceService>();
+            builder.Register<ItemService>(Lifetime.Singleton).As<IItemService>();
+            builder.Register<TradeService>(Lifetime.Singleton).As<ITradeService>();
+            builder.Register<SoundService>(Lifetime.Singleton).As<ISoundService>();
             builder.RegisterComponentInHierarchy<Health>();
         }
     }

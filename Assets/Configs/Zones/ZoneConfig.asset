@@ -20,5 +20,5 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 7038679251376370445, guid: 42592d0f7166154449056d6a6db8bbfe, type: 3}
   EnemyCount: 3
   EnemySpawnChance: 0.75
-  TraderPrefab: {fileID: 0}
-  TraderSpawnChance: 0.5
+  TraderPrefab: {fileID: 3995033229410401006, guid: 7619530a41034c04fad4f7968fa2236a, type: 3}
+  TraderSpawnChance: 1

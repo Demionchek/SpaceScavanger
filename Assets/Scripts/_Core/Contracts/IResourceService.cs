@@ -4,5 +4,6 @@ namespace Game.Core
     {
         int GetAmount(ResourceType type);
         void Add(ResourceType type, int amount);
+        bool TrySpend(ResourceType type, int amount);
     }
 }

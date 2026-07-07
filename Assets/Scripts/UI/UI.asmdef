@@ -3,6 +3,7 @@
     "rootNamespace": "Game.UI",
     "references": [
         "Core",
+        "Data",
         "Gameplay.Shared",
         "VContainer",
         "UnityEngine.UI",

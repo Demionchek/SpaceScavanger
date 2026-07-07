@@ -25,7 +25,7 @@ namespace Game.Gameplay.Flight
 
             foreach (var resourceSpawn in content.ResourceSpawns)
             {
-                Object.Instantiate(
+                _rootScope.Container.Instantiate(
                     _config.ResourcePrefabs[resourceSpawn.PrefabIndex],
                     resourceSpawn.Position,
                     Quaternion.identity);
@@ -38,7 +38,7 @@ namespace Game.Gameplay.Flight
 
             if (content.TraderSpawnPoint.HasValue && _config.TraderPrefab != null)
             {
-                Object.Instantiate(_config.TraderPrefab, content.TraderSpawnPoint.Value, Quaternion.identity);
+                SpawnTrader(content.TraderSpawnPoint.Value);
             }
         }
 
@@ -53,6 +53,14 @@ namespace Game.Gameplay.Flight
             var enemyScope = _rootScope.CreateChildFromPrefab(prefabScope);
             enemyScope.transform.SetParent(null);
             enemyScope.transform.position = position;
+        }
+
+        private void SpawnTrader(Vector2 position)
+        {
+            var prefabScope = _config.TraderPrefab.GetComponent<LifetimeScope>();
+            var traderScope = _rootScope.CreateChildFromPrefab(prefabScope);
+            traderScope.transform.SetParent(null);
+            traderScope.transform.position = position;
         }
     }
 }

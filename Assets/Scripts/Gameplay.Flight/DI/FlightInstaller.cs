@@ -19,6 +19,8 @@ namespace Game.Gameplay.Flight
             builder.RegisterComponentInHierarchy<HookController>();
             builder.RegisterComponentInHierarchy<ShipCannon>();
             builder.RegisterComponentInHierarchy<PlayerMarker>();
+            builder.RegisterComponentInHierarchy<ShipInteractor>();
+            builder.RegisterComponentInHierarchy<EngineSoundController>();
 
             builder.RegisterInstance(_zoneConfig);
             builder.RegisterInstance(new ZoneSeed(_zoneSeed));

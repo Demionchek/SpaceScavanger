@@ -5,7 +5,10 @@ namespace Game.Core
         Scrap,
         Iron,
         Gold,
-        Platinum,
-        Silver
+        Titanium,
+        Uranium,
+        Antimatter,
+        Spice,
+        Credits
     }
 }
