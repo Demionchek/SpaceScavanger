@@ -1,5 +1,6 @@
 using Game.Core;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Game.Gameplay.Shared
 {
@@ -8,7 +9,7 @@ namespace Game.Gameplay.Shared
         private const float MinDistance = 3f;
         private const float MaxDistance = 25f;
 
-        public void PlayAtPosition(AudioClip clip, Vector3 position)
+        public void PlayAtPosition(AudioClip clip, Vector3 position, AudioMixerGroup mixerGroup = null)
         {
             if (clip == null)
             {
@@ -24,6 +25,7 @@ namespace Game.Gameplay.Shared
             source.minDistance = MinDistance;
             source.maxDistance = MaxDistance;
             source.rolloffMode = AudioRolloffMode.Linear;
+            source.outputAudioMixerGroup = mixerGroup;
             source.Play();
 
             Object.Destroy(go, clip.length);

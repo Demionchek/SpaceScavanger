@@ -16,6 +16,7 @@ namespace Game.Core
             builder.RegisterInstance(_inputActions);
             builder.Register<EventBus>(Lifetime.Singleton);
             builder.Register<PlayerContext>(Lifetime.Singleton);
+            builder.Register<GameContext>(Lifetime.Singleton);
 
             builder.Register<ShipInteriorState>(Lifetime.Singleton).As<IGameState>();
             builder.Register<SpaceFlightState>(Lifetime.Singleton).As<IGameState>();
@@ -28,6 +29,7 @@ namespace Game.Core
             builder.RegisterEntryPoint<InputMapSwitcher>(Lifetime.Singleton);
             builder.RegisterEntryPoint<GameStateMachineBootstrap>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugStateHotkeys>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<DebugRandomEventHotkey>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugResourceLogger>(Lifetime.Singleton);
 
             foreach (var installer in _featureInstallers)

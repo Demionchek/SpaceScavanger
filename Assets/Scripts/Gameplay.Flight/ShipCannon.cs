@@ -1,6 +1,7 @@
 using Game.Core;
 using Game.Data;
 using UnityEngine;
+using UnityEngine.Audio;
 using VContainer;
 
 namespace Game.Gameplay.Flight
@@ -11,6 +12,7 @@ namespace Game.Gameplay.Flight
         [SerializeField] private WeaponConfig _weaponConfig;
         [SerializeField] private Animator _muzzleFlashAnimator;
         [SerializeField] private AudioClip _fireClip;
+        [SerializeField] private AudioMixerGroup _fireMixerGroup;
 
         private static readonly int ShootHash = Animator.StringToHash("Shoot");
 
@@ -61,7 +63,7 @@ namespace Game.Gameplay.Flight
             _cooldownRemaining = 1f / _weaponConfig.FireRate;
 
             _muzzleFlashAnimator.SetTrigger(ShootHash);
-            _soundService.PlayAtPosition(_fireClip, origin);
+            _soundService.PlayAtPosition(_fireClip, origin, _fireMixerGroup);
         }
     }
 }

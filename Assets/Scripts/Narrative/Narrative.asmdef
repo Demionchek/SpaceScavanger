@@ -4,7 +4,10 @@
     "references": [
         "Core",
         "Data",
-        "Gameplay.Shared"
+        "Gameplay.Shared",
+        "VContainer",
+        "YarnSpinner.Unity",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

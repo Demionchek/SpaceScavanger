@@ -1,6 +1,7 @@
 using System;
 using Game.Core;
 using UnityEngine;
+using UnityEngine.Audio;
 using VContainer;
 using Random = UnityEngine.Random;
 
@@ -19,6 +20,7 @@ namespace Game.Gameplay.Flight
         [SerializeField] private GameObject[] _visualVariants;
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private AudioClip _breakClip;
+        [SerializeField] private AudioMixerGroup _breakMixerGroup;
 
         public int RequiredHookLevel => _requiredHookLevel;
         public Vector2 Position => transform.position;
@@ -64,7 +66,7 @@ namespace Game.Gameplay.Flight
         {
             var amount = _randomAmount ? Random.Range(_minAmount, _maxAmount + 1) : _minAmount;
             ctx.ResourceService.Add(_resourceType, amount);
-            _soundService.PlayAtPosition(_breakClip, transform.position);
+            _soundService.PlayAtPosition(_breakClip, transform.position, _breakMixerGroup);
             Destroy(gameObject);
         }
     }
