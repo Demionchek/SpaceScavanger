@@ -17,5 +17,8 @@ namespace Game.Data
 
         public GameObject TraderPrefab;
         [Range(0f, 1f)] public float TraderSpawnChance = 0.5f;
+
+        public GameObject QuestGiverPrefab;
+        [Range(0f, 1f)] public float QuestGiverSpawnChance = 0.5f;
     }
 }

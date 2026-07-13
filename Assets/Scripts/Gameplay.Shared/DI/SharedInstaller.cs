@@ -13,6 +13,7 @@ namespace Game.Gameplay.Shared
             builder.Register<ResourceService>(Lifetime.Singleton).As<IResourceService>();
             builder.Register<ItemService>(Lifetime.Singleton).As<IItemService>();
             builder.Register<TradeService>(Lifetime.Singleton).As<ITradeService>();
+            builder.Register<QuestService>(Lifetime.Singleton).As<IQuestService>();
             builder.Register<SoundService>(Lifetime.Singleton).As<ISoundService>();
             builder.RegisterComponentInHierarchy<Health>();
         }

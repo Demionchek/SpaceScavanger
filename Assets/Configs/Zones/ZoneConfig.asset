@@ -22,3 +22,5 @@ MonoBehaviour:
   EnemySpawnChance: 0.75
   TraderPrefab: {fileID: 3995033229410401006, guid: 7619530a41034c04fad4f7968fa2236a, type: 3}
   TraderSpawnChance: 1
+  QuestGiverPrefab: {fileID: 3221235424753289668, guid: 82b7174d27c34104fa5c7d16edfe0c68, type: 3}
+  QuestGiverSpawnChance: 1

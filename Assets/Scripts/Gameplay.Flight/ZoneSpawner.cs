@@ -33,34 +33,31 @@ namespace Game.Gameplay.Flight
 
             foreach (var enemyPosition in content.EnemySpawnPoints)
             {
-                SpawnEnemy(enemyPosition);
+                SpawnScopedPrefab(_config.EnemyPrefab, enemyPosition);
             }
 
-            if (content.TraderSpawnPoint.HasValue && _config.TraderPrefab != null)
+            if (content.TraderSpawnPoint.HasValue)
             {
-                SpawnTrader(content.TraderSpawnPoint.Value);
+                SpawnScopedPrefab(_config.TraderPrefab, content.TraderSpawnPoint.Value);
+            }
+
+            if (content.QuestGiverSpawnPoint.HasValue)
+            {
+                SpawnScopedPrefab(_config.QuestGiverPrefab, content.QuestGiverSpawnPoint.Value);
             }
         }
 
-        private void SpawnEnemy(Vector2 position)
+        private void SpawnScopedPrefab(GameObject prefab, Vector2 position)
         {
-            if (_config.EnemyPrefab == null)
+            if (prefab == null)
             {
                 return;
             }
 
-            var prefabScope = _config.EnemyPrefab.GetComponent<LifetimeScope>();
-            var enemyScope = _rootScope.CreateChildFromPrefab(prefabScope);
-            enemyScope.transform.SetParent(null);
-            enemyScope.transform.position = position;
-        }
-
-        private void SpawnTrader(Vector2 position)
-        {
-            var prefabScope = _config.TraderPrefab.GetComponent<LifetimeScope>();
-            var traderScope = _rootScope.CreateChildFromPrefab(prefabScope);
-            traderScope.transform.SetParent(null);
-            traderScope.transform.position = position;
+            var prefabScope = prefab.GetComponent<LifetimeScope>();
+            var instanceScope = _rootScope.CreateChildFromPrefab(prefabScope);
+            instanceScope.transform.SetParent(null);
+            instanceScope.transform.position = position;
         }
     }
 }

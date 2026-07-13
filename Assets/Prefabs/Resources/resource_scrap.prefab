@@ -145,14 +145,16 @@ MonoBehaviour:
   _requiredHookLevel: 0
   _resourceType: 0
   _randomAmount: 1
-  _minAmount: 1
-  _maxAmount: 5
+  _minAmount: 10
+  _maxAmount: 20
   _minRotatationAngle: 1
   _maxRotatationAngle: 50
   _color: {r: 1, g: 0.5991059, b: 0.2992168, a: 1}
   _visualVariants:
   - {fileID: 885445369029735081, guid: f82e44aba2ae5d0428ccaab785ed6e87, type: 3}
   _rigidbody: {fileID: 4905061347017333459}
+  _breakClip: {fileID: 0}
+  _breakMixerGroup: {fileID: 0}
 --- !u!50 &4905061347017333459
 Rigidbody2D:
   serializedVersion: 5

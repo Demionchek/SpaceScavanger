@@ -35,7 +35,11 @@ namespace Game.Gameplay.Flight
                 ? RandomPointInArea(random, config.AreaSize)
                 : null;
 
-            return new ZoneContent(resourceSpawns, enemySpawns, traderSpawn);
+            Vector2? questGiverSpawn = random.NextDouble() <= config.QuestGiverSpawnChance
+                ? RandomPointInArea(random, config.AreaSize)
+                : null;
+
+            return new ZoneContent(resourceSpawns, enemySpawns, traderSpawn, questGiverSpawn);
         }
 
         private static Vector2 RandomPointInArea(System.Random random, Vector2 areaSize)

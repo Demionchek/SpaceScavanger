@@ -34,24 +34,47 @@ namespace Game.Narrative
         private void OnEnable()
         {
             _eventBus.Subscribe<RandomEventRequestedEvent>(OnRandomEventRequested);
+            _eventBus.Subscribe<DialogueRequestedEvent>(OnDialogueRequested);
         }
 
         private void OnDisable()
         {
             _eventBus.Unsubscribe<RandomEventRequestedEvent>(OnRandomEventRequested);
+            _eventBus.Unsubscribe<DialogueRequestedEvent>(OnDialogueRequested);
             ReleasePauseIfActive();
         }
 
         private void OnRandomEventRequested(RandomEventRequestedEvent evt)
         {
-            if (_dialogueActive || _eventCatalog == null || !_eventCatalog.HasEvents)
+            if (_eventCatalog == null || !_eventCatalog.HasEvents)
             {
+                return;
+            }
+
+            StartDialogue(_eventCatalog.GetRandomNode());
+        }
+
+        private void OnDialogueRequested(DialogueRequestedEvent evt)
+        {
+            StartDialogue(evt.Node);
+        }
+
+        private void StartDialogue(string node)
+        {
+            if (_dialogueActive || string.IsNullOrEmpty(node))
+            {
+                return;
+            }
+
+            if (_dialogueRunner.YarnProject == null || !_dialogueRunner.YarnProject.Program.Nodes.ContainsKey(node))
+            {
+                Debug.LogError($"Yarn node '{node}' not found — dialogue not started");
                 return;
             }
 
             _dialogueActive = true;
             _pauseService.RequestPause();
-            _dialogueRunner.StartDialogue(_eventCatalog.GetRandomNode());
+            _dialogueRunner.StartDialogue(node);
         }
 
         private void OnDialogueComplete()

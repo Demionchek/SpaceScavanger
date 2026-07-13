@@ -1,6 +1,6 @@
 ---
 name: vcontainer-reference
-description: Verified technical reference for VContainer (the DI framework used in this Unity project) — package install URL, asmdef/namespace layout, LifetimeScope API, entry-point lifecycle timing, MonoBehaviour injection, RegisterComponentInHierarchy scope, and how child scopes actually work (or don't). Consult this BEFORE searching the web whenever touching VContainer setup, writing or editing a LifetimeScope, registering services, wiring up MonoBehaviour injection, or debugging why an injected dependency is null/missing — even if the user doesn't say "VContainer" explicitly (e.g. "add DI for the new trader service", "why isn't this getting injected", "wire this into the container"). Facts here were verified against the official docs and source in 2026-07 against v1.19.0; re-verify anything version-sensitive if the installed version has since changed.
+description: Verified technical reference for VContainer (the DI framework used in this Unity project) — package install URL, asmdef/namespace layout, LifetimeScope API, entry-point lifecycle timing, MonoBehaviour injection, RegisterComponentInHierarchy scope, how child scopes actually work (or don't), and why newly created *LifetimeScope.cs files get silently wiped to an empty template on Unity import (ScriptTemplateProcessor). Consult this BEFORE searching the web whenever touching VContainer setup, writing or editing a LifetimeScope, registering services, wiring up MonoBehaviour injection, or debugging why an injected dependency is null/missing — even if the user doesn't say "VContainer" explicitly (e.g. "add DI for the new trader service", "why isn't this getting injected", "wire this into the container"). Facts here were verified against the official docs and source in 2026-07 against v1.19.0; re-verify anything version-sensitive if the installed version has since changed.
 ---
 
 # VContainer reference (this project)
@@ -265,3 +265,52 @@ per-prefab child scope's `Configure` would find every copy of `T` currently in t
    `RegisterComponent` when a component needs to be resolvable *as an interface*
    (like `IShipInputProvider` here); reach for `autoInjectGameObjects` when you just need
    `[Inject]` methods on a prefab's components to fire and don't need interface binding.
+
+## 10. New `*LifetimeScope.cs` files are SILENTLY WIPED to an empty template on first Unity import
+
+Root cause found by reading the installed package source:
+`Library/PackageCache/jp.hadashikick.vcontainer@*/Editor/ScriptTemplateModifier.cs` —
+`ScriptTemplateProcessor : AssetModificationProcessor` implements `OnWillCreateAsset`.
+When Unity creates the `.meta` for a **new** `.cs` asset whose filename ends with
+`LifetimeScope.cs`, VContainer **overwrites the file on disk** (`File.WriteAllText`)
+with its bare template:
+
+```csharp
+using VContainer;
+using VContainer.Unity;
+
+namespace <asmdef root namespace>
+{
+    public class #SCRIPTNAME# : LifetimeScope
+    {
+        protected override void Configure(IContainerBuilder builder)
+        {
+        }
+    }
+}
+```
+
+This fires for files created OUTSIDE Unity too (by Claude/IDE/git), because the `.meta`
+is created on the next editor focus/refresh. This is why `EnemyLifetimeScope`,
+`TraderLifetimeScope` and `QuestGiverLifetimeScope` each arrived in Unity as empty stubs
+with their serialized fields and `RegisterComponent` calls gone — it was NOT the user or
+a linter, it's this processor. It happens exactly **once per file** (only at `.meta`
+creation); subsequent edits to the same file are safe.
+
+Workarounds, in order of preference:
+1. **Permanent opt-out:** create the settings asset (Assets → Create → VContainer →
+   VContainer Settings — it auto-adds itself to Preloaded Assets) and tick
+   **Disable Script Modifier**. The processor early-outs when
+   `VContainerSettings.Instance.DisableScriptModifier` is true.
+2. **If the settings asset doesn't exist:** after creating a new `*LifetimeScope.cs`,
+   expect it to be wiped on the next Unity focus; re-apply the real content AFTER the
+   `.meta` exists (i.e. after Unity has imported it once), or verify the file content
+   before wiring prefab references to it.
+3. Avoid the trigger entirely by not ending new filenames with `LifetimeScope.cs`
+   (e.g. `TraderScope.cs`) — works, but breaks the project's naming convention, so
+   only as a last resort.
+
+Symptom to recognize: a prefab's LifetimeScope suddenly has no serialized fields /
+`Configure` is empty → its `RegisterComponent` calls are gone → `[Inject]` methods on
+the prefab's components never run → NullReferenceException at first use of an injected
+service on a freshly spawned prefab.
