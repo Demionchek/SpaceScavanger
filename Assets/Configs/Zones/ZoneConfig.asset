@@ -17,10 +17,14 @@ MonoBehaviour:
   - {fileID: 1275026653305531988, guid: 354897be21f51bd45baffa2bb97ada96, type: 3}
   ResourceCount: 10
   ResourceSpawnChance: 0.7
-  EnemyPrefab: {fileID: 7038679251376370445, guid: 42592d0f7166154449056d6a6db8bbfe, type: 3}
+  EnemyPrefabs:
+  - {fileID: 7038679251376370445, guid: 42592d0f7166154449056d6a6db8bbfe, type: 3}
   EnemyCount: 3
   EnemySpawnChance: 0.75
-  TraderPrefab: {fileID: 3995033229410401006, guid: 7619530a41034c04fad4f7968fa2236a, type: 3}
+  TraderPrefabs:
+  - {fileID: 3995033229410401006, guid: 7619530a41034c04fad4f7968fa2236a, type: 3}
   TraderSpawnChance: 1
-  QuestGiverPrefab: {fileID: 3221235424753289668, guid: 82b7174d27c34104fa5c7d16edfe0c68, type: 3}
+  QuestGiverPrefabs:
+  - {fileID: 3221235424753289668, guid: 82b7174d27c34104fa5c7d16edfe0c68, type: 3}
+  - {fileID: 3221235424753289668, guid: d8a272dc26b4f194e98dc1d7b90e0e16, type: 3}
   QuestGiverSpawnChance: 1

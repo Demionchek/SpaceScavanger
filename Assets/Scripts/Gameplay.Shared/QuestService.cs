@@ -28,7 +28,7 @@ namespace Game.Gameplay.Shared
             return FindRuntime(quest) != null ? QuestState.Active : QuestState.NotStarted;
         }
 
-        public bool StartQuest(QuestDefinition quest)
+        public bool StartQuest(QuestDefinition quest, GameContext ctx)
         {
             if (quest == null || quest.Goal == null || GetState(quest) != QuestState.NotStarted)
             {
@@ -38,6 +38,18 @@ namespace Game.Gameplay.Shared
             var goal = quest.Goal.CreateGoal(quest, new QuestGoalContext(_resources));
             goal.Bind(_eventBus);
             _active.Add(new QuestRuntime(quest, goal));
+
+            if (quest.OnStartEffects != null)
+            {
+                foreach (var effect in quest.OnStartEffects)
+                {
+                    if (effect != null)
+                    {
+                        effect.Apply(ctx);
+                    }
+                }
+            }
+
             _eventBus.Publish(new QuestStartedEvent(quest));
             return true;
         }

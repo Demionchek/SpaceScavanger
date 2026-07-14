@@ -8,6 +8,7 @@ namespace Game.Core
         public string Title;
         [TextArea] public string Description;
         public QuestGoalDefinition Goal;
+        public ChoiceEffect[] OnStartEffects;
         public ChoiceEffect[] Rewards;
     }
 }

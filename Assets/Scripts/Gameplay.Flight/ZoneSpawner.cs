@@ -31,19 +31,19 @@ namespace Game.Gameplay.Flight
                     Quaternion.identity);
             }
 
-            foreach (var enemyPosition in content.EnemySpawnPoints)
+            foreach (var enemySpawn in content.EnemySpawns)
             {
-                SpawnScopedPrefab(_config.EnemyPrefab, enemyPosition);
+                SpawnScopedPrefab(_config.EnemyPrefabs[enemySpawn.PrefabIndex], enemySpawn.Position);
             }
 
-            if (content.TraderSpawnPoint.HasValue)
+            if (content.TraderSpawn.HasValue)
             {
-                SpawnScopedPrefab(_config.TraderPrefab, content.TraderSpawnPoint.Value);
+                SpawnScopedPrefab(_config.TraderPrefabs[content.TraderSpawn.Value.PrefabIndex], content.TraderSpawn.Value.Position);
             }
 
-            if (content.QuestGiverSpawnPoint.HasValue)
+            if (content.QuestGiverSpawn.HasValue)
             {
-                SpawnScopedPrefab(_config.QuestGiverPrefab, content.QuestGiverSpawnPoint.Value);
+                SpawnScopedPrefab(_config.QuestGiverPrefabs[content.QuestGiverSpawn.Value.PrefabIndex], content.QuestGiverSpawn.Value.Position);
             }
         }
 

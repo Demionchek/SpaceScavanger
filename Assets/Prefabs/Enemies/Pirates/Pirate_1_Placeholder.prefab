@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 3102972904618062839}
   - component: {fileID: 3474429526053576082}
   - component: {fileID: 6071432109394117550}
+  - component: {fileID: 3690000000000000001}
   m_Layer: 0
   m_Name: Pirate_1_Placeholder
   m_TagString: Untagged
@@ -555,6 +556,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Shared::Game.Gameplay.Shared.Health
   _maxHealth: 20
+--- !u!114 &3690000000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7038679251376370445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0874a6c363cc22743940cee76f64c42a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Gameplay.Shared::Game.Gameplay.Shared.EnemyGroupTag
+  _groupTag: Pirates
 --- !u!114 &672558736007950882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,6 +601,7 @@ MonoBehaviour:
   _combatInput: {fileID: 5672940224399890063}
   _movement: {fileID: 6071432109394117550}
   _cannon: {fileID: 2957513260169545507}
+  _groupTag: {fileID: 3690000000000000001}
 --- !u!114 &2957513260169545507
 MonoBehaviour:
   m_ObjectHideFlags: 0

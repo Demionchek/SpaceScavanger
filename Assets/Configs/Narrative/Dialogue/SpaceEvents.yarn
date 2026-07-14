@@ -35,3 +35,38 @@ title: QuestGiver_Collect_Scrap_10
 -> Не сейчас
     Агент станции: Что ж, найду другого.
 ===
+title: QuestTurnIn_Collect_Scrap_10
+---
+Агент станции: Ну что, пилот, всё принёс?
+-> Сдать груз
+    <<if quest_ready("CollectScrap_Quest")>>
+        <<turn_in_quest CollectScrap_Quest>>
+        Агент станции: Отличная работа! Оплата уже у тебя на счету.
+    <<else>>
+        Агент станции: Здесь не всё. Иди ищи остальное.
+    <<endif>>
+-> Уйти
+    Агент станции: Возвращайся, когда соберёшь груз.
+===
+title: QuestTrigger_Destroy_Pirates
+---
+Station agent: We have a problem, there are pirates nerby, destroy them!
+-> Accept mission
+    Station agent: Great! Good luck, pilot.
+    <<apply_effect QuestTrigger_Destroy_Pirates>>
+-> Not now
+    Station agent: Что ж, найду другого.
+===
+title: QuestTurnIn_Destroy_Pirates
+---
+Station agent: So what, have you eliminated them?
+-> Mission report
+    <<if quest_ready("Destroy_Group_Pirates")>>
+        <<turn_in_quest Destroy_Group_Pirates>>
+        Station agent: Good job! Your reward already transfered.
+    <<else>>
+        Station agent: They are still on the radar! Get rid of them!
+    <<endif>>
+-> Leave
+    Station agent: Come back when you are done.
+===

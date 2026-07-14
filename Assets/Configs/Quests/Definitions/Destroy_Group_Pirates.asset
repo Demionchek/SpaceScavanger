@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b11c2c668fdea140b0a930cb815e737, type: 3}
+  m_Name: Destroy_Group_Pirates
+  m_EditorClassIdentifier: Core::Game.Core.QuestDefinition
+  Title: Destroy Pirates
+  Description: Those pirates in the area are a threat, eleminate them
+  Goal: {fileID: 11400000, guid: 58247a12ff99dfa49808ece7ee3c695d, type: 2}
+  OnStartEffects:
+  - {fileID: 11400000, guid: 129344f7514d227419aac6852e635633, type: 2}
+  Rewards:
+  - {fileID: 11400000, guid: 4b6c530302f768844ab9a662f0681b8e, type: 2}
+  - {fileID: 11400000, guid: 52cd361887e9353419596548cab17c2f, type: 2}

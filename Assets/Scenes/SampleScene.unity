@@ -1366,6 +1366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay.Ship::Game.Gameplay.Ship.WorkbenchStub
   _resourceType: 5
   _amountPerInteract: 10
+  _craftedItem: {fileID: 0}
 --- !u!61 &567043559
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3015,9 +3016,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1924283088}
     - target: {fileID: 2408561130579900555, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
-      propertyPath: _effects.Array.size
-      value: 4
+      propertyPath: _quests.Array.size
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2408561130579900555, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
+      propertyPath: _effects.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408561130579900555, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
+      propertyPath: '_quests.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 017147314a9521842a5948685d979073, type: 2}
+    - target: {fileID: 2408561130579900555, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
+      propertyPath: '_quests.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 58a9e8fd41720174ea64999dfbf6690f, type: 2}
     - target: {fileID: 2408561130579900555, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
       propertyPath: '_effects.Array.data[1]'
       value: 
@@ -3030,6 +3043,14 @@ PrefabInstance:
       propertyPath: '_effects.Array.data[3]'
       value: 
       objectReference: {fileID: 11400000, guid: 9f56211bc940a6e4c8cafc690b892c8f, type: 2}
+    - target: {fileID: 2408561130579900555, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
+      propertyPath: '_effects.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c76d786b54488d24f8fb6d40c0996e6c, type: 2}
+    - target: {fileID: 2408561130579900555, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
+      propertyPath: '_effects.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 129344f7514d227419aac6852e635633, type: 2}
     - target: {fileID: 3761060269368579049, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1714.1556

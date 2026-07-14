@@ -13,6 +13,8 @@ namespace Game.Gameplay.Shared
             _eventBus = eventBus;
         }
 
+        public IEnumerable<KeyValuePair<ItemDefinition, int>> All => _amounts;
+
         public int GetAmount(ItemDefinition item)
         {
             return _amounts.GetValueOrDefault(item);

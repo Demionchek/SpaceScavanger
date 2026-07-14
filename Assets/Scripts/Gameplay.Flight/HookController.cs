@@ -23,8 +23,14 @@ namespace Game.Gameplay.Flight
         private InputAction _hookAction;
         private HookProjectile _activeHook;
         private RopeTilePool _ropePool;
+        private int _hookLevelBonus;
 
         public Vector2 HookAnchorPosition => _hookAnchor.position;
+
+        public void SetHookLevelBonus(int bonus)
+        {
+            _hookLevelBonus = bonus;
+        }
 
         [Inject]
         public void Construct(InputActionAsset inputActions, PlayerContext playerContext)
@@ -56,7 +62,7 @@ namespace Game.Gameplay.Flight
         private void LaunchHook()
         {
             _activeHook = Instantiate(_hookProjectilePrefab, _hookAnchor.position, transform.rotation);
-            _activeHook.Launch(this, transform.right, _hookRange, _hookSpeed, _hookableMask, _hookLevel);
+            _activeHook.Launch(this, transform.right, _hookRange, _hookSpeed, _hookableMask, _hookLevel + _hookLevelBonus);
 
             if (_hookAudioSource != null && _launchClip != null)
             {

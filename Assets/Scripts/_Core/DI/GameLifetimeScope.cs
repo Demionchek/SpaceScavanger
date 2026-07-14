@@ -31,6 +31,7 @@ namespace Game.Core
             builder.RegisterEntryPoint<DebugStateHotkeys>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugRandomEventHotkey>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugResourceLogger>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<DebugReputationLogger>(Lifetime.Singleton);
 
             foreach (var installer in _featureInstallers)
             {

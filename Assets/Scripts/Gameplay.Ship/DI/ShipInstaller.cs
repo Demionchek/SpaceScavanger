@@ -12,6 +12,7 @@ namespace Game.Gameplay.Ship
         {
             builder.RegisterComponentInHierarchy<CharacterMovementController>();
             builder.RegisterComponentInHierarchy<PlayerInteractor>();
+            builder.RegisterComponentInHierarchy<WorkbenchComponent>();
         }
     }
 }

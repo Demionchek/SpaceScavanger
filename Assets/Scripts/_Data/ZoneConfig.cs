@@ -11,14 +11,14 @@ namespace Game.Data
         public int ResourceCount = 10;
         [Range(0f, 1f)] public float ResourceSpawnChance = 0.7f;
 
-        public GameObject EnemyPrefab;
+        public GameObject[] EnemyPrefabs;
         public int EnemyCount = 3;
         [Range(0f, 1f)] public float EnemySpawnChance = 0.3f;
 
-        public GameObject TraderPrefab;
+        public GameObject[] TraderPrefabs;
         [Range(0f, 1f)] public float TraderSpawnChance = 0.5f;
 
-        public GameObject QuestGiverPrefab;
+        public GameObject[] QuestGiverPrefabs;
         [Range(0f, 1f)] public float QuestGiverSpawnChance = 0.5f;
     }
 }

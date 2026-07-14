@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Game.Gameplay.Flight
 {
-    public readonly struct ResourceSpawnPoint
+    public readonly struct PrefabSpawnPoint
     {
         public readonly Vector2 Position;
         public readonly int PrefabIndex;
 
-        public ResourceSpawnPoint(Vector2 position, int prefabIndex)
+        public PrefabSpawnPoint(Vector2 position, int prefabIndex)
         {
             Position = position;
             PrefabIndex = prefabIndex;
@@ -17,21 +17,21 @@ namespace Game.Gameplay.Flight
 
     public sealed class ZoneContent
     {
-        public readonly List<ResourceSpawnPoint> ResourceSpawns;
-        public readonly List<Vector2> EnemySpawnPoints;
-        public readonly Vector2? TraderSpawnPoint;
-        public readonly Vector2? QuestGiverSpawnPoint;
+        public readonly List<PrefabSpawnPoint> ResourceSpawns;
+        public readonly List<PrefabSpawnPoint> EnemySpawns;
+        public readonly PrefabSpawnPoint? TraderSpawn;
+        public readonly PrefabSpawnPoint? QuestGiverSpawn;
 
         public ZoneContent(
-            List<ResourceSpawnPoint> resourceSpawns,
-            List<Vector2> enemySpawnPoints,
-            Vector2? traderSpawnPoint,
-            Vector2? questGiverSpawnPoint)
+            List<PrefabSpawnPoint> resourceSpawns,
+            List<PrefabSpawnPoint> enemySpawns,
+            PrefabSpawnPoint? traderSpawn,
+            PrefabSpawnPoint? questGiverSpawn)
         {
             ResourceSpawns = resourceSpawns;
-            EnemySpawnPoints = enemySpawnPoints;
-            TraderSpawnPoint = traderSpawnPoint;
-            QuestGiverSpawnPoint = questGiverSpawnPoint;
+            EnemySpawns = enemySpawns;
+            TraderSpawn = traderSpawn;
+            QuestGiverSpawn = questGiverSpawn;
         }
     }
 }

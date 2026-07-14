@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4305747688559425089}
   - component: {fileID: 1786654137556295351}
   m_Layer: 6
-  m_Name: Ship_Quest_Test
+  m_Name: Ship_Quest_Pirates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -755008450123188125, guid: 5704b258988c1d74397ef83e9e4080de, type: 3}
+  m_Sprite: {fileID: 9198504000052830509, guid: 733c318817f393e449312f16cf2096b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,9 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cedb030980d9c9f48a2864423bb76397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Flight::Game.Gameplay.Flight.QuestGiverComponent
-  _quest: {fileID: 11400000, guid: 017147314a9521842a5948685d979073, type: 2}
-  _offerDialogueNode: QuestGiver_Collect_Scrap_10
-  _prompt: Quest_Test
+  _quest: {fileID: 11400000, guid: 58a9e8fd41720174ea64999dfbf6690f, type: 2}
+  _offerDialogueNode: QuestTrigger_Destroy_Pirates
+  _turnInDialogueNode: QuestTurnIn_Destroy_Pirates
+  _prompt: Quest_Pirates
 --- !u!114 &4305747688559425089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +161,6 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.03723455, y: -0.00090801285}
-  m_Size: {x: 0.905534, y: 0.38010693}
+  m_Offset: {x: -0.040718917, y: 0.00606074}
+  m_Size: {x: 0.6337575, y: 0.32993463}
   m_Direction: 1

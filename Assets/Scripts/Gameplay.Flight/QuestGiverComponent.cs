@@ -8,6 +8,7 @@ namespace Game.Gameplay.Flight
     {
         [SerializeField] private QuestDefinition _quest;
         [SerializeField] private string _offerDialogueNode;
+        [SerializeField] private string _turnInDialogueNode;
         [SerializeField] private string _prompt = "Quest";
 
         private IQuestService _questService;
@@ -35,12 +36,16 @@ namespace Game.Gameplay.Flight
                     }
                     else
                     {
-                        _questService.StartQuest(_quest);
+                        _questService.StartQuest(_quest, _gameContext);
                     }
                     break;
 
                 case QuestState.Active:
-                    if (!_questService.TryTurnIn(_quest, _gameContext))
+                    if (!string.IsNullOrEmpty(_turnInDialogueNode))
+                    {
+                        _eventBus.Publish(new DialogueRequestedEvent(_turnInDialogueNode));
+                    }
+                    else if (!_questService.TryTurnIn(_quest, _gameContext))
                     {
                         Debug.Log($"Quest '{_quest.Title}' is not complete yet");
                     }

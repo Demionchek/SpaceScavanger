@@ -21,11 +21,13 @@ namespace Game.Gameplay.Flight
             builder.RegisterComponentInHierarchy<PlayerMarker>();
             builder.RegisterComponentInHierarchy<ShipInteractor>();
             builder.RegisterComponentInHierarchy<EngineSoundController>();
+            builder.RegisterComponentInHierarchy<ShipStatsReceiver>();
 
             builder.RegisterInstance(_zoneConfig);
             builder.RegisterInstance(new ZoneSeed(_zoneSeed));
             builder.Register<RandomZoneGenerator>(Lifetime.Singleton).As<IZoneGenerator>();
             builder.RegisterEntryPoint<ZoneSpawner>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<QuestEnemySpawner>(Lifetime.Singleton);
         }
     }
 }

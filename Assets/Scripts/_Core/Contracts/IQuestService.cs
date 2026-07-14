@@ -13,7 +13,7 @@ namespace Game.Core
     {
         IReadOnlyList<QuestRuntime> ActiveQuests { get; }
         QuestState GetState(QuestDefinition quest);
-        bool StartQuest(QuestDefinition quest);
+        bool StartQuest(QuestDefinition quest, GameContext ctx);
         bool TryTurnIn(QuestDefinition quest, GameContext ctx);
     }
 }

@@ -10,7 +10,7 @@ namespace Game.Data
 
         public override void Apply(GameContext ctx)
         {
-            ctx.QuestService.StartQuest(_quest);
+            ctx.QuestService.StartQuest(_quest, ctx);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Game.Gameplay.Flight
         {
             var random = new System.Random(seed);
 
-            var resourceSpawns = new List<ResourceSpawnPoint>();
+            var resourceSpawns = new List<PrefabSpawnPoint>();
             for (var i = 0; i < config.ResourceCount; i++)
             {
                 if (random.NextDouble() > config.ResourceSpawnChance || config.ResourcePrefabs.Length == 0)
@@ -18,28 +18,43 @@ namespace Game.Gameplay.Flight
                     continue;
                 }
 
-                var prefabIndex = random.Next(config.ResourcePrefabs.Length);
-                resourceSpawns.Add(new ResourceSpawnPoint(RandomPointInArea(random, config.AreaSize), prefabIndex));
+                resourceSpawns.Add(RandomSpawnPoint(random, config.AreaSize, config.ResourcePrefabs.Length));
             }
 
-            var enemySpawns = new List<Vector2>();
+            var enemySpawns = new List<PrefabSpawnPoint>();
             for (var i = 0; i < config.EnemyCount; i++)
             {
-                if (random.NextDouble() <= config.EnemySpawnChance)
+                if (random.NextDouble() > config.EnemySpawnChance || HasNoPrefabs(config.EnemyPrefabs))
                 {
-                    enemySpawns.Add(RandomPointInArea(random, config.AreaSize));
+                    continue;
                 }
+
+                enemySpawns.Add(RandomSpawnPoint(random, config.AreaSize, config.EnemyPrefabs.Length));
             }
 
-            Vector2? traderSpawn = random.NextDouble() <= config.TraderSpawnChance
-                ? RandomPointInArea(random, config.AreaSize)
-                : null;
+            PrefabSpawnPoint? traderSpawn = null;
+            if (random.NextDouble() <= config.TraderSpawnChance && !HasNoPrefabs(config.TraderPrefabs))
+            {
+                traderSpawn = RandomSpawnPoint(random, config.AreaSize, config.TraderPrefabs.Length);
+            }
 
-            Vector2? questGiverSpawn = random.NextDouble() <= config.QuestGiverSpawnChance
-                ? RandomPointInArea(random, config.AreaSize)
-                : null;
+            PrefabSpawnPoint? questGiverSpawn = null;
+            if (random.NextDouble() <= config.QuestGiverSpawnChance && !HasNoPrefabs(config.QuestGiverPrefabs))
+            {
+                questGiverSpawn = RandomSpawnPoint(random, config.AreaSize, config.QuestGiverPrefabs.Length);
+            }
 
             return new ZoneContent(resourceSpawns, enemySpawns, traderSpawn, questGiverSpawn);
+        }
+
+        private static bool HasNoPrefabs(GameObject[] prefabs)
+        {
+            return prefabs == null || prefabs.Length == 0;
+        }
+
+        private static PrefabSpawnPoint RandomSpawnPoint(System.Random random, Vector2 areaSize, int prefabCount)
+        {
+            return new PrefabSpawnPoint(RandomPointInArea(random, areaSize), random.Next(prefabCount));
         }
 
         private static Vector2 RandomPointInArea(System.Random random, Vector2 areaSize)

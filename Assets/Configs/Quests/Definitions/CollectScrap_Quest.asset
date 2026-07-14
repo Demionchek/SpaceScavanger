@@ -17,3 +17,4 @@ MonoBehaviour:
   Goal: {fileID: 11400000, guid: 73fd608c60b79714a943f0c8b65b69b1, type: 2}
   Rewards:
   - {fileID: 11400000, guid: 52cd361887e9353419596548cab17c2f, type: 2}
+  - {fileID: 11400000, guid: 4b6c530302f768844ab9a662f0681b8e, type: 2}

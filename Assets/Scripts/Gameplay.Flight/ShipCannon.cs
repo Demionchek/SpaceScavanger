@@ -19,6 +19,14 @@ namespace Game.Gameplay.Flight
         private IShipInputProvider _shipInput;
         private ISoundService _soundService;
         private float _cooldownRemaining;
+        private float _damageMultiplier = 1f;
+        private float _fireRateMultiplier = 1f;
+
+        public void SetCombatMultipliers(float damageMultiplier, float fireRateMultiplier)
+        {
+            _damageMultiplier = damageMultiplier;
+            _fireRateMultiplier = fireRateMultiplier;
+        }
 
         [Inject]
         public void Construct(IShipInputProvider shipInput, ISoundService soundService)
@@ -55,12 +63,12 @@ namespace Game.Gameplay.Flight
             projectile.GetComponent<Projectile>().Launch(
                 direction,
                 _weaponConfig.ProjectileSpeed,
-                _weaponConfig.Damage,
+                _weaponConfig.Damage * _damageMultiplier,
                 _weaponConfig.DamageType,
                 source,
                 _weaponConfig.ProjectileLifetime);
 
-            _cooldownRemaining = 1f / _weaponConfig.FireRate;
+            _cooldownRemaining = 1f / (_weaponConfig.FireRate * _fireRateMultiplier);
 
             _muzzleFlashAnimator.SetTrigger(ShootHash);
             _soundService.PlayAtPosition(_fireClip, origin, _fireMixerGroup);

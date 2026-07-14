@@ -13,6 +13,7 @@ namespace Game.UI
             builder.RegisterComponentInHierarchy<HealthBarUI>();
             builder.RegisterComponentInHierarchy<TraderUI>();
             builder.RegisterComponentInHierarchy<QuestHudUI>();
+            builder.RegisterComponentInHierarchy<WorkbenchUI>();
         }
     }
 }
