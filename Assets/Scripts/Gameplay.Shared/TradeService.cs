@@ -6,11 +6,29 @@ namespace Game.Gameplay.Shared
     {
         private readonly IResourceService _resources;
         private readonly IItemService _items;
+        private readonly IRecipeService _recipes;
 
-        public TradeService(IResourceService resources, IItemService items)
+        public TradeService(IResourceService resources, IItemService items, IRecipeService recipes)
         {
             _resources = resources;
             _items = items;
+            _recipes = recipes;
+        }
+
+        public bool BuyRecipe(CraftingRecipe recipe, int price)
+        {
+            if (recipe == null || _recipes.Knows(recipe))
+            {
+                return false;
+            }
+
+            if (!_resources.TrySpend(ResourceType.Credits, price))
+            {
+                return false;
+            }
+
+            _recipes.Learn(recipe);
+            return true;
         }
 
         public bool BuyResource(ResourceType resource, int unitPrice, int quantity)

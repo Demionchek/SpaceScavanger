@@ -17,23 +17,49 @@ namespace Game.Gameplay.Flight
 
         private IShipStatsService _stats;
         private EventBus _eventBus;
+        private bool _subscribed;
 
         [Inject]
         public void Construct(IShipStatsService stats, EventBus eventBus)
         {
             _stats = stats;
             _eventBus = eventBus;
+
+            // Инъекция может произойти позже OnEnable — подписываемся из обеих точек.
+            if (isActiveAndEnabled)
+            {
+                Subscribe();
+                Apply();
+            }
         }
 
         private void OnEnable()
         {
-            _eventBus.Subscribe<ShipStatsChangedEvent>(OnStatsChanged);
-            Apply();
+            if (_eventBus != null)
+            {
+                Subscribe();
+                Apply();
+            }
         }
 
         private void OnDisable()
         {
-            _eventBus.Unsubscribe<ShipStatsChangedEvent>(OnStatsChanged);
+            if (_subscribed)
+            {
+                _eventBus.Unsubscribe<ShipStatsChangedEvent>(OnStatsChanged);
+                _subscribed = false;
+            }
+        }
+
+        private void Subscribe()
+        {
+            if (_subscribed)
+            {
+                return;
+            }
+
+            _eventBus.Subscribe<ShipStatsChangedEvent>(OnStatsChanged);
+            _subscribed = true;
         }
 
         private void OnStatsChanged(ShipStatsChangedEvent evt)

@@ -15,7 +15,8 @@ MonoBehaviour:
   AreaSize: {x: 50, y: 50}
   ResourcePrefabs:
   - {fileID: 1275026653305531988, guid: 354897be21f51bd45baffa2bb97ada96, type: 3}
-  ResourceCount: 10
+  - {fileID: 1275026653305531988, guid: 68282e15f6d2ee34d8bc7e5c3f677259, type: 3}
+  ResourceCount: 20
   ResourceSpawnChance: 0.7
   EnemyPrefabs:
   - {fileID: 7038679251376370445, guid: 42592d0f7166154449056d6a6db8bbfe, type: 3}

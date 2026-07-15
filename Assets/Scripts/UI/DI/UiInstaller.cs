@@ -14,6 +14,7 @@ namespace Game.UI
             builder.RegisterComponentInHierarchy<TraderUI>();
             builder.RegisterComponentInHierarchy<QuestHudUI>();
             builder.RegisterComponentInHierarchy<WorkbenchUI>();
+            builder.RegisterComponentInHierarchy<ShipInfoUI>();
         }
     }
 }

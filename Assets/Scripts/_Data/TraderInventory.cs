@@ -20,10 +20,18 @@ namespace Game.Data
         public int SellPrice;
     }
 
+    [Serializable]
+    public sealed class RecipeTradeOffer
+    {
+        public CraftingRecipe Recipe;
+        public int Price;
+    }
+
     [CreateAssetMenu(menuName = "Game/Trader/Trader Inventory", fileName = "TraderInventory")]
     public sealed class TraderInventory : ScriptableObject
     {
         public ResourceTradeOffer[] ResourceOffers;
         public ItemTradeOffer[] ItemOffers;
+        public RecipeTradeOffer[] RecipeOffers;
     }
 }

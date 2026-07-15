@@ -147,7 +147,7 @@ MonoBehaviour:
   _randomAmount: 1
   _minAmount: 10
   _maxAmount: 20
-  _minRotatationAngle: 1
+  _minRotatationAngle: -50
   _maxRotatationAngle: 50
   _color: {r: 1, g: 0.5991059, b: 0.2992168, a: 1}
   _visualVariants:

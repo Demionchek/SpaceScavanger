@@ -42,6 +42,9 @@ namespace Game.Gameplay.Shared
                 {
                     _bonuses[modifier.Stat] = GetBonus(modifier.Stat) + modifier.FlatBonus;
                 }
+
+                UnityEngine.Debug.Log(
+                    $"Ship stat {modifier.Stat}: x{GetMultiplier(modifier.Stat)} +{GetBonus(modifier.Stat)}");
             }
 
             _eventBus.Publish(new ShipStatsChangedEvent());

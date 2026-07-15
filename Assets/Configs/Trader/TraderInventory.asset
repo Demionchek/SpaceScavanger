@@ -25,7 +25,7 @@ MonoBehaviour:
   - Resource: 2
     BuyPrice: 80
     SellPrice: 40
-  ItemOffers:
-  - Item: {fileID: 11400000, guid: 35528336018755142992c56b6f8e91a7, type: 2}
-    BuyPrice: 300
-    SellPrice: 100
+  ItemOffers: []
+  RecipeOffers:
+  - Recipe: {fileID: 11400000, guid: 775ddcce36db4514b861bb6054653665, type: 2}
+    Price: 0

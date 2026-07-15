@@ -16,6 +16,7 @@ namespace Game.Gameplay.Shared
             builder.Register<QuestService>(Lifetime.Singleton).As<IQuestService>();
             builder.Register<ReputationService>(Lifetime.Singleton).As<IReputationService>();
             builder.Register<ShipStatsService>(Lifetime.Singleton).As<IShipStatsService>();
+            builder.Register<RecipeService>(Lifetime.Singleton).As<IRecipeService>();
             builder.Register<CraftingService>(Lifetime.Singleton).As<ICraftingService>();
             builder.Register<UpgradeService>(Lifetime.Singleton).As<IUpgradeService>();
             builder.Register<SoundService>(Lifetime.Singleton).As<ISoundService>();

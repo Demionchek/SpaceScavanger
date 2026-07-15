@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Game.Core;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -15,6 +16,10 @@ namespace Game.UI
         [SerializeField] private Transform _upgradesContainer;
         [SerializeField] private GameObject _upgradeRowPrefab;
         [SerializeField] private Button _closeButton;
+        [SerializeField] private GameObject _recipesView;
+        [SerializeField] private GameObject _upgradesView;
+        [SerializeField] private Button _tabButton;
+        [SerializeField] private TMP_Text _tabButtonLabel;
 
         private readonly List<GameObject> _rows = new();
         private readonly StringBuilder _costsBuilder = new();
@@ -24,9 +29,10 @@ namespace Game.UI
         private IUpgradeService _upgradeService;
         private IResourceService _resourceService;
         private IItemService _itemService;
+        private IRecipeService _recipeService;
         private IPauseService _pauseService;
-        private CraftingRecipe[] _currentRecipes;
         private bool _isOpen;
+        private bool _showingUpgrades;
 
         [Inject]
         public void Construct(
@@ -35,6 +41,7 @@ namespace Game.UI
             IUpgradeService upgradeService,
             IResourceService resourceService,
             IItemService itemService,
+            IRecipeService recipeService,
             IPauseService pauseService)
         {
             _eventBus = eventBus;
@@ -42,13 +49,32 @@ namespace Game.UI
             _upgradeService = upgradeService;
             _resourceService = resourceService;
             _itemService = itemService;
+            _recipeService = recipeService;
             _pauseService = pauseService;
         }
 
         private void Awake()
         {
             _closeButton.onClick.AddListener(Close);
+            _tabButton.onClick.AddListener(ToggleTab);
             _panel.SetActive(false);
+        }
+
+        private void ToggleTab()
+        {
+            _showingUpgrades = !_showingUpgrades;
+            UpdateTabView();
+        }
+
+        private void UpdateTabView()
+        {
+            _recipesView.SetActive(!_showingUpgrades);
+            _upgradesView.SetActive(_showingUpgrades);
+
+            if (_tabButtonLabel != null)
+            {
+                _tabButtonLabel.text = _showingUpgrades ? "Recipes" : "Upgrades";
+            }
         }
 
         private void OnEnable()
@@ -64,8 +90,9 @@ namespace Game.UI
 
         private void OnWindowRequested(WorkbenchWindowRequestedEvent evt)
         {
-            _currentRecipes = evt.Recipes;
             _panel.SetActive(true);
+            _showingUpgrades = false;
+            UpdateTabView();
 
             if (!_isOpen)
             {
@@ -78,7 +105,6 @@ namespace Game.UI
 
         private void Close()
         {
-            _currentRecipes = null;
             _panel.SetActive(false);
             ReleasePauseIfOpen();
         }
@@ -103,12 +129,7 @@ namespace Game.UI
 
         private void BuildRecipeRows()
         {
-            if (_currentRecipes == null)
-            {
-                return;
-            }
-
-            foreach (var recipe in _currentRecipes)
+            foreach (var recipe in _recipeService.Known)
             {
                 if (recipe == null || recipe.Output == null)
                 {

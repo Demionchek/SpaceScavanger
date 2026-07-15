@@ -24,6 +24,7 @@ namespace Game.UI
         private ITradeService _tradeService;
         private IResourceService _resourceService;
         private IItemService _itemService;
+        private IRecipeService _recipeService;
         private IPauseService _pauseService;
         private TraderInventory _currentInventory;
         private bool _isOpen;
@@ -34,12 +35,14 @@ namespace Game.UI
             ITradeService tradeService,
             IResourceService resourceService,
             IItemService itemService,
+            IRecipeService recipeService,
             IPauseService pauseService)
         {
             _eventBus = eventBus;
             _tradeService = tradeService;
             _resourceService = resourceService;
             _itemService = itemService;
+            _recipeService = recipeService;
             _pauseService = pauseService;
         }
 
@@ -131,6 +134,36 @@ namespace Game.UI
                     offer.BuyPrice > 0 ? (Action<int>)(quantity => TryBuyItem(offer, quantity)) : null,
                     offer.SellPrice > 0 ? (Action<int>)(quantity => TrySellItem(offer, quantity)) : null);
             }
+
+            if (_currentInventory.RecipeOffers == null)
+            {
+                return;
+            }
+
+            foreach (var offer in _currentInventory.RecipeOffers)
+            {
+                if (offer.Recipe == null || offer.Recipe.Output == null || _recipeService.Knows(offer.Recipe))
+                {
+                    continue;
+                }
+
+                var captured = offer;
+                var row = Instantiate(_offerRowPrefab, _offersContainer);
+                _rows.Add(row);
+                row.GetComponent<TradeOfferRowUI>().Set(
+                    captured.Recipe.Output.Icon,
+                    $"Рецепт: {captured.Recipe.Output.DisplayName}",
+                    0,
+                    $"Buy {captured.Price}",
+                    _ => TryBuyRecipe(captured),
+                    null);
+            }
+        }
+
+        private void TryBuyRecipe(RecipeTradeOffer offer)
+        {
+            _tradeService.BuyRecipe(offer.Recipe, offer.Price);
+            Refresh();
         }
 
         private void AddRow(Sprite icon, string name, int owned, int buyPrice, int sellPrice, Action<int> onBuy, Action<int> onSell)

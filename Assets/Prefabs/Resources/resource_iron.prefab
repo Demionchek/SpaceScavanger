@@ -145,11 +145,11 @@ MonoBehaviour:
   _requiredHookLevel: 1
   _resourceType: 1
   _randomAmount: 1
-  _minAmount: 1
-  _maxAmount: 5
-  _minRotatationAngle: 1
+  _minAmount: 5
+  _maxAmount: 10
+  _minRotatationAngle: -50
   _maxRotatationAngle: 50
-  _color: {r: 0.57137775, g: 0.57137775, b: 0.57137775, a: 1}
+  _color: {r: 0.92168033, g: 0.92168033, b: 0.92168033, a: 1}
   _visualVariants:
   - {fileID: 885445369029735081, guid: f82e44aba2ae5d0428ccaab785ed6e87, type: 3}
   _rigidbody: {fileID: 4905061347017333459}
