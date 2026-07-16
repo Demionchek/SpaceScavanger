@@ -152,7 +152,7 @@ namespace Game.UI
                 _rows.Add(row);
                 row.GetComponent<TradeOfferRowUI>().Set(
                     captured.Recipe.Output.Icon,
-                    $"Рецепт: {captured.Recipe.Output.DisplayName}",
+                    $"Recipe: {captured.Recipe.Output.DisplayName}",
                     0,
                     $"Buy {captured.Price}",
                     _ => TryBuyRecipe(captured),

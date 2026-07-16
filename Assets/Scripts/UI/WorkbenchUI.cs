@@ -177,7 +177,7 @@ namespace Game.UI
             {
                 if (_costsBuilder.Length > 0)
                 {
-                    _costsBuilder.Append(", ");
+                    _costsBuilder.Append(", \n");
                 }
 
                 _costsBuilder.Append($"{cost.Type} {_resourceService.GetAmount(cost.Type)}/{cost.Amount}");

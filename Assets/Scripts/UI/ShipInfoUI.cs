@@ -85,19 +85,19 @@ namespace Game.UI
         private void Refresh()
         {
             _builder.Clear();
-            AppendStat("Тяга", ShipStat.ThrustForce);
-            AppendStat("Урон", ShipStat.Damage);
-            AppendStat("Скорострельность", ShipStat.FireRate);
-            AppendStat("Крюк", ShipStat.HookLevel);
-            AppendStat("Прочность", ShipStat.MaxHealth);
+            AppendStat("Thrust", ShipStat.ThrustForce);
+            AppendStat("Damage", ShipStat.Damage);
+            AppendStat("Fire rate", ShipStat.FireRate);
+            AppendStat("Hook", ShipStat.HookLevel);
+            AppendStat("Hull", ShipStat.MaxHealth);
             _statsText.text = _builder.ToString();
 
             _builder.Clear();
-            _builder.AppendLine("Установленные апгрейды:");
+            _builder.AppendLine("Installed upgrades:");
 
             if (_upgradeService.Installed.Count == 0)
             {
-                _builder.AppendLine("— нет —");
+                _builder.AppendLine("— none —");
             }
             else
             {

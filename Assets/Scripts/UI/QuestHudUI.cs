@@ -84,7 +84,7 @@ namespace Game.UI
             {
                 if (quest.Goal.IsComplete)
                 {
-                    _builder.AppendLine($"{quest.Definition.Title} — готово, сдай заказчику");
+                    _builder.AppendLine($"{quest.Definition.Title} — complete, turn it in");
                 }
                 else
                 {
