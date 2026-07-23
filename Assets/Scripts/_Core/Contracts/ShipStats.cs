@@ -8,7 +8,8 @@ namespace Game.Core
         Damage,
         FireRate,
         HookLevel,
-        MaxHealth
+        MaxHealth,
+        RadarRange
     }
 
     [Serializable]

@@ -18,6 +18,8 @@ namespace Game.Gameplay.Flight
         [SerializeField] private float _turnThrottle = 0.25f;
         [SerializeField] private float _slowRadius = 5f;
         [SerializeField] private float _brakeClosingSpeed = 3f;
+        [SerializeField] private float _orbitBrakeSpeed = 3f;
+        [SerializeField] private float _orbitAlignment = 0.5f;
 
         private Vector2 _target;
         private bool _hasTarget;
@@ -69,6 +71,13 @@ namespace Game.Gameplay.Flight
         private float ComputeThrottle(float angleToTarget, float distance, Vector2 toTarget)
         {
             var speed = _rigidbody.linearVelocity.magnitude;
+
+            // Пролёт/орбита: летим быстро мимо точки — тормозим, чтобы сбросить
+            // боковую скорость и суметь довернуть, а не наматывать круги.
+            if (ShipPilot.DriftingPastTarget(_rigidbody, toTarget, _orbitBrakeSpeed, _orbitAlignment))
+            {
+                return -1f;
+            }
 
             // Понимаем, что перелетаем: близко к цели и подходим слишком быстро —
             // тормозим тем же механизмом, что и игрок (отрицательный throttle).

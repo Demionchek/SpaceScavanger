@@ -18,7 +18,7 @@ namespace Game.Gameplay.Flight
             builder.RegisterComponentInHierarchy<ShipMovementController>();
             builder.RegisterComponentInHierarchy<HookController>();
             builder.RegisterComponentInHierarchy<ShipCannon>();
-            builder.RegisterComponentInHierarchy<PlayerMarker>();
+            builder.RegisterComponentInHierarchy<PlayerMarker>().AsSelf().As<IPlayerLocator>();
             builder.RegisterComponentInHierarchy<ShipInteractor>();
             builder.RegisterComponentInHierarchy<EngineSoundController>();
             builder.RegisterComponentInHierarchy<ShipStatsReceiver>();

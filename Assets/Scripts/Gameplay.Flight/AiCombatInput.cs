@@ -88,7 +88,10 @@ namespace Game.Gameplay.Flight
             switch (_config.MovementStyle)
             {
                 case EnemyMovementStyle.Charge:
-                    return 1f;
+                    // Даже в лобовой атаке гасим пролёт, иначе кружит по орбите.
+                    return ShipPilot.DriftingPastTarget(_rigidbody, toPlayer, _config.OrbitBrakeSpeed, _config.OrbitAlignment)
+                        ? -1f
+                        : 1f;
 
                 case EnemyMovementStyle.Kite:
                     return distance < _config.KiteDistance ? -1f : 0f;
@@ -96,10 +99,11 @@ namespace Game.Gameplay.Flight
                 default:
                     if (distance > _config.PreferredRange + _config.RangeTolerance)
                     {
-                        // Приближаемся к дистанции удержания, но летим слишком быстро —
-                        // тормозим, как игрок, чтобы не проскочить и не качаться.
-                        if (distance - _config.PreferredRange < _config.BrakeMargin
-                            && ShipPilot.ClosingSpeed(_rigidbody, toPlayer, distance) > _config.BrakeClosingSpeed)
+                        // Приближаемся к дистанции удержания, но летим слишком быстро
+                        // (в лоб) или проскакиваем вбок (орбита) — тормозим, как игрок.
+                        if ((distance - _config.PreferredRange < _config.BrakeMargin
+                                && ShipPilot.ClosingSpeed(_rigidbody, toPlayer, distance) > _config.BrakeClosingSpeed)
+                            || ShipPilot.DriftingPastTarget(_rigidbody, toPlayer, _config.OrbitBrakeSpeed, _config.OrbitAlignment))
                         {
                             return -1f;
                         }

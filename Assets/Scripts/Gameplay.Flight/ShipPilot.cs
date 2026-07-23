@@ -24,6 +24,23 @@ namespace Game.Gameplay.Flight
                 : 0f;
         }
 
+        // Летим быстро, но скорость направлена мимо цели (вбок/от неё) — признак
+        // пролёта/орбиты. Гасим боковую скорость: радиус разворота = скорость /
+        // угловая скорость, на высокой скорости он больше дистанции до цели и
+        // AI наматывает круги. Затормозив, AI доворачивает и идёт в точку.
+        // maxAlignment: 1 = точно на цель, 0 = вбок, -1 = от цели.
+        public static bool DriftingPastTarget(Rigidbody2D body, Vector2 toTarget, float minSpeed, float maxAlignment)
+        {
+            var velocity = body.linearVelocity;
+            if (velocity.magnitude < minSpeed || toTarget.sqrMagnitude < 0.0001f)
+            {
+                return false;
+            }
+
+            var alignment = Vector2.Dot(velocity.normalized, toTarget.normalized);
+            return alignment < maxAlignment;
+        }
+
         // Обход препятствий тремя лучами (прямо и ±angle). Препятствие справа —
         // доворот влево (+), слева — вправо (-).
         public static float ObstacleAvoidance(Transform self, LayerMask mask, float sensorLength, float sensorAngle)

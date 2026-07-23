@@ -24,6 +24,13 @@ namespace Game.UI
             {
                 builder.RegisterComponent(hudVisibility);
             }
+
+            // Опционально: радар (собирается в сцене отдельно).
+            var minimap = Object.FindFirstObjectByType<MinimapUI>(FindObjectsInactive.Include);
+            if (minimap != null)
+            {
+                builder.RegisterComponent(minimap);
+            }
         }
     }
 }

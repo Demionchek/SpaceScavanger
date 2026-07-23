@@ -22,6 +22,8 @@ namespace Game.Data
         public float KiteDistance = 8f;
         public float BrakeMargin = 3f;
         public float BrakeClosingSpeed = 3f;
+        public float OrbitBrakeSpeed = 3f;
+        public float OrbitAlignment = 0.5f;
 
         public float AimToleranceDegrees = 10f;
         public float AttackRange = 8f;
