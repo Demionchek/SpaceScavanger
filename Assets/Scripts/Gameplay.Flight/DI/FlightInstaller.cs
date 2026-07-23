@@ -28,6 +28,7 @@ namespace Game.Gameplay.Flight
             builder.Register<RandomZoneGenerator>(Lifetime.Singleton).As<IZoneGenerator>();
             builder.RegisterEntryPoint<ZoneSpawner>(Lifetime.Singleton);
             builder.RegisterEntryPoint<QuestEnemySpawner>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<RaceManager>(Lifetime.Singleton);
         }
     }
 }

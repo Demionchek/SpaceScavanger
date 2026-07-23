@@ -20,6 +20,8 @@ namespace Game.Data
         public float PreferredRange = 5f;
         public float RangeTolerance = 1f;
         public float KiteDistance = 8f;
+        public float BrakeMargin = 3f;
+        public float BrakeClosingSpeed = 3f;
 
         public float AimToleranceDegrees = 10f;
         public float AttackRange = 8f;

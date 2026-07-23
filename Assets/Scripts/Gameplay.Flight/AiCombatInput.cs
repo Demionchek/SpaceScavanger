@@ -70,7 +70,7 @@ namespace Game.Gameplay.Flight
             var distance = toPlayer.magnitude;
 
             Rotation = GetSteering(toPlayer);
-            Throttle = GetThrottle(distance);
+            Throttle = GetThrottle(distance, toPlayer);
 
             var angle = Vector2.Angle(transform.right, toPlayer);
             FirePressed = angle <= _config.AimToleranceDegrees && distance <= _config.AttackRange;
@@ -79,11 +79,10 @@ namespace Game.Gameplay.Flight
         private float GetSteering(Vector2 toPlayer)
         {
             var signedAngle = Vector2.SignedAngle(transform.right, toPlayer);
-            var correction = signedAngle * _config.TurnResponsiveness - _rigidbody.angularVelocity * _config.TurnDamping;
-            return Mathf.Clamp(correction / 90f, -1f, 1f);
+            return ShipPilot.Steer(_rigidbody, signedAngle, _config.TurnResponsiveness, _config.TurnDamping);
         }
 
-        private float GetThrottle(float distance)
+        private float GetThrottle(float distance, Vector2 toPlayer)
         {
             switch (_config.MovementStyle)
             {
@@ -96,6 +95,14 @@ namespace Game.Gameplay.Flight
                 default:
                     if (distance > _config.PreferredRange + _config.RangeTolerance)
                     {
+                        // Приближаемся к дистанции удержания, но летим слишком быстро —
+                        // тормозим, как игрок, чтобы не проскочить и не качаться.
+                        if (distance - _config.PreferredRange < _config.BrakeMargin
+                            && ShipPilot.ClosingSpeed(_rigidbody, toPlayer, distance) > _config.BrakeClosingSpeed)
+                        {
+                            return -1f;
+                        }
+
                         return 1f;
                     }
 

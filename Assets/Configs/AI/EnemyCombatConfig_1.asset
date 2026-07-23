@@ -17,8 +17,10 @@ MonoBehaviour:
   AlertPropagationDelay: 0.5
   MovementStyle: 0
   PreferredRange: 4
-  RangeTolerance: 1
+  RangeTolerance: 1.5
   KiteDistance: 6
+  BrakeMargin: 5
+  BrakeClosingSpeed: 2
   AimToleranceDegrees: 5
   AttackRange: 6
   TurnResponsiveness: 3

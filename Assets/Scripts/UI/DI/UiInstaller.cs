@@ -15,6 +15,7 @@ namespace Game.UI
             builder.RegisterComponentInHierarchy<QuestHudUI>();
             builder.RegisterComponentInHierarchy<WorkbenchUI>();
             builder.RegisterComponentInHierarchy<ShipInfoUI>();
+            builder.RegisterComponentInHierarchy<RaceHudUI>();
         }
     }
 }

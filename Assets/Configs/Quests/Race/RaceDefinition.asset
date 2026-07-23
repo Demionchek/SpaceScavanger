@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba730cd2c932f5b4e81be115643606d9, type: 3}
+  m_Name: RaceDefinition
+  m_EditorClassIdentifier: Core::Game.Core.RaceDefinition
+  AiRacers:
+  - {fileID: 8160212819100606157, guid: 498de6827a25c0e45b0024384ad7d509, type: 3}
+  - {fileID: 5960405774790031212, guid: 528a4233d6799fe4d9cd4a3a1edeb9bd, type: 3}
+  - {fileID: 8126217341362624229, guid: 73cace0c6eb5e0643b68cbdde540e79b, type: 3}
+  CheckpointMarkerPrefab: {fileID: 6914260772209252618, guid: 79f0f4c3e3a7bd14c8ad03c9f3d64dfc, type: 3}
+  CheckpointCount: 8
+  TrackRadius: 20
+  RadiusJitter: 0.2
+  CheckpointPassRadius: 1
+  StartLineSpacing: 1
+  CountdownSeconds: 3
+  PlaceRewards:
+  - Effects:
+    - {fileID: 11400000, guid: 70ab557d4a8dda64ea047aeac7ecc2ff, type: 2}
+  - Effects:
+    - {fileID: 11400000, guid: 52cd361887e9353419596548cab17c2f, type: 2}
+  - Effects:
+    - {fileID: 11400000, guid: 4c5ae6de685edc044833b7d952176447, type: 2}

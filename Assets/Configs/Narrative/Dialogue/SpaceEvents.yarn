@@ -70,3 +70,12 @@ Station agent: So, have you eliminated them?
 -> Leave
     Station agent: Come back when you are done.
 ===
+title: RaceOrganizer_RingRace
+---
+Race organizer: Fancy a race, pilot? Checkpoints around the sector, first come — best paid.
+-> I'm ready
+    Race organizer: Markers are up. Go!
+    <<apply_effect StartRace_Ring>>
+-> Maybe later
+    Race organizer: I'll be here.
+===
