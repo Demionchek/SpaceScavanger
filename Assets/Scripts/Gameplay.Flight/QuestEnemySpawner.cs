@@ -16,12 +16,14 @@ namespace Game.Gameplay.Flight
         private readonly EventBus _eventBus;
         private readonly LifetimeScope _rootScope;
         private readonly PlayerMarker _player;
+        private readonly SpaceRoot _spaceRoot;
 
-        public QuestEnemySpawner(EventBus eventBus, LifetimeScope rootScope, PlayerMarker player)
+        public QuestEnemySpawner(EventBus eventBus, LifetimeScope rootScope, PlayerMarker player, SpaceRoot spaceRoot)
         {
             _eventBus = eventBus;
             _rootScope = rootScope;
             _player = player;
+            _spaceRoot = spaceRoot;
         }
 
         public void Start()
@@ -130,7 +132,7 @@ namespace Game.Gameplay.Flight
         {
             var prefabScope = evt.Prefab.GetComponent<LifetimeScope>();
             var instanceScope = _rootScope.CreateChildFromPrefab(prefabScope);
-            instanceScope.transform.SetParent(null);
+            instanceScope.transform.SetParent(_spaceRoot.Content);
             instanceScope.transform.position = position;
 
             if (string.IsNullOrEmpty(evt.GroupTag))

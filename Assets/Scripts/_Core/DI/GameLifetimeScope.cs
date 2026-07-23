@@ -23,13 +23,19 @@ namespace Game.Core
             builder.Register<BoardingState>(Lifetime.Singleton).As<IGameState>();
             builder.Register<GameStateMachine>(Lifetime.Singleton);
             builder.Register<PauseService>(Lifetime.Singleton).As<IPauseService>();
+            builder.Register<ModeLock>(Lifetime.Singleton);
+
+            builder.RegisterComponentInHierarchy<SpaceRoot>();
 
             // Registration order matters: InputMapSwitcher must subscribe before
             // GameStateMachineBootstrap fires the first state change below.
             builder.RegisterEntryPoint<InputMapSwitcher>(Lifetime.Singleton);
             builder.RegisterEntryPoint<GameStateMachineBootstrap>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<ModeSwitchInput>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<CombatStateTracker>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugStateHotkeys>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugRandomEventHotkey>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<DebugRegenerateHotkey>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugResourceLogger>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugReputationLogger>(Lifetime.Singleton);
 

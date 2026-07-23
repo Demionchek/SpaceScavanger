@@ -13,7 +13,9 @@ namespace Game.Core
 
         public void Start()
         {
-            _stateMachine.ChangeState<ShipInteriorState>();
+            // Стартуем в полёте: интерьер — additive-сцена, грузится по запросу,
+            // на старте ещё не загружена.
+            _stateMachine.ChangeState<SpaceFlightState>();
         }
     }
 }

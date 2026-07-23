@@ -32,6 +32,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dock",
+                    "type": "Button",
+                    "id": "a1e10001-0000-4000-8000-000000000014",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -111,6 +120,17 @@
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1e10001-0000-4000-8000-000000000028",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -158,6 +178,15 @@
                     "name": "Hook",
                     "type": "Button",
                     "id": "a1e10002-0000-4000-8000-000000000015",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dock",
+                    "type": "Button",
+                    "id": "a1e10002-0000-4000-8000-000000000016",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -261,6 +290,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1e10002-0000-4000-8000-00000000002a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dock",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

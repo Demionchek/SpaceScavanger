@@ -16,6 +16,14 @@ namespace Game.UI
             builder.RegisterComponentInHierarchy<WorkbenchUI>();
             builder.RegisterComponentInHierarchy<ShipInfoUI>();
             builder.RegisterComponentInHierarchy<RaceHudUI>();
+            builder.RegisterComponentInHierarchy<ModeTransitionController>();
+
+            // Опционально: если в сцене есть скрыватель лётного HUD — подключаем.
+            var hudVisibility = Object.FindFirstObjectByType<FlightHudVisibility>(FindObjectsInactive.Include);
+            if (hudVisibility != null)
+            {
+                builder.RegisterComponent(hudVisibility);
+            }
         }
     }
 }

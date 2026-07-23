@@ -16,6 +16,7 @@ namespace Game.Gameplay.Flight
         private Health _health;
         private Rigidbody2D _rigidbody;
         private bool _alerted;
+        private bool _engaged;
         private bool _alertPending;
         private float _alertDelayRemaining;
 
@@ -55,7 +56,7 @@ namespace Game.Gameplay.Flight
 
             if (!_alerted && Vector2.Distance(transform.position, _player.Position) <= _config.DetectionRadius)
             {
-                _alerted = true;
+                SetAlerted();
             }
 
             if (!_alerted)
@@ -117,8 +118,31 @@ namespace Game.Gameplay.Flight
 
         private void OnDamaged(DamageInfo info)
         {
-            _alerted = true;
+            SetAlerted();
             _eventBus.Publish(new EnemyAlertEvent(transform.position, _config.AlertRadius, _config.AlertPropagationDelay));
+        }
+
+        // Первый переход в тревогу = вступление в бой: сообщаем трекеру, чтобы
+        // держал ModeLock (нельзя уйти в интерьер, пока враг в бою).
+        private void SetAlerted()
+        {
+            if (_alerted)
+            {
+                return;
+            }
+
+            _alerted = true;
+            _engaged = true;
+            _eventBus.Publish(new CombatEngagementEvent(true));
+        }
+
+        private void OnDestroy()
+        {
+            if (_engaged)
+            {
+                _engaged = false;
+                _eventBus?.Publish(new CombatEngagementEvent(false));
+            }
         }
 
         private void OnEnemyAlert(EnemyAlertEvent alert)
@@ -146,7 +170,7 @@ namespace Game.Gameplay.Flight
             if (_alertDelayRemaining <= 0f)
             {
                 _alertPending = false;
-                _alerted = true;
+                SetAlerted();
             }
         }
     }

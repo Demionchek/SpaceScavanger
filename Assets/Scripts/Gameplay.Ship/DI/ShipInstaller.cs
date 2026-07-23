@@ -10,10 +10,9 @@ namespace Game.Gameplay.Ship
     {
         public override void Install(IContainerBuilder builder)
         {
-            builder.RegisterComponentInHierarchy<CharacterMovementController>();
-            builder.RegisterComponentInHierarchy<PlayerInteractor>();
-            builder.RegisterComponentInHierarchy<WorkbenchComponent>();
-            builder.RegisterComponentInHierarchy<ShipComputerComponent>();
+            // Платформенные компоненты интерьера переехали в additive-сцену
+            // ShipInterior и регистрируются её ShipInteriorScope. Главный scope
+            // их не ищет — в главной сцене их больше нет.
         }
     }
 }

@@ -28,4 +28,5 @@ MonoBehaviour:
   QuestGiverPrefabs:
   - {fileID: 3221235424753289668, guid: 82b7174d27c34104fa5c7d16edfe0c68, type: 3}
   - {fileID: 3221235424753289668, guid: d8a272dc26b4f194e98dc1d7b90e0e16, type: 3}
+  - {fileID: 3941317269027102095, guid: b2945a4a06871da4696305b6bf17d172, type: 3}
   QuestGiverSpawnChance: 1

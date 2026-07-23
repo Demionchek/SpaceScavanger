@@ -24,6 +24,7 @@ namespace Game.Gameplay.Flight
         private readonly PlayerMarker _player;
         private readonly GameContext _gameContext;
         private readonly IPauseService _pauseService;
+        private readonly ModeLock _modeLock;
 
         private readonly List<Racer> _racers = new();
         private readonly List<Vector2> _checkpoints = new();
@@ -33,6 +34,7 @@ namespace Game.Gameplay.Flight
         private RaceDefinition _race;
         private RaceWaypointIndicator _waypointIndicator;
         private bool _active;
+        private bool _raceLockHeld;
         private bool _pendingStart;
         private bool _countingDown;
         private float _countdownRemaining;
@@ -44,13 +46,15 @@ namespace Game.Gameplay.Flight
             LifetimeScope rootScope,
             PlayerMarker player,
             GameContext gameContext,
-            IPauseService pauseService)
+            IPauseService pauseService,
+            ModeLock modeLock)
         {
             _eventBus = eventBus;
             _rootScope = rootScope;
             _player = player;
             _gameContext = gameContext;
             _pauseService = pauseService;
+            _modeLock = modeLock;
         }
 
         public void Start()
@@ -78,6 +82,13 @@ namespace Game.Gameplay.Flight
             _waypointIndicator?.SetTarget(_checkpoints[0]);
 
             _finishedCount = 0;
+
+            // Лок на всё время гонки — нельзя уйти в интерьер посреди заезда.
+            if (!_raceLockHeld)
+            {
+                _modeLock.AddLock();
+                _raceLockHeld = true;
+            }
 
             // Эффект срабатывает изнутри диалога, мир уже на паузе. Ждём закрытия
             // диалога и только потом запускаем отсчёт со своей паузой.
@@ -320,6 +331,12 @@ namespace Game.Gameplay.Flight
             _waypointIndicator?.ClearTarget();
             _waypointIndicator = null;
             _active = false;
+
+            if (_raceLockHeld)
+            {
+                _modeLock.RemoveLock();
+                _raceLockHeld = false;
+            }
         }
     }
 }
