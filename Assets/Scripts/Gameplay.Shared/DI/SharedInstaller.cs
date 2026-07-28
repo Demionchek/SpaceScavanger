@@ -20,6 +20,8 @@ namespace Game.Gameplay.Shared
             builder.Register<CraftingService>(Lifetime.Singleton).As<ICraftingService>();
             builder.Register<UpgradeService>(Lifetime.Singleton).As<IUpgradeService>();
             builder.Register<SoundService>(Lifetime.Singleton).As<ISoundService>();
+            builder.Register<JournalService>(Lifetime.Singleton).As<IJournalService>();
+            builder.RegisterEntryPoint<JournalRecorder>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<Health>();
         }
     }

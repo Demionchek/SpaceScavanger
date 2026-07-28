@@ -49,6 +49,12 @@ namespace Game.UI
             {
                 builder.RegisterComponent(notifications);
             }
+
+            var journal = Object.FindFirstObjectByType<JournalUI>(FindObjectsInactive.Include);
+            if (journal != null)
+            {
+                builder.RegisterComponent(journal);
+            }
         }
     }
 }
