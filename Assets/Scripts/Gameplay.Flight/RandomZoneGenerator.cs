@@ -44,7 +44,13 @@ namespace Game.Gameplay.Flight
                 questGiverSpawn = RandomSpawnPoint(random, config.AreaSize, config.QuestGiverPrefabs.Length);
             }
 
-            return new ZoneContent(resourceSpawns, enemySpawns, traderSpawn, questGiverSpawn);
+            Vector2? wormholeSpawn = null;
+            if (config.WormholePrefab != null)
+            {
+                wormholeSpawn = RandomPointInArea(random, config.AreaSize);
+            }
+
+            return new ZoneContent(resourceSpawns, enemySpawns, traderSpawn, questGiverSpawn, wormholeSpawn);
         }
 
         private static bool HasNoPrefabs(GameObject[] prefabs)

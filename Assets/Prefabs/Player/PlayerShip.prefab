@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 4408088517373371499}
   - component: {fileID: 3079866731400454742}
   - component: {fileID: 1033824322476499315}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlayerShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +716,7 @@ MonoBehaviour:
   _brakeDeceleration: 5
   _reverseThrustForce: 2
   _stopThreshold: 0.05
-  _torqueStrength: 1
+  _torqueStrength: 0.5
   _maxAngularSpeed: 90
   _angularDamping: 90
 --- !u!114 &8947707889212203856

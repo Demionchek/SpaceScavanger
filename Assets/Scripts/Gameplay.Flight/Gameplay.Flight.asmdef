@@ -6,6 +6,7 @@
         "Data",
         "Gameplay.Shared",
         "Unity.InputSystem",
+        "Unity.TextMeshPro",
         "VContainer"
     ],
     "includePlatforms": [],

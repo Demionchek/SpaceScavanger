@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7507314730840691130}
   - component: {fileID: 5708364715272505149}
   - component: {fileID: 3002318389982407434}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlayerCyborg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

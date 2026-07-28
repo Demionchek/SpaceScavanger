@@ -46,6 +46,7 @@ namespace Game.UI
             // Подписываемся здесь, а не в OnEnable: инъекция может выполниться
             // позже OnEnable. Контроллер персистентный, отписка в OnDestroy.
             _eventBus.Subscribe<ModeSwitchRequestedEvent>(OnModeSwitchRequested);
+            _eventBus.Subscribe<WormholeTravelRequestedEvent>(OnWormholeTravel);
         }
 
         private void Awake()
@@ -62,7 +63,23 @@ namespace Game.UI
 
         private void OnDestroy()
         {
-            _eventBus?.Unsubscribe<ModeSwitchRequestedEvent>(OnModeSwitchRequested);
+            if (_eventBus == null)
+            {
+                return;
+            }
+
+            _eventBus.Unsubscribe<ModeSwitchRequestedEvent>(OnModeSwitchRequested);
+            _eventBus.Unsubscribe<WormholeTravelRequestedEvent>(OnWormholeTravel);
+        }
+
+        private void OnWormholeTravel(WormholeTravelRequestedEvent _)
+        {
+            if (_transitioning || _stateMachine.CurrentState is not SpaceFlightState)
+            {
+                return;
+            }
+
+            StartCoroutine(EnterInterior());
         }
 
         private void OnModeSwitchRequested(ModeSwitchRequestedEvent _)

@@ -26,6 +26,7 @@ namespace Game.Core
             builder.Register<ModeLock>(Lifetime.Singleton);
 
             builder.RegisterComponentInHierarchy<SpaceRoot>();
+            builder.RegisterComponentInHierarchy<ZoneBounds>();
 
             // Registration order matters: InputMapSwitcher must subscribe before
             // GameStateMachineBootstrap fires the first state change below.
@@ -33,6 +34,7 @@ namespace Game.Core
             builder.RegisterEntryPoint<GameStateMachineBootstrap>(Lifetime.Singleton);
             builder.RegisterEntryPoint<ModeSwitchInput>(Lifetime.Singleton);
             builder.RegisterEntryPoint<CombatStateTracker>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<GameNotificationsSource>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugStateHotkeys>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugRandomEventHotkey>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugRegenerateHotkey>(Lifetime.Singleton);

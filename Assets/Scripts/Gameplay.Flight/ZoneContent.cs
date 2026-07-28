@@ -21,17 +21,20 @@ namespace Game.Gameplay.Flight
         public readonly List<PrefabSpawnPoint> EnemySpawns;
         public readonly PrefabSpawnPoint? TraderSpawn;
         public readonly PrefabSpawnPoint? QuestGiverSpawn;
+        public readonly Vector2? WormholeSpawn;
 
         public ZoneContent(
             List<PrefabSpawnPoint> resourceSpawns,
             List<PrefabSpawnPoint> enemySpawns,
             PrefabSpawnPoint? traderSpawn,
-            PrefabSpawnPoint? questGiverSpawn)
+            PrefabSpawnPoint? questGiverSpawn,
+            Vector2? wormholeSpawn)
         {
             ResourceSpawns = resourceSpawns;
             EnemySpawns = enemySpawns;
             TraderSpawn = traderSpawn;
             QuestGiverSpawn = questGiverSpawn;
+            WormholeSpawn = wormholeSpawn;
         }
     }
 }

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf62fde81597bea43b22d59f21fbd0a1, type: 3}
   m_Name: ZoneConfig
   m_EditorClassIdentifier: Data::Game.Data.ZoneConfig
-  AreaSize: {x: 50, y: 50}
+  AreaSize: {x: 100, y: 100}
   ResourcePrefabs:
   - {fileID: 1275026653305531988, guid: 354897be21f51bd45baffa2bb97ada96, type: 3}
   - {fileID: 1275026653305531988, guid: 68282e15f6d2ee34d8bc7e5c3f677259, type: 3}
-  ResourceCount: 20
+  - {fileID: 1275026653305531988, guid: 65215529eae490747893bd119d479d3e, type: 3}
+  ResourceCount: 50
   ResourceSpawnChance: 0.7
   EnemyPrefabs:
   - {fileID: 7038679251376370445, guid: 42592d0f7166154449056d6a6db8bbfe, type: 3}
@@ -30,3 +31,4 @@ MonoBehaviour:
   - {fileID: 3221235424753289668, guid: d8a272dc26b4f194e98dc1d7b90e0e16, type: 3}
   - {fileID: 3941317269027102095, guid: b2945a4a06871da4696305b6bf17d172, type: 3}
   QuestGiverSpawnChance: 1
+  WormholePrefab: {fileID: 4550884761154311418, guid: d10299e548cb4ee4294a356806bc5409, type: 3}

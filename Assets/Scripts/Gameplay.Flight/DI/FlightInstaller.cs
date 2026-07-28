@@ -26,6 +26,7 @@ namespace Game.Gameplay.Flight
             builder.RegisterInstance(_zoneConfig);
             builder.RegisterInstance(new ZoneSeed(_zoneSeed));
             builder.Register<RandomZoneGenerator>(Lifetime.Singleton).As<IZoneGenerator>();
+            builder.RegisterComponentInHierarchy<WormholeTravelController>();
             builder.RegisterEntryPoint<ZoneSpawner>(Lifetime.Singleton);
             builder.RegisterEntryPoint<QuestEnemySpawner>(Lifetime.Singleton);
             builder.RegisterEntryPoint<RaceManager>(Lifetime.Singleton);

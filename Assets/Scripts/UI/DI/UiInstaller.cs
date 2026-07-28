@@ -31,6 +31,24 @@ namespace Game.UI
             {
                 builder.RegisterComponent(minimap);
             }
+
+            var boundary = Object.FindFirstObjectByType<BoundaryDeathController>(FindObjectsInactive.Include);
+            if (boundary != null)
+            {
+                builder.RegisterComponent(boundary);
+            }
+
+            var gameOver = Object.FindFirstObjectByType<GameOverUI>(FindObjectsInactive.Include);
+            if (gameOver != null)
+            {
+                builder.RegisterComponent(gameOver);
+            }
+
+            var notifications = Object.FindFirstObjectByType<NotificationFeedUI>(FindObjectsInactive.Include);
+            if (notifications != null)
+            {
+                builder.RegisterComponent(notifications);
+            }
         }
     }
 }

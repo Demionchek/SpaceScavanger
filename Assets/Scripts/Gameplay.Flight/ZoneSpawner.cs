@@ -76,6 +76,13 @@ namespace Game.Gameplay.Flight
             {
                 SpawnScopedPrefab(_config.QuestGiverPrefabs[content.QuestGiverSpawn.Value.PrefabIndex], content.QuestGiverSpawn.Value.Position, parent);
             }
+
+            if (content.WormholeSpawn.HasValue && _config.WormholePrefab != null)
+            {
+                var wormhole = _rootScope.Container.Instantiate(
+                    _config.WormholePrefab, content.WormholeSpawn.Value, Quaternion.identity);
+                wormhole.transform.SetParent(parent, worldPositionStays: true);
+            }
         }
 
         // Уничтожаем всё содержимое космоса. Игрок, vcam и фон — вне Content,

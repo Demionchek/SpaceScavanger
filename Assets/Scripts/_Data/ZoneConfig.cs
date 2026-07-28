@@ -20,5 +20,7 @@ namespace Game.Data
 
         public GameObject[] QuestGiverPrefabs;
         [Range(0f, 1f)] public float QuestGiverSpawnChance = 0.5f;
+
+        public GameObject WormholePrefab;
     }
 }

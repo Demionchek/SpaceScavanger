@@ -3,10 +3,12 @@ namespace Game.Core
     public sealed class PlayerContext
     {
         public IResourceService ResourceService { get; }
+        public EventBus EventBus { get; }
 
-        public PlayerContext(IResourceService resourceService)
+        public PlayerContext(IResourceService resourceService, EventBus eventBus)
         {
             ResourceService = resourceService;
+            EventBus = eventBus;
         }
     }
 }
