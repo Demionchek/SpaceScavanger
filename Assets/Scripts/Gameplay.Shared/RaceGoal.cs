@@ -3,7 +3,7 @@ using Game.Core;
 namespace Game.Gameplay.Shared
 {
     // Цель выполнена, если игрок финишировал не последним.
-    public sealed class RaceGoal : IQuestGoal
+    public sealed class RaceGoal : IQuestGoal, ISaveableGoal
     {
         private readonly QuestDefinition _quest;
 
@@ -41,5 +41,9 @@ namespace Game.Gameplay.Shared
             _complete = true;
             _bus.Publish(new QuestCompletedEvent(_quest));
         }
+
+        public string SaveProgress() => _complete ? "1" : "0";
+
+        public void LoadProgress(string data) => _complete = data == "1";
     }
 }

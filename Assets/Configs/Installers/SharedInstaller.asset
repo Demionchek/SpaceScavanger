@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e25954593968894395e965e34c5b576, type: 3}
   m_Name: SharedInstaller
   m_EditorClassIdentifier: Gameplay.Shared::Game.Gameplay.Shared.SharedInstaller
+  _saveRegistry: {fileID: 11400000, guid: 30aab493483a754469b0d0f4aab4c490, type: 2}

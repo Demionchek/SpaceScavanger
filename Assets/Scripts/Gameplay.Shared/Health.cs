@@ -1,10 +1,11 @@
 using System;
+using System.Globalization;
 using Game.Core;
 using UnityEngine;
 
 namespace Game.Gameplay.Shared
 {
-    public sealed class Health : MonoBehaviour, IDamageable
+    public sealed class Health : MonoBehaviour, IDamageable, ISaveable
     {
         [SerializeField] private float _maxHealth = 100f;
 
@@ -45,6 +46,18 @@ namespace Game.Gameplay.Shared
             {
                 Died?.Invoke();
                 Destroy(gameObject);
+            }
+        }
+
+        public string SaveId => "health";
+
+        public string Save() => _currentHealth.ToString(CultureInfo.InvariantCulture);
+
+        public void Load(string data)
+        {
+            if (float.TryParse(data, NumberStyles.Float, CultureInfo.InvariantCulture, out var value))
+            {
+                _currentHealth = Mathf.Clamp(value, 0f, MaxHealth);
             }
         }
     }

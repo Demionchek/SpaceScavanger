@@ -8,6 +8,7 @@ namespace Game.Gameplay.Shared
     {
         private readonly EventBus _eventBus;
         private readonly IJournalService _journal;
+        private bool _loading;
 
         public JournalRecorder(EventBus eventBus, IJournalService journal)
         {
@@ -23,6 +24,8 @@ namespace Game.Gameplay.Shared
             _eventBus.Subscribe<ReputationChangedEvent>(OnReputationChanged);
             _eventBus.Subscribe<ItemCraftedEvent>(OnItemCrafted);
             _eventBus.Subscribe<WormholeTravelRequestedEvent>(OnTravel);
+            _eventBus.Subscribe<GameLoadStartedEvent>(OnLoadStarted);
+            _eventBus.Subscribe<GameLoadFinishedEvent>(OnLoadFinished);
         }
 
         public void Dispose()
@@ -33,24 +36,37 @@ namespace Game.Gameplay.Shared
             _eventBus.Unsubscribe<ReputationChangedEvent>(OnReputationChanged);
             _eventBus.Unsubscribe<ItemCraftedEvent>(OnItemCrafted);
             _eventBus.Unsubscribe<WormholeTravelRequestedEvent>(OnTravel);
+            _eventBus.Unsubscribe<GameLoadStartedEvent>(OnLoadStarted);
+            _eventBus.Unsubscribe<GameLoadFinishedEvent>(OnLoadFinished);
+        }
+
+        private void OnLoadStarted(GameLoadStartedEvent _) => _loading = true;
+        private void OnLoadFinished(GameLoadFinishedEvent _) => _loading = false;
+
+        private void Log(JournalCategory category, string message)
+        {
+            if (!_loading)
+            {
+                _journal.Add(category, message);
+            }
         }
 
         private void OnQuestStarted(QuestStartedEvent e) =>
-            _journal.Add(JournalCategory.Quest, $"Quest started: {e.Quest.Title}");
+            Log(JournalCategory.Quest, $"Quest started: {e.Quest.Title}");
 
         private void OnQuestCompleted(QuestCompletedEvent e) =>
-            _journal.Add(JournalCategory.Quest, $"Quest completed: {e.Quest.Title}");
+            Log(JournalCategory.Quest, $"Quest completed: {e.Quest.Title}");
 
         private void OnQuestTurnedIn(QuestTurnedInEvent e) =>
-            _journal.Add(JournalCategory.Quest, $"Quest turned in: {e.Quest.Title}");
+            Log(JournalCategory.Quest, $"Quest turned in: {e.Quest.Title}");
 
         private void OnReputationChanged(ReputationChangedEvent e) =>
-            _journal.Add(JournalCategory.Reputation, $"Reputation — {e.Group}: {e.NewValue}");
+            Log(JournalCategory.Reputation, $"Reputation — {e.Group}: {e.NewValue}");
 
         private void OnItemCrafted(ItemCraftedEvent e) =>
-            _journal.Add(JournalCategory.Crafting, $"Crafted: {e.Item.DisplayName}");
+            Log(JournalCategory.Crafting, $"Crafted: {e.Item.DisplayName}");
 
         private void OnTravel(WormholeTravelRequestedEvent e) =>
-            _journal.Add(JournalCategory.Travel, "Traveled through a wormhole");
+            Log(JournalCategory.Travel, "Traveled through a wormhole");
     }
 }

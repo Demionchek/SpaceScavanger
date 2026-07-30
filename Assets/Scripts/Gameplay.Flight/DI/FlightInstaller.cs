@@ -28,6 +28,12 @@ namespace Game.Gameplay.Flight
             builder.Register<RandomZoneGenerator>(Lifetime.Singleton).As<IZoneGenerator>();
             builder.RegisterComponentInHierarchy<WormholeTravelController>();
             builder.RegisterEntryPoint<ZoneSpawner>(Lifetime.Singleton);
+
+            var playerSaver = Object.FindFirstObjectByType<PlayerTransformSaver>(FindObjectsInactive.Include);
+            if (playerSaver != null)
+            {
+                builder.RegisterInstance(playerSaver).As<ISaveable>();
+            }
             builder.RegisterEntryPoint<QuestEnemySpawner>(Lifetime.Singleton);
             builder.RegisterEntryPoint<RaceManager>(Lifetime.Singleton);
         }

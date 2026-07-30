@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay.Shared
 {
-    public sealed class CraftItemGoal : IQuestGoal
+    public sealed class CraftItemGoal : IQuestGoal, ISaveableGoal
     {
         private readonly QuestDefinition _quest;
         private readonly ItemDefinition _item;
@@ -49,5 +49,9 @@ namespace Game.Gameplay.Shared
                 _bus.Publish(new QuestCompletedEvent(_quest));
             }
         }
+
+        public string SaveProgress() => _craftedCount.ToString();
+
+        public void LoadProgress(string data) => int.TryParse(data, out _craftedCount);
     }
 }

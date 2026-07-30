@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using Game.Core;
+using UnityEngine;
 
 namespace Game.Gameplay.Shared
 {
-    public sealed class ShipStatsService : IShipStatsService
+    public sealed class ShipStatsService : IShipStatsService, ISaveable
     {
         private readonly EventBus _eventBus;
         private readonly Dictionary<ShipStat, float> _multipliers = new();
@@ -48,6 +50,65 @@ namespace Game.Gameplay.Shared
             }
 
             _eventBus.Publish(new ShipStatsChangedEvent());
+        }
+
+        public string SaveId => "shipstats";
+
+        public string Save()
+        {
+            var data = new SaveData();
+            foreach (var pair in _multipliers)
+            {
+                data.multStats.Add(pair.Key.ToString());
+                data.multipliers.Add(pair.Value);
+            }
+
+            foreach (var pair in _bonuses)
+            {
+                data.bonusStats.Add(pair.Key.ToString());
+                data.bonuses.Add(pair.Value);
+            }
+
+            return JsonUtility.ToJson(data);
+        }
+
+        public void Load(string json)
+        {
+            _multipliers.Clear();
+            _bonuses.Clear();
+
+            var data = JsonUtility.FromJson<SaveData>(json);
+            if (data == null)
+            {
+                return;
+            }
+
+            for (var i = 0; i < data.multStats.Count; i++)
+            {
+                if (Enum.TryParse<ShipStat>(data.multStats[i], out var stat))
+                {
+                    _multipliers[stat] = data.multipliers[i];
+                }
+            }
+
+            for (var i = 0; i < data.bonusStats.Count; i++)
+            {
+                if (Enum.TryParse<ShipStat>(data.bonusStats[i], out var stat))
+                {
+                    _bonuses[stat] = data.bonuses[i];
+                }
+            }
+
+            _eventBus.Publish(new ShipStatsChangedEvent());
+        }
+
+        [Serializable]
+        private sealed class SaveData
+        {
+            public List<string> multStats = new();
+            public List<float> multipliers = new();
+            public List<string> bonusStats = new();
+            public List<int> bonuses = new();
         }
     }
 }

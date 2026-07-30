@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay.Shared
 {
-    public sealed class DestroyGroupGoal : IQuestGoal
+    public sealed class DestroyGroupGoal : IQuestGoal, ISaveableGoal
     {
         private readonly QuestDefinition _quest;
         private readonly string _groupTag;
@@ -49,5 +49,9 @@ namespace Game.Gameplay.Shared
                 _bus.Publish(new QuestCompletedEvent(_quest));
             }
         }
+
+        public string SaveProgress() => _destroyedCount.ToString();
+
+        public void LoadProgress(string data) => int.TryParse(data, out _destroyedCount);
     }
 }
