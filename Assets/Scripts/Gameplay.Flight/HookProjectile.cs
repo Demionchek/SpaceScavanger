@@ -68,7 +68,7 @@ namespace Game.Gameplay.Flight
             }
             else
             {
-                Debug.Log($"Hook level {_hookLevel} too low for resource requiring {hookable.RequiredHookLevel}");
+                _owner.OnHookTooWeak(hookable);
             }
 
             StartReturning();

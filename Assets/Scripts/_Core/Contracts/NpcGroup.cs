@@ -6,5 +6,6 @@ namespace Game.Core
     public sealed class NpcGroup : ScriptableObject
     {
         public string DisplayName;
+        public Sprite Icon;
     }
 }

@@ -55,6 +55,12 @@ namespace Game.UI
             {
                 builder.RegisterComponent(journal);
             }
+
+            var inventory = Object.FindFirstObjectByType<InventoryUI>(FindObjectsInactive.Include);
+            if (inventory != null)
+            {
+                builder.RegisterComponent(inventory);
+            }
         }
     }
 }

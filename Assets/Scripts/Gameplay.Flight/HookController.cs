@@ -20,6 +20,7 @@ namespace Game.Gameplay.Flight
         [SerializeField] private AudioClip _retractClip;
 
         private PlayerContext _playerContext;
+        private EventBus _eventBus;
         private InputAction _hookAction;
         private HookProjectile _activeHook;
         private RopeTilePool _ropePool;
@@ -33,9 +34,10 @@ namespace Game.Gameplay.Flight
         }
 
         [Inject]
-        public void Construct(InputActionAsset inputActions, PlayerContext playerContext)
+        public void Construct(InputActionAsset inputActions, PlayerContext playerContext, EventBus eventBus)
         {
             _playerContext = playerContext;
+            _eventBus = eventBus;
 
             var flightMap = inputActions.FindActionMap("Flight", throwIfNotFound: true);
             _hookAction = flightMap.FindAction("Hook", throwIfNotFound: true);
@@ -73,6 +75,11 @@ namespace Game.Gameplay.Flight
         public void OnHookGrabbed(IHookable hookable)
         {
             hookable.OnGrabbed(new HookContext(_playerContext.ResourceService));
+        }
+
+        public void OnHookTooWeak(IHookable hookable)
+        {
+            _eventBus.Publish(new NotificationRequestedEvent($"Hook Lv.{hookable.RequiredHookLevel} required"));
         }
 
         public void OnHookReturning()

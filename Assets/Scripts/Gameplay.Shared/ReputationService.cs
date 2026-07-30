@@ -17,6 +17,26 @@ namespace Game.Gameplay.Shared
             _registry = registry;
         }
 
+        public IEnumerable<KeyValuePair<NpcGroup, int>> All
+        {
+            get
+            {
+                var groups = _registry.NpcGroups;
+                if (groups == null)
+                {
+                    yield break;
+                }
+
+                foreach (var group in groups)
+                {
+                    if (group != null)
+                    {
+                        yield return new KeyValuePair<NpcGroup, int>(group, GetReputation(group));
+                    }
+                }
+            }
+        }
+
         public int GetReputation(NpcGroup group)
         {
             return _reputation.TryGetValue(group, out var value) ? value : 0;

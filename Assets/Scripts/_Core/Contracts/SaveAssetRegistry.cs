@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Core
@@ -9,6 +10,8 @@ namespace Game.Core
         [SerializeField] private ItemDefinition[] _items;
         [SerializeField] private CraftingRecipe[] _recipes;
         [SerializeField] private QuestDefinition[] _quests;
+
+        public IReadOnlyList<NpcGroup> NpcGroups => _npcGroups;
 
         public string GetId(Object asset) => asset != null ? asset.name : null;
 
