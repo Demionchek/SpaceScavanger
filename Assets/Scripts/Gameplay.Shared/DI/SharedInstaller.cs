@@ -1,4 +1,5 @@
 using Game.Core;
+using Game.Data;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -9,6 +10,8 @@ namespace Game.Gameplay.Shared
     public sealed class SharedInstaller : ScriptableObjectInstaller
     {
         [SerializeField] private SaveAssetRegistry _saveRegistry;
+        [SerializeField] private StoryDialogueCatalog _storyDialogues;
+        [SerializeField] private ResourceCost[] _startingResources;
 
         public override void Install(IContainerBuilder builder)
         {
@@ -26,6 +29,10 @@ namespace Game.Gameplay.Shared
             builder.Register<SoundService>(Lifetime.Singleton).As<ISoundService>();
             builder.Register<JournalService>(Lifetime.Singleton).As<IJournalService>().As<ISaveable>();
             builder.RegisterEntryPoint<JournalRecorder>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<StoryDialogueService>(Lifetime.Singleton)
+                .WithParameter<StoryDialogueCatalog>(_storyDialogues);
+            builder.RegisterEntryPoint<StartingResources>(Lifetime.Singleton)
+                .WithParameter<ResourceCost[]>(_startingResources);
             builder.RegisterEntryPoint<SaveService>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<Health>().AsSelf().As<ISaveable>();
         }

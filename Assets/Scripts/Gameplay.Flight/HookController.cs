@@ -75,6 +75,7 @@ namespace Game.Gameplay.Flight
         public void OnHookGrabbed(IHookable hookable)
         {
             hookable.OnGrabbed(new HookContext(_playerContext.ResourceService));
+            _eventBus.Publish(new ResourceObjectCollectedEvent());
         }
 
         public void OnHookTooWeak(IHookable hookable)

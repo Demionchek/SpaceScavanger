@@ -61,6 +61,18 @@ namespace Game.UI
             {
                 builder.RegisterComponent(inventory);
             }
+
+            var tutorial = Object.FindFirstObjectByType<TutorialPopupUI>(FindObjectsInactive.Include);
+            if (tutorial != null)
+            {
+                builder.RegisterComponent(tutorial);
+            }
+
+            var warningBanner = Object.FindFirstObjectByType<WarningBannerUI>(FindObjectsInactive.Include);
+            if (warningBanner != null)
+            {
+                builder.RegisterComponent(warningBanner);
+            }
         }
     }
 }

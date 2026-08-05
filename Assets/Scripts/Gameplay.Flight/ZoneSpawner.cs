@@ -15,12 +15,14 @@ namespace Game.Gameplay.Flight
         private readonly LifetimeScope _rootScope;
         private readonly SpaceRoot _spaceRoot;
         private readonly EventBus _eventBus;
+        private readonly bool _generateOnStart;
 
         private int _currentSeed;
 
         public ZoneSpawner(IZoneGenerator generator, ZoneConfig config, ZoneSeed seed,
-            LifetimeScope rootScope, SpaceRoot spaceRoot, EventBus eventBus)
+            LifetimeScope rootScope, SpaceRoot spaceRoot, EventBus eventBus, bool generateOnStart)
         {
+            _generateOnStart = generateOnStart;
             _generator = generator;
             _config = config;
             _seed = seed;
@@ -33,7 +35,11 @@ namespace Game.Gameplay.Flight
         public void Start()
         {
             _eventBus.Subscribe<ZoneRegenerateRequestedEvent>(OnRegenerateRequested);
-            Generate();
+
+            if (_generateOnStart)
+            {
+                Generate();
+            }
         }
 
         public void Dispose()

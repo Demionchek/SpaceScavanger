@@ -30,6 +30,12 @@ namespace Game.Gameplay.Ship
             {
                 builder.RegisterComponent(console);
             }
+
+            var intercom = FindFirstObjectByType<IntercomComponent>(FindObjectsInactive.Include);
+            if (intercom != null)
+            {
+                builder.RegisterComponent(intercom);
+            }
         }
     }
 }

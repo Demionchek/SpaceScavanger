@@ -383,6 +383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8178133069516519916}
+  - component: {fileID: 1571652709290655954}
   m_Layer: 5
   m_Name: WarningFeed
   m_TagString: Untagged
@@ -410,6 +411,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -1.46}
   m_SizeDelta: {x: 3, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1571652709290655954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507440109139054704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ad5e6e235ba9745867c8bcdd80fd97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UI::Game.UI.WarningBannerUI
+  _root: {fileID: 2441677146409104241}
+  _text: {fileID: 2090216717780518505}
+  _messageDuration: 3
 --- !u!1 &6888253830921076027
 GameObject:
   m_ObjectHideFlags: 0

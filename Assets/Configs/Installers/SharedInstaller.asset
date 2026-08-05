@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: SharedInstaller
   m_EditorClassIdentifier: Gameplay.Shared::Game.Gameplay.Shared.SharedInstaller
   _saveRegistry: {fileID: 11400000, guid: 30aab493483a754469b0d0f4aab4c490, type: 2}
+  _storyDialogues: {fileID: 11400000, guid: 2f49fd3e71d0a3b49b1521bb1fab12de, type: 2}
+  _startingResources:
+  - Type: 5
+    Amount: 5

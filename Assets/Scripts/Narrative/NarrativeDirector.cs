@@ -18,19 +18,23 @@ namespace Game.Narrative
         private GameContext _gameContext;
         private IPauseService _pauseService;
         private IQuestService _questService;
+        private SaveAssetRegistry _registry;
         private bool _dialogueActive;
+        private string _activeNode;
 
         [Inject]
         public void Construct(
             EventBus eventBus,
             GameContext gameContext,
             IPauseService pauseService,
-            IQuestService questService)
+            IQuestService questService,
+            SaveAssetRegistry registry)
         {
             _eventBus = eventBus;
             _gameContext = gameContext;
             _pauseService = pauseService;
             _questService = questService;
+            _registry = registry;
         }
 
         private void Awake()
@@ -38,6 +42,7 @@ namespace Game.Narrative
             _dialogueRunner.AddCommandHandler<string>("apply_effect", ApplyEffect);
             _dialogueRunner.AddCommandHandler<string>("turn_in_quest", TurnInQuest);
             _dialogueRunner.AddFunction("quest_ready", (Func<string, bool>)IsQuestReady);
+            _dialogueRunner.AddFunction("reputation", (Func<string, int>)GetReputation);
             _dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
         }
 
@@ -83,6 +88,7 @@ namespace Game.Narrative
             }
 
             _dialogueActive = true;
+            _activeNode = node;
             _pauseService.RequestPause();
             _dialogueRunner.StartDialogue(node);
         }
@@ -101,6 +107,10 @@ namespace Game.Narrative
 
             _dialogueActive = false;
             _pauseService.ReleasePause();
+
+            var node = _activeNode;
+            _activeNode = null;
+            _eventBus.Publish(new DialogueFinishedEvent(node));
         }
 
         private void ApplyEffect(string effectName)
@@ -134,6 +144,18 @@ namespace Game.Narrative
             }
 
             return false;
+        }
+
+        private int GetReputation(string groupName)
+        {
+            var group = _registry != null ? _registry.GetNpcGroup(groupName) : null;
+            if (group == null)
+            {
+                Debug.LogWarning($"NpcGroup '{groupName}' not found in SaveAssetRegistry — reputation() returns 0");
+                return 0;
+            }
+
+            return _gameContext.ReputationService.GetReputation(group);
         }
 
         private void TurnInQuest(string questName)

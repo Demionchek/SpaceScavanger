@@ -22,3 +22,4 @@ MonoBehaviour:
   _quests:
   - {fileID: 11400000, guid: 017147314a9521842a5948685d979073, type: 2}
   - {fileID: 11400000, guid: 58a9e8fd41720174ea64999dfbf6690f, type: 2}
+  - {fileID: 11400000, guid: e398ee794d3fe204f84dfd324b60b1ca, type: 2}

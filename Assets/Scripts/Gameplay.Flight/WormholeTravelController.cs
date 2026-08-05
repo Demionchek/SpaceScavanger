@@ -6,8 +6,6 @@ namespace Game.Gameplay.Flight
 {
     public sealed class WormholeTravelController : MonoBehaviour
     {
-        [SerializeField] private string _arrivalDialogueNode;
-
         private EventBus _eventBus;
         private PlayerMarker _player;
         private ZoneBounds _bounds;
@@ -62,11 +60,7 @@ namespace Game.Gameplay.Flight
             }
 
             _eventBus.Publish(new ZoneRegenerateRequestedEvent());
-
-            if (!string.IsNullOrEmpty(_arrivalDialogueNode))
-            {
-                _eventBus.Publish(new DialogueRequestedEvent(_arrivalDialogueNode));
-            }
+            _eventBus.Publish(new StoryDialogueRequestedEvent());
         }
     }
 }

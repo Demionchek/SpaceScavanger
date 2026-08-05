@@ -9,7 +9,8 @@ namespace Game.UI
     public sealed class BoundaryDeathController : MonoBehaviour
     {
         [SerializeField] private Volume _volume;
-        [SerializeField] private GameObject _warning;
+        [SerializeField] private WarningBannerUI _warning;
+        [SerializeField] private string _warningMessage = "Leaving the safe zone";
         [SerializeField] private float _maxIntensity = 1f;
         [SerializeField] private float _smoothSpeed = 2f;
 
@@ -20,6 +21,7 @@ namespace Game.UI
         private Vignette _vignette;
         private float _current;
         private bool _dead;
+        private bool _warningShown;
 
         [Inject]
         public void Construct(IPlayerLocator player, ZoneBounds bounds, GameStateMachine stateMachine, EventBus eventBus)
@@ -82,10 +84,13 @@ namespace Game.UI
 
         private void SetWarning(bool visible)
         {
-            if (_warning != null && _warning.activeSelf != visible)
+            if (_warning == null || _warningShown == visible)
             {
-                _warning.SetActive(visible);
+                return;
             }
+
+            _warningShown = visible;
+            _warning.SetPersistent(visible ? _warningMessage : null);
         }
     }
 }

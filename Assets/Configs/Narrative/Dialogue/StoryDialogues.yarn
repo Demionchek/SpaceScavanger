@@ -1,0 +1,85 @@
+title: Story_01_Intro
+---
+Terminal: NEW ASSIGNMENT RECEIVED. COORDINATES ATTACHED.
+Terminal: SALVAGE PRIORITY: LOW. QUOTA DEADLINE: 40 CYCLES.
+Terminal: SENTENCE STATUS: SUSPENDED. REVIEW PENDING ON QUOTA.
+Jim: "Pending." They love that word.
+Jim: Alright. Time to move.
+===
+
+title: Story_02_Departure
+---
+Jim: Course locked. Nothing out here but me and the dark.
+Jim: Let's see what the void left me this time.
+===
+
+title: Story_03_Arrival
+---
+Jim: These are the coordinates. Whatever's left of it, it's right here.
+Jim: Hooks out. Let's get this over with.
+===
+
+title: Story_04_Haul
+---
+Jim: ...Scrap. Half a ton of scrap and a cracked coolant cell.
+Jim: Months. Months since I pulled anything worth the fuel.
+Jim: The Corporation doesn't fire people. It just stops suspending the sentence.
+Jim: Keep this up and I don't lose the job. I lose my head.
+Jim: How did I even end up out here.
+===
+
+title: Flashback_Recruitment
+---
+Guard: On your feet. You've got a visitor.
+Officer: Jim. Convicted. Sentenced. Scheduled.
+Officer: I'm not here to appeal any of that.
+Officer: The Corporation has an opening. Salvage work. Deep field, long hauls, no crew.
+Jim: And if I say no?
+Officer: Then the schedule stands.
+Officer: Say yes, and the sentence is suspended. Not commuted. Suspended.
+Officer: You keep it suspended by making quota.
+-> Where do I sign?
+    Officer: You don't sign anything. You stop being a problem and start being an asset.
+-> What happens when I miss quota?
+    Officer: Then you're a problem again.
+-> How long is the contract?
+    Officer: There's no end date. There's only the next quota.
+===
+
+title: Story_05_Contact
+---
+Terminal: PROXIMITY ALERT. VESSEL ON DRIFT COURSE.
+Terminal: TRANSPONDER: INDEPENDENT SALVAGE. HAILING CHANNEL OPEN.
+Jim: Someone out here actually wants to talk. That's new.
+===
+
+title: Scavenger_Encounter
+---
+<<if reputation("Scavengers") >= 25>>
+    <<jump Scavenger_Encounter_Friendly>>
+<<else>>
+    <<jump Scavenger_Encounter_Hostile>>
+<<endif>>
+===
+
+title: Scavenger_Encounter_Friendly
+---
+Vee: Hey! How've you been? Pulled anything worth hauling lately?
+Vee: Ever since they raised the quotas, this job has been a grind.
+Vee: I upgraded my radar. Now I get more coordinates than I can fly to — you should stop putting that off.
+Vee: Here, take one. Two pings came in at once, opposite ends of the sector. Someone's going to beat me to the other one anyway. Better it's you.
+-> Thanks. I owe you one.
+    Vee: Just don't get yourself blown up out there.
+-> Why hand it over?
+    Vee: Because I can't be in two places. And I'd rather it went to you than to some Corporation lapdog.
+===
+
+title: Scavenger_Encounter_Hostile
+---
+Vee: Well. If it isn't Jim.
+Vee: Struck out again, I take it? Good. Keep it up.
+Vee: One of these days something out here just blows you apart, and the Corporation files it as attrition.
+Vee: Fewer of us, more scrap for me.
+-> ...
+    Vee: Yeah. That's what I thought.
+===
