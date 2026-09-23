@@ -6,6 +6,7 @@
         "Data",
         "Gameplay.Shared",
         "Unity.InputSystem",
+        "Unity.TextMeshPro",
         "VContainer",
         "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.Universal.Runtime",

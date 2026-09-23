@@ -571,6 +571,10 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   _inputActions: {fileID: -944628639613478452, guid: e2f490281beaa9d4f8e8ccd85f23ba5e, type: 3}
+  _pauseAudio:
+    GameplaySnapshot: {fileID: 24500006, guid: 1afed1eac13bece48b7b969825c0096d, type: 2}
+    PausedSnapshot: {fileID: 7573823042740201119, guid: 1afed1eac13bece48b7b969825c0096d, type: 2}
+    TransitionTime: 0.3
   _featureInstallers:
   - {fileID: 11400000, guid: d0123f28eb8b439488cecd98d0d0afe5, type: 2}
   - {fileID: 11400000, guid: 26ca6c2f4ead65f4788745b6b0abbc59, type: 2}
@@ -2094,6 +2098,7 @@ Transform:
   - {fileID: 1249070663}
   - {fileID: 619394802}
   - {fileID: 145914955}
+  - {fileID: 2086138837}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1534411987
@@ -2653,6 +2658,57 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1935306878849151179, guid: 321397f7e66af2746aafe53472ab583f, type: 3}
   m_PrefabInstance: {fileID: 1358079736727501958}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2086138836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2086138837}
+  - component: {fileID: 2086138838}
+  m_Layer: 0
+  m_Name: CutsceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2086138837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086138836}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1484514353}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2086138838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086138836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75302ae81cbc2d4c814468ebf9294c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UI::Game.UI.CutsceneController
+  _fadeImage: {fileID: 1748157456}
+  _fadeDuration: 0.4
+  _cutscenes:
+  - AfterDialogueNode: Story_04_Haul
+    SceneName: PrisonScene
+    AdvanceStoryOnFinish: 0
+  _cutsceneSnapshot: {fileID: -828939163285095915, guid: 1afed1eac13bece48b7b969825c0096d, type: 2}
 --- !u!1001 &262440641225587785
 PrefabInstance:
   m_ObjectHideFlags: 0

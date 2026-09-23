@@ -34,6 +34,11 @@ namespace Game.Gameplay.Ship
             if (hit != null && hit.TryGetComponent<IInteractable>(out var interactable))
             {
                 interactable.Interact(_playerContext);
+
+                if (hit.TryGetComponent<InteractionHint>(out var hint))
+                {
+                    hint.MarkUsed();
+                }
             }
         }
     }

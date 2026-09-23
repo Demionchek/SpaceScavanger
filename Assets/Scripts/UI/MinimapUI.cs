@@ -45,14 +45,16 @@ namespace Game.UI
         private GameObject Root => _root != null ? _root : gameObject;
 
         [Inject]
-        public void Construct(IShipStatsService stats, IPlayerLocator player, ZoneBounds bounds, EventBus eventBus)
+        public void Construct(IShipStatsService stats, IPlayerLocator player, ZoneBounds bounds, EventBus eventBus,
+            HudVisibility hud)
         {
             _stats = stats;
             _player = player;
             _bounds = bounds;
             _eventBus = eventBus;
 
-            _eventBus.Subscribe<GameStateChangedEvent>(OnGameStateChanged);
+            _eventBus.Subscribe<HudVisibilityChangedEvent>(OnHudVisibilityChanged);
+            Root.SetActive(hud.IsVisible);
         }
 
         private void Awake()
@@ -82,20 +84,10 @@ namespace Game.UI
 
         private void OnDestroy()
         {
-            _eventBus?.Unsubscribe<GameStateChangedEvent>(OnGameStateChanged);
+            _eventBus?.Unsubscribe<HudVisibilityChangedEvent>(OnHudVisibilityChanged);
         }
 
-        private void OnGameStateChanged(GameStateChangedEvent evt)
-        {
-            if (evt.NewState is ShipInteriorState)
-            {
-                Root.SetActive(false);
-            }
-            else if (evt.NewState is SpaceFlightState)
-            {
-                Root.SetActive(true);
-            }
-        }
+        private void OnHudVisibilityChanged(HudVisibilityChangedEvent evt) => Root.SetActive(evt.Visible);
 
         private void LateUpdate()
         {

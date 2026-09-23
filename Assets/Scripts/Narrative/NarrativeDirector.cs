@@ -90,6 +90,7 @@ namespace Game.Narrative
             _dialogueActive = true;
             _activeNode = node;
             _pauseService.RequestPause();
+            _eventBus.Publish(new DialogueStartedEvent(node));
             _dialogueRunner.StartDialogue(node);
         }
 

@@ -28,6 +28,7 @@ namespace Game.Gameplay.Shared
             builder.Register<UpgradeService>(Lifetime.Singleton).As<IUpgradeService>();
             builder.Register<SoundService>(Lifetime.Singleton).As<ISoundService>();
             builder.Register<JournalService>(Lifetime.Singleton).As<IJournalService>().As<ISaveable>();
+            builder.Register<InteractionHintService>(Lifetime.Singleton).As<IInteractionHintService>().As<ISaveable>();
             builder.RegisterEntryPoint<JournalRecorder>(Lifetime.Singleton);
             builder.RegisterEntryPoint<StoryDialogueService>(Lifetime.Singleton)
                 .WithParameter<StoryDialogueCatalog>(_storyDialogues);

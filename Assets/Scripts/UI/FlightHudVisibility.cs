@@ -4,10 +4,9 @@ using VContainer;
 
 namespace Game.UI
 {
-    // Прячет лётный HUD (квесты, гонка, прицел и т.п.) внутри корабля и
-    // показывает в полёте. Список корней задаётся в инспекторе. Сам компонент
-    // должен висеть на объекте ВНЕ списка, иначе отключит себя (подписка,
-    // впрочем, переживёт — но так чище).
+    // Прячет лётный HUD (квесты, гонка, прицел и т.п.) по правилу HudVisibility:
+    // в интерьере, в диалоге и в катсцене. Список корней задаётся в инспекторе.
+    // Сам компонент должен висеть на объекте ВНЕ списка, иначе отключит себя.
     public sealed class FlightHudVisibility : MonoBehaviour
     {
         [SerializeField] private GameObject[] _flightHudRoots;
@@ -15,30 +14,19 @@ namespace Game.UI
         private EventBus _eventBus;
 
         [Inject]
-        public void Construct(EventBus eventBus)
+        public void Construct(EventBus eventBus, HudVisibility hud)
         {
             _eventBus = eventBus;
-
-            // Подписка в Construct, чтобы поймать стартовое событие SpaceFlightState.
-            _eventBus.Subscribe<GameStateChangedEvent>(OnGameStateChanged);
+            _eventBus.Subscribe<HudVisibilityChangedEvent>(OnHudVisibilityChanged);
+            SetVisible(hud.IsVisible);
         }
 
         private void OnDestroy()
         {
-            _eventBus?.Unsubscribe<GameStateChangedEvent>(OnGameStateChanged);
+            _eventBus?.Unsubscribe<HudVisibilityChangedEvent>(OnHudVisibilityChanged);
         }
 
-        private void OnGameStateChanged(GameStateChangedEvent evt)
-        {
-            if (evt.NewState is ShipInteriorState)
-            {
-                SetVisible(false);
-            }
-            else if (evt.NewState is SpaceFlightState)
-            {
-                SetVisible(true);
-            }
-        }
+        private void OnHudVisibilityChanged(HudVisibilityChangedEvent evt) => SetVisible(evt.Visible);
 
         private void SetVisible(bool visible)
         {

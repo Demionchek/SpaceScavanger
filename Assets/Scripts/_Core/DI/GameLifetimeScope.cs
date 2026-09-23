@@ -9,11 +9,13 @@ namespace Game.Core
     public sealed class GameLifetimeScope : LifetimeScope
     {
         [SerializeField] private InputActionAsset _inputActions;
+        [SerializeField] private PauseAudioSettings _pauseAudio = new();
         [SerializeField] private List<ScriptableObjectInstaller> _featureInstallers = new();
 
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterInstance(_inputActions);
+            builder.RegisterInstance(_pauseAudio);
             builder.Register<EventBus>(Lifetime.Singleton);
             builder.Register<PlayerContext>(Lifetime.Singleton);
             builder.Register<GameContext>(Lifetime.Singleton);
@@ -34,6 +36,7 @@ namespace Game.Core
             builder.RegisterEntryPoint<GameStateMachineBootstrap>(Lifetime.Singleton);
             builder.RegisterEntryPoint<ModeSwitchInput>(Lifetime.Singleton);
             builder.RegisterEntryPoint<CombatStateTracker>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<HudVisibility>(Lifetime.Singleton).AsSelf();
             builder.RegisterEntryPoint<GameNotificationsSource>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugStateHotkeys>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugRandomEventHotkey>(Lifetime.Singleton);

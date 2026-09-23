@@ -23,15 +23,15 @@ namespace Game.UI
         private GameObject Root => _root != null ? _root : gameObject;
 
         [Inject]
-        public void Construct(Health health, EventBus eventBus)
+        public void Construct(Health health, EventBus eventBus, HudVisibility hud)
         {
             _health = health;
             _eventBus = eventBus;
 
-            // Подписка в Construct: инъекция может пройти позже OnEnable, а
-            // стартовое событие SpaceFlightState публикуется bootstrap'ом сразу
-            // после сборки контейнера — иначе пропустим его.
-            _eventBus.Subscribe<GameStateChangedEvent>(OnGameStateChanged);
+            // Подписка в Construct, а не в OnEnable: первое событие видимости
+            // приходит сразу после сборки контейнера, и сам Root может быть скрыт.
+            _eventBus.Subscribe<HudVisibilityChangedEvent>(OnHudVisibilityChanged);
+            Root.SetActive(hud.IsVisible);
         }
 
         private void Awake()
@@ -41,21 +41,10 @@ namespace Game.UI
 
         private void OnDestroy()
         {
-            _eventBus?.Unsubscribe<GameStateChangedEvent>(OnGameStateChanged);
+            _eventBus?.Unsubscribe<HudVisibilityChangedEvent>(OnHudVisibilityChanged);
         }
 
-        private void OnGameStateChanged(GameStateChangedEvent evt)
-        {
-            // HUD здоровья корабля виден в полёте и скрыт внутри корабля.
-            if (evt.NewState is ShipInteriorState)
-            {
-                Root.SetActive(false);
-            }
-            else if (evt.NewState is SpaceFlightState)
-            {
-                Root.SetActive(true);
-            }
-        }
+        private void OnHudVisibilityChanged(HudVisibilityChangedEvent evt) => Root.SetActive(evt.Visible);
 
         private void Update()
         {

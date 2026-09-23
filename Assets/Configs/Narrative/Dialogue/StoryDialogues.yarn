@@ -28,22 +28,38 @@ Jim: Keep this up and I don't lose the job. I lose my head.
 Jim: How did I even end up out here.
 ===
 
-title: Flashback_Recruitment
+title: Flashback_01_Cells
 ---
-Guard: On your feet. You've got a visitor.
-Officer: Jim. Convicted. Sentenced. Scheduled.
-Officer: I'm not here to appeal any of that.
-Officer: The Corporation has an opening. Salvage work. Deep field, long hauls, no crew.
-Jim: And if I say no?
-Officer: Then the schedule stands.
-Officer: Say yes, and the sentence is suspended. Not commuted. Suspended.
-Officer: You keep it suspended by making quota.
--> Where do I sign?
-    Officer: You don't sign anything. You stop being a problem and start being an asset.
--> What happens when I miss quota?
-    Officer: Then you're a problem again.
--> How long is the contract?
-    Officer: There's no end date. There's only the next quota.
+Guard: Block four. Every one of them scheduled.
+Officer: Scheduled is fine. Scheduled is what makes them affordable.
+Officer: These will do. Walk them to the assembly hall.
+Guard: All of them?
+Officer: All of them. The ones who decline can be scheduled again.
+===
+
+title: Flashback_02_Assembly
+---
+Officer: Look around this room. Every man here has a date and a time.
+Officer: The Corporation is offering you something the court would not. A delay.
+Officer: You will each be given a ship and a sector. The deep field — the part of space we do not send employees into.
+Officer: You bring back salvage. You meet quota. And for as long as you meet it, your date stays where it is. Ahead of you.
+Officer: Haul enough, long enough, and you may even buy the rest of your life back.
+===
+
+title: Flashback_03_Outburst
+---
+Prisoner: Buy it back. From the people who bought it.
+Prisoner: Keep your delay. Do it here and save yourself the fuel.
+Officer: Sit down.
+Prisoner: I'm finished listening.
+===
+
+title: Flashback_04_Verdict
+---
+Officer: As you can see, there is exactly one way out of this hall.
+Officer: Your lives were sold. That transaction is closed; it is not what we are discussing today.
+Officer: The only question still open is whether we consider them worth keeping.
+Officer: Congratulations. You are assets now.
 ===
 
 title: Story_05_Contact

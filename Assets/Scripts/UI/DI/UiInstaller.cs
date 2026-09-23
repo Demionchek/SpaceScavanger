@@ -73,6 +73,12 @@ namespace Game.UI
             {
                 builder.RegisterComponent(warningBanner);
             }
+
+            var cutscenes = Object.FindFirstObjectByType<CutsceneController>(FindObjectsInactive.Include);
+            if (cutscenes != null)
+            {
+                builder.RegisterComponent(cutscenes);
+            }
         }
     }
 }

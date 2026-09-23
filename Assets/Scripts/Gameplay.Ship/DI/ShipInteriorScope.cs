@@ -36,6 +36,15 @@ namespace Game.Gameplay.Ship
             {
                 builder.RegisterComponent(intercom);
             }
+
+            var hints = FindObjectsByType<InteractionHint>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            builder.RegisterBuildCallback(container =>
+            {
+                foreach (var hint in hints)
+                {
+                    container.Inject(hint);
+                }
+            });
         }
     }
 }
