@@ -2540,11 +2540,22 @@ PrefabInstance:
       propertyPath: yarnProject
       value: 
       objectReference: {fileID: 7545569452688597077, guid: d55947b10e9b129448fa1af6502ea906, type: 3}
+    - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: dialoguePresenters.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: 'dialoguePresenters.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1924283089}
     m_RemovedComponents:
     - {fileID: 3893607377605131395, guid: 52571f68872914e24837210513edea1d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7262066351540048079, guid: 52571f68872914e24837210513edea1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1924283089}
     - targetCorrespondingSourceObject: {fileID: 2958262985454349538, guid: 52571f68872914e24837210513edea1d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1685926302}
@@ -2593,17 +2604,34 @@ MonoBehaviour:
   nextLineKeyCode: 27
   hurryUpOptionsKeyCode: 32
   cancelDialogueKeyCode: 0
+--- !u!1 &1924283087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7262066351540048079, guid: 52571f68872914e24837210513edea1d, type: 3}
+  m_PrefabInstance: {fileID: 1924283082}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1924283088 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
   m_PrefabInstance: {fileID: 1924283082}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1924283087}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1924283089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924283087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f75e80eadb1dc248bebf20114333e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Narrative::Game.Narrative.SpeakerTalkPresenter
 --- !u!1 &1987186641
 GameObject:
   m_ObjectHideFlags: 0
@@ -2830,6 +2858,22 @@ PrefabInstance:
     - target: {fileID: 5753063399590695839, guid: 75cc662897f4cc44aaae09360cac316f, type: 3}
       propertyPath: m_Name
       value: TutorialTriggers
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175032533984064908, guid: 75cc662897f4cc44aaae09360cac316f, type: 3}
+      propertyPath: m_Size.x
+      value: 8.997816
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175032533984064908, guid: 75cc662897f4cc44aaae09360cac316f, type: 3}
+      propertyPath: m_Size.y
+      value: 10.638585
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175032533984064908, guid: 75cc662897f4cc44aaae09360cac316f, type: 3}
+      propertyPath: m_Offset.x
+      value: 2.8249435
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175032533984064908, guid: 75cc662897f4cc44aaae09360cac316f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.16849661
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

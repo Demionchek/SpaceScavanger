@@ -31,35 +31,35 @@ Jim: How did I even end up out here.
 title: Flashback_01_Cells
 ---
 Guard: Block four. Every one of them scheduled.
-Officer: Scheduled is fine. Scheduled is what makes them affordable.
-Officer: These will do. Walk them to the assembly hall.
+Suit: Scheduled is fine. Scheduled is what makes them affordable.
+Suit: These will do. Walk them to the assembly hall.
 Guard: All of them?
-Officer: All of them. The ones who decline can be scheduled again.
+Suit: All of them. The ones who decline can be scheduled again.
 ===
 
 title: Flashback_02_Assembly
 ---
-Officer: Look around this room. Every man here has a date and a time.
-Officer: The Corporation is offering you something the court would not. A delay.
-Officer: You will each be given a ship and a sector. The deep field — the part of space we do not send employees into.
-Officer: You bring back salvage. You meet quota. And for as long as you meet it, your date stays where it is. Ahead of you.
-Officer: Haul enough, long enough, and you may even buy the rest of your life back.
+Suit: Look around this room. Every man here has a date and a time.
+Suit: The Corporation is offering you something the court would not. A delay.
+Suit: You will each be given a ship and a sector. The deep field — the part of space we do not send employees into.
+Suit: You bring back salvage. You meet quota. And for as long as you meet it, your date stays where it is. Ahead of you.
+Suit: Haul enough, long enough, and you may even buy the rest of your life back.
 ===
 
 title: Flashback_03_Outburst
 ---
 Prisoner: Buy it back. From the people who bought it.
 Prisoner: Keep your delay. Do it here and save yourself the fuel.
-Officer: Sit down.
+Suit: Sit down.
 Prisoner: I'm finished listening.
 ===
 
 title: Flashback_04_Verdict
 ---
-Officer: As you can see, there is exactly one way out of this hall.
-Officer: Your lives were sold. That transaction is closed; it is not what we are discussing today.
-Officer: The only question still open is whether we consider them worth keeping.
-Officer: Congratulations. You are assets now.
+Suit: As you can see, there is exactly one way out of this hall.
+Suit: Your lives were sold. That transaction is closed; it is not what we are discussing today.
+Suit: The only question still open is whether we consider them worth keeping.
+Suit: Congratulations. You are assets now.
 ===
 
 title: Story_05_Contact
