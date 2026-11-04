@@ -1,5 +1,6 @@
 using System;
 using Game.Core;
+using Game.Gameplay.Shared;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,8 +52,22 @@ namespace Game.UI
             _pauseService.RequestPause();
         }
 
+        // Начало игры проходится один раз: если контрольная точка есть, смерть
+        // возвращает в начало сектора, а не к туториалу.
         public void Restart()
         {
+            if (SaveService.HasSave)
+            {
+                if (_panel != null)
+                {
+                    _panel.SetActive(false);
+                }
+
+                _pauseService.ReleasePause();
+                _eventBus.Publish(new LoadGameRequestedEvent());
+                return;
+            }
+
             // Глобальные статики не сбрасываются перезагрузкой сцены, а PauseService
             // (с его ReleasePause) при этом уничтожается — сбрасываем вручную.
             Time.timeScale = 1f;

@@ -2,6 +2,7 @@ using System.Text;
 using Game.Core;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using VContainer;
 
@@ -63,6 +64,15 @@ namespace Game.UI
             }
 
             Refresh();
+        }
+
+        private void Update()
+        {
+            var keyboard = Keyboard.current;
+            if (_isOpen && keyboard != null && keyboard.escapeKey.wasPressedThisFrame)
+            {
+                Close();
+            }
         }
 
         private void Close()

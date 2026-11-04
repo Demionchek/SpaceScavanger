@@ -4,6 +4,6 @@ namespace Game.Gameplay.Flight
 {
     public interface IZoneGenerator
     {
-        ZoneContent Generate(ZoneConfig config, int seed);
+        ZoneContent Generate(ZoneConfig config, ZoneTier tier, int seed);
     }
 }

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398f3632eb9c4cb688d4b80b032b14dc, type: 3}
+  m_Name: SpaceTileSet_Light
+  m_EditorClassIdentifier: Data::Game.Data.SpaceTileSet
+  CornerTopLeft: {fileID: 11400000, guid: a9382882cf0657548b8b3898526df567, type: 2}
+  CornerTopRight: {fileID: 11400000, guid: 5900b429c154e8644a6441e261717acf, type: 2}
+  CornerBottomLeft: {fileID: 11400000, guid: 2684a26e003b8ec4ab9de4b7741009e1, type: 2}
+  CornerBottomRight: {fileID: 11400000, guid: b28e878d6ee3d3f478d694937409ee57, type: 2}
+  EdgeTop: {fileID: 11400000, guid: 1577658d1b10d114bb25ac6424bcd189, type: 2}
+  EdgeRight: {fileID: 11400000, guid: 36b08bffddc586e4482f7b911e94caca, type: 2}
+  EdgeBottom: {fileID: 11400000, guid: 456179eb066cfe74386979b5cf43883b, type: 2}
+  EdgeLeft: {fileID: 11400000, guid: a435ee4a7779da144a03998fe47d1e2b, type: 2}
+  InnerTopLeft: {fileID: 11400000, guid: 23260798075bedc4e807bf91bd66b6fe, type: 2}
+  InnerTopRight: {fileID: 11400000, guid: 1178cebb2324bbc4fb261700958d9500, type: 2}
+  InnerBottomLeft: {fileID: 11400000, guid: 59bb959a798d58b49839295e24d091c9, type: 2}
+  InnerBottomRight: {fileID: 11400000, guid: f5b52207323170f4289834b9bde6e97e, type: 2}
+  Fill:
+  - {fileID: 11400000, guid: 8413c447aa4bf7541a2541366ff3da01, type: 2}
+  Details:
+  - {fileID: 11400000, guid: 387db6d962a7196468d0262181083974, type: 2}
+  - {fileID: 11400000, guid: 1fec2af2c831ffd46a0f37eac1674f42, type: 2}
+  - {fileID: 11400000, guid: 5edb3d84746f64841a7364259e62f910, type: 2}
+  - {fileID: 11400000, guid: c575442c1a3bc4b49b5c5c94935afb53, type: 2}
+  - {fileID: 11400000, guid: 230377a2af8bedc42806966d0e69eb81, type: 2}
+  - {fileID: 11400000, guid: c34f627afcfac3b48ad7321f45eca7f3, type: 2}
+  - {fileID: 11400000, guid: a3b14f550b8bedc48831a6681eb8b00b, type: 2}
+  - {fileID: 11400000, guid: 01dfe98ccd91e8a4d971fac03d6baf41, type: 2}
+  - {fileID: 11400000, guid: 97f465ba84cc6c1418c8cbfb630417fe, type: 2}
+  - {fileID: 11400000, guid: e9d350ebaf16efa4f92c362289b3493c, type: 2}
+  - {fileID: 11400000, guid: e70f005257580b34a99855935c7da7cf, type: 2}
+  - {fileID: 11400000, guid: 8a3a499e678c4d54eaea5bc808cfce55, type: 2}

@@ -13,6 +13,9 @@ namespace Game.Gameplay.Shared
         [SerializeField] private StoryDialogueCatalog _storyDialogues;
         [SerializeField] private ResourceCost[] _startingResources;
 
+        [Tooltip("Квест корпоративной квоты: по нему идёт звонок-приёмка и проверка срока.")]
+        [SerializeField] private QuestDefinition _quotaQuest;
+
         public override void Install(IContainerBuilder builder)
         {
             builder.RegisterInstance(_saveRegistry);
@@ -22,13 +25,17 @@ namespace Game.Gameplay.Shared
             builder.Register<TradeService>(Lifetime.Singleton).As<ITradeService>();
             builder.Register<QuestService>(Lifetime.Singleton).As<IQuestService>().As<ISaveable>();
             builder.Register<ReputationService>(Lifetime.Singleton).As<IReputationService>().As<ISaveable>();
+            builder.Register<RelationshipService>(Lifetime.Singleton).As<IRelationshipService>().As<ISaveable>();
             builder.Register<ShipStatsService>(Lifetime.Singleton).As<IShipStatsService>().As<ISaveable>();
             builder.Register<RecipeService>(Lifetime.Singleton).As<IRecipeService>().As<ISaveable>();
             builder.Register<CraftingService>(Lifetime.Singleton).As<ICraftingService>();
-            builder.Register<UpgradeService>(Lifetime.Singleton).As<IUpgradeService>();
+            builder.Register<UpgradeService>(Lifetime.Singleton).As<IUpgradeService>().As<ISaveable>();
             builder.Register<SoundService>(Lifetime.Singleton).As<ISoundService>();
             builder.Register<JournalService>(Lifetime.Singleton).As<IJournalService>().As<ISaveable>();
             builder.Register<InteractionHintService>(Lifetime.Singleton).As<IInteractionHintService>().As<ISaveable>();
+            builder.RegisterEntryPoint<SectorService>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<QuotaService>(Lifetime.Singleton)
+                .WithParameter<QuestDefinition>(_quotaQuest);
             builder.RegisterEntryPoint<JournalRecorder>(Lifetime.Singleton);
             builder.RegisterEntryPoint<StoryDialogueService>(Lifetime.Singleton)
                 .WithParameter<StoryDialogueCatalog>(_storyDialogues);

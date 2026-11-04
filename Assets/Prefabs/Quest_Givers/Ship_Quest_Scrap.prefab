@@ -106,7 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cedb030980d9c9f48a2864423bb76397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Flight::Game.Gameplay.Flight.QuestGiverComponent
-  _quest: {fileID: 11400000, guid: 017147314a9521842a5948685d979073, type: 2}
+  _quest: {fileID: 0}
+  _questPool: {fileID: 11400000, guid: f43a91a405a140c5b3e647cf9601dcb0, type: 2}
   _offerDialogueNode: QuestGiver_Collect_Scrap_10
   _turnInDialogueNode: QuestTurnIn_Collect_Scrap_10
   _prompt: Quest_Test

@@ -26,11 +26,16 @@ namespace Game.Gameplay.Flight
                 return;
             }
 
+            // Одна клавиша на всё: рядом что-то есть — работаем с ним, нет — идём
+            // в корабль. Иначе новичку надо помнить две почти одинаковые клавиши.
             var hit = Physics2D.OverlapCircle(transform.position, _interactRadius, _interactableMask);
             if (hit != null && hit.TryGetComponent<IInteractable>(out var interactable))
             {
                 interactable.Interact(_playerContext);
+                return;
             }
+
+            _playerContext.EventBus.Publish(new ModeSwitchRequestedEvent());
         }
     }
 }

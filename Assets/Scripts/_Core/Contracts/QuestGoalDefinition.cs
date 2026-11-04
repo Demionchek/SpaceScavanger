@@ -5,10 +5,12 @@ namespace Game.Core
     public sealed class QuestGoalContext
     {
         public IResourceService ResourceService { get; }
+        public ISectorService SectorService { get; }
 
-        public QuestGoalContext(IResourceService resourceService)
+        public QuestGoalContext(IResourceService resourceService, ISectorService sectorService)
         {
             ResourceService = resourceService;
+            SectorService = sectorService;
         }
     }
 

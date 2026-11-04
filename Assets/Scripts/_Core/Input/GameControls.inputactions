@@ -113,7 +113,7 @@
                 {
                     "name": "",
                     "id": "a1e10001-0000-4000-8000-000000000027",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -123,12 +123,12 @@
                 },
                 {
                     "name": "",
-                    "id": "a1e10001-0000-4000-8000-000000000028",
-                    "path": "<Keyboard>/e",
+                    "id": "1da8c5bc-3645-4972-9c25-bf34511cd6d3",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dock",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -273,7 +273,29 @@
                 },
                 {
                     "name": "",
+                    "id": "9b2b11a3-d3e0-4c2b-b84f-f3845d3b17ff",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a1e10002-0000-4000-8000-000000000028",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5baf1614-3c99-4b94-b60d-7c855d77efae",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
@@ -290,17 +312,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hook",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a1e10002-0000-4000-8000-00000000002a",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dock",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

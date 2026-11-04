@@ -22,6 +22,9 @@ namespace Game.UI
         [SerializeField] private float _fadeDuration = 0.4f;
         [SerializeField] private float _zoomInSize = 1.5f;
 
+        [Tooltip("Что сказать, когда вход в корабль закрыт (бой, гонка, обучение).")]
+        [SerializeField] private string _lockedMessage = "You can't board the ship right now";
+
         private EventBus _eventBus;
         private GameStateMachine _stateMachine;
         private IPauseService _pauseService;
@@ -93,8 +96,14 @@ namespace Game.UI
             {
                 // Гейт: вход в интерьер запрещён на паузе (диалог) и под ModeLock
                 // (бой, гонка).
-                if (_pauseService.IsPaused || _modeLock.IsLocked)
+                if (_pauseService.IsPaused)
                 {
+                    return;
+                }
+
+                if (_modeLock.IsLocked)
+                {
+                    _eventBus.Publish(new WarningMessageEvent(_lockedMessage));
                     return;
                 }
 

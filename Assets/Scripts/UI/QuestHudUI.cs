@@ -15,6 +15,7 @@ namespace Game.UI
         [SerializeField] private Button _toggleButton;
         [SerializeField] private TMP_Text _toggleButtonLabel;
         [SerializeField] private bool _collapseToRight = true;
+        [SerializeField] private bool _startCollapsed = true;
         [SerializeField] private float _slideDuration = 0.25f;
         [SerializeField] private Ease _slideEase = Ease.OutCubic;
 
@@ -36,7 +37,7 @@ namespace Game.UI
             _expandedPosition = _panel.anchoredPosition;
             _toggleButton.onClick.AddListener(Toggle);
             UpdateToggleLabel();
-            Toggle();
+            Slide(_startCollapsed);
         }
 
         private void OnDestroy()
@@ -47,21 +48,26 @@ namespace Game.UI
         private void Toggle()
         {
             _collapsed = !_collapsed;
+            Slide(_collapsed);
+        }
+
+        private void Slide(bool collapsed)
+        {
             UpdateToggleLabel();
 
             var collapsedOffset = _panel.rect.width * (_collapseToRight ? 1f : -1f);
-            var target = _collapsed
+            var target = collapsed
                 ? _expandedPosition + new Vector2(collapsedOffset, 0f)
                 : _expandedPosition;
 
             _slideTween?.Kill();
             _slideTween = DOTween.To(
-                    () => _panel.anchoredPosition,
-                    value => _panel.anchoredPosition = value,
-                    target,
-                    _slideDuration)
-                .SetEase(_slideEase)
-                .SetUpdate(true);
+                                     () => _panel.anchoredPosition,
+                                     value => _panel.anchoredPosition = value,
+                                     target,
+                                     _slideDuration)
+                                 .SetEase(_slideEase)
+                                 .SetUpdate(true);
         }
 
         private void UpdateToggleLabel()
@@ -85,6 +91,10 @@ namespace Game.UI
                 if (quest.Goal.IsComplete)
                 {
                     _builder.AppendLine($"{quest.Definition.Title} — complete, turn it in");
+                }
+                else if (quest.Goal is IQuestGoalStatus status)
+                {
+                    _builder.AppendLine($"{quest.Definition.Title} — {status.Status}");
                 }
                 else
                 {

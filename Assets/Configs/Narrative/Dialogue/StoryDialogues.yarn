@@ -50,7 +50,7 @@ title: Flashback_03_Outburst
 ---
 Prisoner: Buy it back. From the people who bought it.
 Prisoner: Keep your delay. Do it here and save yourself the fuel.
-Suit: Sit down.
+Suit: Stay in line.
 Prisoner: I'm finished listening.
 ===
 
@@ -71,7 +71,7 @@ Jim: Someone out here actually wants to talk. That's new.
 
 title: Scavenger_Encounter
 ---
-<<if reputation("Scavengers") >= 25>>
+<<if attitude("Vee") >= 25>>
     <<jump Scavenger_Encounter_Friendly>>
 <<else>>
     <<jump Scavenger_Encounter_Hostile>>
@@ -85,6 +85,7 @@ Vee: Ever since they raised the quotas, this job has been a grind.
 Vee: I upgraded my radar. Now I get more coordinates than I can fly to — you should stop putting that off.
 Vee: Here, take one. Two pings came in at once, opposite ends of the sector. Someone's going to beat me to the other one anyway. Better it's you.
 -> Thanks. I owe you one.
+    <<apply_effect Attitude_Vee_Plus_5>>
     Vee: Just don't get yourself blown up out there.
 -> Why hand it over?
     Vee: Because I can't be in two places. And I'd rather it went to you than to some Corporation lapdog.
@@ -98,4 +99,80 @@ Vee: One of these days something out here just blows you apart, and the Corporat
 Vee: Fewer of us, more scrap for me.
 -> ...
     Vee: Yeah. That's what I thought.
+===
+
+title: Story_06_Call_Vee
+---
+Vee: Jim! You came through. I saw the wormhole signature light up half the band.
+<<if attitude("Vee") >= 25>>
+    Vee: I was starting to worry, and I don't do that for just anyone.
+<<else>>
+    Vee: Figured I'd check whether the new one came out the far side in one piece.
+<<endif>>
+Vee: First jump is the one that gets people. Half of them come out facing the wrong way and burn their whole reserve turning around.
+Vee: Listen, the Corporation is going to call you. They always call right after a jump, once they know you survived the trip.
+Vee: Whatever number they give you, start hauling the same hour. Do not sit on it.
+-> Thanks, Vee. I owe you one.
+    <<apply_effect Attitude_Vee_Plus_5>>
+    Vee: Keep saying that and I'll start keeping count.
+-> How long do these deadlines usually run?
+    Vee: Long enough to look generous, short enough to hurt. That's the whole trick of it.
+-> I can read a quota without help, Vee.
+    <<apply_effect Attitude_Vee_Minus_5>>
+    Vee: Right. Next time I'll let the band stay quiet.
+===
+
+title: Story_06_Call_Sid
+---
+Sid: So the new asset made it through a wormhole. Congratulations.
+<<if attitude("Sid") <= -15>>
+    Sid: I had hoped the jump would save me the trouble. Clearly it was not thorough.
+<<else>>
+    Sid: I had a bet running on you. I lost it. That is the extent of my interest in you.
+<<endif>>
+Sid: This sector was quiet before you showed up. Quiet pays. You will understand that when your quota lands.
+Sid: I know your channel now. Stay off my wrecks.
+-> Noted. I'll stay out of your way.
+    <<apply_effect Attitude_Sid_Plus_5>>
+    Sid: See that you do. Civil is cheaper for both of us.
+-> Then stay out of mine, Sid.
+    <<apply_effect Attitude_Sid_Minus_5>>
+    Sid: Remember you said that when your hull starts leaking.
+===
+
+title: Story_07_Quota_Corp
+---
+<<apply_effect QuestTrigger_Quota>>
+Officer: Asset. Transit confirmed. Welcome to your assigned deep field.
+Officer: Your quota is now active: {quota_amount()} units of scrap.
+Officer: You have {quota_sectors()} sectors to haul it, this one included. Hand it over at your intercom whenever you are carrying the full load.
+Officer: At the last gate a tender takes it off you either way. If your hold is short when that gate comes, your sentence resumes on the spot.
+Officer: The figure and the sectors you have left are posted on your assignment log — the panel that sits at the top of your display. It does not go away. Neither does the deadline.
+Jim: Understood.
+Officer: Of course it is understood. Haul well, asset.
+===
+
+title: Story_09_Upgrades_Vee
+---
+Vee: One more thing, since nobody at the Corporation is going to tell you.
+Vee: That bench in your hold isn't decoration. It builds parts out of scrap — the same scrap you're already hauling for them.
+Vee: You need the schematic first. Traders carry them, and the basic ones they practically give away, so take every one you're offered.
+Vee: Then build the part at the bench and fit it on the Upgrades tab. It stays on the ship for good — one of each, so no bolting on two hooks and calling it clever.
+Vee: Start with the hook. A better hook pulls the heavy wrecks, and the heavy ones are where the iron sits. Scrap keeps you breathing; iron is what you sell.
+-> I'll set scrap aside for it.
+    <<apply_effect Attitude_Vee_Plus_5>>
+    Vee: Good. Quota first, hook second, and you stop running on fumes.
+-> The quota comes first.
+    Vee: It does. Just don't haul for them a whole year on the hook you started with.
+===
+
+title: Story_10_Quota_Next
+---
+Officer: Asset. Your last consignment is logged and weighed. The foundry has it.
+Officer: A new quota is already posted on your board: {quota_amount()} units of scrap, {quota_sectors()} sectors to run it.
+Officer: The terms don't soften because you met them once. Neither does what happens if you fall short.
+-> Understood.
+    Officer: Naturally. Haul well, asset.
+-> How many of these are there?
+    Officer: Your sentence is counted in cargo, not in quotas. Haul well.
 ===

@@ -16,12 +16,21 @@ namespace Game.Gameplay.Flight
         [SerializeField] private QuestDefinition _requiredQuest;
         [SerializeField] private string _lockedMessage = "Finish your assignment first";
 
+        [TextArea]
+        [SerializeField] private string _confirmMessage =
+            "Jumping through the wormhole is one-way. You will not be able to return to this sector. Proceed?";
+
+        [SerializeField] private string _confirmLabel = "Jump";
+        [SerializeField] private string _cancelLabel = "Stay";
+
         private IQuestService _questService;
+        private IQuotaService _quotaService;
 
         [Inject]
-        public void Construct(IQuestService questService)
+        public void Construct(IQuestService questService, IQuotaService quotaService)
         {
             _questService = questService;
+            _quotaService = quotaService;
         }
 
         public string Prompt => _prompt;
@@ -32,14 +41,26 @@ namespace Game.Gameplay.Flight
 
         private void Awake()
         {
-            if (_costLabel != null)
-            {
-                _costLabel.text = $"Travel: {_cost} {_costType}";
-            }
+            RefreshCostLabel();
 
             if (_costLabelRoot != null)
             {
                 _costLabelRoot.SetActive(false);
+            }
+        }
+
+        // Цену ставит ZoneSpawner по тиру сектора: чем дальше, тем дороже прыжок.
+        public void SetCost(int cost)
+        {
+            _cost = cost;
+            RefreshCostLabel();
+        }
+
+        private void RefreshCostLabel()
+        {
+            if (_costLabel != null)
+            {
+                _costLabel.text = $"Travel: {_cost} {_costType}";
             }
         }
 
@@ -48,6 +69,20 @@ namespace Game.Gameplay.Flight
             if (IsLocked)
             {
                 ctx.EventBus.Publish(new WarningMessageEvent(_lockedMessage));
+                return;
+            }
+
+            // Ресурс списываем только после подтверждения — отказ не должен стоить топлива.
+            ctx.EventBus.Publish(new ConfirmRequestedEvent(_confirmMessage, () => Travel(ctx), _confirmLabel,
+                _cancelLabel));
+        }
+
+        private void Travel(PlayerContext ctx)
+        {
+            // Срок квоты проверяется до перехода: корпорация подрывает корабль здесь,
+            // иначе взрыв пришёлся бы на побелевший экран перехода.
+            if (_quotaService != null && _quotaService.TryEnforceDeadline())
+            {
                 return;
             }
 

@@ -1,6 +1,7 @@
 using Game.Core;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using VContainer;
 
@@ -13,12 +14,15 @@ namespace Game.UI
         [SerializeField] private Button _closeButton;
 
         private EventBus _eventBus;
+        private IPauseService _pauseService;
         private string _currentMessage;
+        private bool _isOpen;
 
         [Inject]
-        public void Construct(EventBus eventBus)
+        public void Construct(EventBus eventBus, IPauseService pauseService)
         {
             _eventBus = eventBus;
+            _pauseService = pauseService;
             _eventBus.Subscribe<TutorialPopupEvent>(OnPopup);
         }
 
@@ -34,6 +38,23 @@ namespace Game.UI
         private void OnDestroy()
         {
             _eventBus?.Unsubscribe<TutorialPopupEvent>(OnPopup);
+            ReleasePauseIfOpen();
+        }
+
+        private void Update()
+        {
+            var keyboard = Keyboard.current;
+            if (!_isOpen || keyboard == null)
+            {
+                return;
+            }
+
+            if (keyboard.enterKey.wasPressedThisFrame || keyboard.numpadEnterKey.wasPressedThisFrame ||
+                keyboard.spaceKey.wasPressedThisFrame || keyboard.escapeKey.wasPressedThisFrame)
+            {
+                _currentMessage = null;
+                Apply(null, false);
+            }
         }
 
         private void OnPopup(TutorialPopupEvent evt)
@@ -65,6 +86,28 @@ namespace Game.UI
             {
                 _panel.SetActive(show);
             }
+
+            // Подсказку читают, а не пролетают: пока она висит, игра стоит.
+            if (show && !_isOpen)
+            {
+                _isOpen = true;
+                _pauseService.RequestPause();
+            }
+            else if (!show)
+            {
+                ReleasePauseIfOpen();
+            }
+        }
+
+        private void ReleasePauseIfOpen()
+        {
+            if (!_isOpen)
+            {
+                return;
+            }
+
+            _isOpen = false;
+            _pauseService?.ReleasePause();
         }
     }
 }

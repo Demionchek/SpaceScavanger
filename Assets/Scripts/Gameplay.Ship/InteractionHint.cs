@@ -8,8 +8,9 @@ using VContainer;
 
 namespace Game.Gameplay.Ship
 {
-    // Подсказка и подсветка над интерактивным объектом интерьера — видны, пока
-    // игрок ни разу им не воспользовался. Вешается рядом с IInteractable.
+    // Подсказка и подсветка над интерактивным объектом интерьера. Текст показывается
+    // каждый раз, когда игрок подошёл (фокус ставит PlayerInteractor), подсветка —
+    // пока объектом ни разу не пользовались. Вешается рядом с IInteractable.
     public sealed class InteractionHint : MonoBehaviour
     {
         [Tooltip("Уникальный ключ для сейва. Пусто — имя объекта.")]
@@ -37,7 +38,7 @@ namespace Game.Gameplay.Ship
         public void Construct(IInteractionHintService hints, InputActionAsset inputActions)
         {
             _hints = hints;
-            _keyLabel = inputActions.FindAction("Platformer/Interact", throwIfNotFound: true).GetBindingDisplayString();
+            _keyLabel = InputKeyLabels.First(inputActions.FindAction("Platformer/Interact", throwIfNotFound: true));
         }
 
         private void Awake()
@@ -68,7 +69,20 @@ namespace Game.Gameplay.Ship
 
         private void Start()
         {
-            SetVisible(_hints != null && !_hints.IsUsed(Id));
+            if (_hintRoot != null)
+            {
+                _hintRoot.SetActive(false);
+            }
+
+            SetHighlightVisible(_hints != null && !_hints.IsUsed(Id));
+        }
+
+        public void SetFocused(bool focused)
+        {
+            if (_hintRoot != null)
+            {
+                _hintRoot.SetActive(focused);
+            }
         }
 
         private void Update()
@@ -103,16 +117,11 @@ namespace Game.Gameplay.Ship
         public void MarkUsed()
         {
             _hints?.MarkUsed(Id);
-            SetVisible(false);
+            SetHighlightVisible(false);
         }
 
-        private void SetVisible(bool visible)
+        private void SetHighlightVisible(bool visible)
         {
-            if (_hintRoot != null)
-            {
-                _hintRoot.SetActive(visible);
-            }
-
             if (_highlight != null)
             {
                 _highlight.SetActive(visible);

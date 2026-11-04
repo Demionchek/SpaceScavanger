@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b11c2c668fdea140b0a930cb815e737, type: 3}
   m_Name: CollectObjects_Quest
   m_EditorClassIdentifier: Core::Game.Core.QuestDefinition
-  Title: Collect resources
-  Description: 
-  Goal: {fileID: 11400000, guid: c2e9d296b209c8446bad345582095cba, type: 2}
+  Title: Clear the corridor
+  Description: Hook every piece of salvage drifting in the corridor before the
+    wormhole will let you through.
+  Goal: {fileID: 11400000, guid: d07def96786f4476b2ef34bd15a37b81, type: 2}
   OnStartEffects: []
   Rewards: []

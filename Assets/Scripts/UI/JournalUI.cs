@@ -43,7 +43,12 @@ namespace Game.UI
         private void Update()
         {
             var keyboard = Keyboard.current;
-            if (keyboard != null && keyboard.jKey.wasPressedThisFrame)
+            if (keyboard == null)
+            {
+                return;
+            }
+
+            if (keyboard.jKey.wasPressedThisFrame || (_open && keyboard.escapeKey.wasPressedThisFrame))
             {
                 Toggle();
             }

@@ -32,6 +32,25 @@ namespace Game.UI
                 builder.RegisterComponent(minimap);
             }
 
+            // Опционально: иконка интеркома над радаром.
+            var intercomIndicator = Object.FindFirstObjectByType<IntercomCallIndicatorUI>(FindObjectsInactive.Include);
+            if (intercomIndicator != null)
+            {
+                builder.RegisterComponent(intercomIndicator);
+            }
+
+            var legend = Object.FindFirstObjectByType<ControlsLegendUI>(FindObjectsInactive.Include);
+            if (legend != null)
+            {
+                builder.RegisterComponent(legend);
+            }
+
+            var relationships = Object.FindFirstObjectByType<RelationshipFeedUI>(FindObjectsInactive.Include);
+            if (relationships != null)
+            {
+                builder.RegisterComponent(relationships);
+            }
+
             var boundary = Object.FindFirstObjectByType<BoundaryDeathController>(FindObjectsInactive.Include);
             if (boundary != null)
             {
@@ -72,6 +91,12 @@ namespace Game.UI
             if (warningBanner != null)
             {
                 builder.RegisterComponent(warningBanner);
+            }
+
+            var confirmDialog = Object.FindFirstObjectByType<ConfirmDialogUI>(FindObjectsInactive.Include);
+            if (confirmDialog != null)
+            {
+                builder.RegisterComponent(confirmDialog);
             }
 
             var cutscenes = Object.FindFirstObjectByType<CutsceneController>(FindObjectsInactive.Include);

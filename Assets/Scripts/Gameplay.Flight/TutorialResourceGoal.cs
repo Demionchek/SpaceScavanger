@@ -43,7 +43,8 @@ namespace Game.Gameplay.Flight
             }
 
             _done = true;
-            _eventBus.Publish(new StoryDialogueRequestedEvent());
+            _eventBus.Publish(new TutorialCorridorClearedEvent());
+            _eventBus.Publish(new StoryDialogueRequestedEvent(StoryTrigger.TutorialComplete));
         }
     }
 }

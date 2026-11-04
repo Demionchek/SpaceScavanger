@@ -14,4 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Data::Game.Data.StoryDialogueCatalog
   _beats:
   - Node: Story_04_Haul
+    Variants: []
+    Trigger: 1
     Delivery: 0
+    DelaySeconds: 0
+    FollowsPrevious: 0
+  - Node: Story_06_Call_Vee
+    Variants:
+    - Node: Story_06_Call_Vee
+      Caller: {fileID: 11400000, guid: 07f12c177efb4f0fb9cae7fbce6dcf7a, type: 2}
+    - Node: Story_06_Call_Sid
+      Caller: {fileID: 11400000, guid: 49ba7e4cb1c14b2a8d0e8a6295c1dabf, type: 2}
+    Trigger: 2
+    Delivery: 1
+    DelaySeconds: 0
+    FollowsPrevious: 0
+  - Node: Story_07_Quota_Corp
+    Variants: []
+    Trigger: 0
+    Delivery: 1
+    DelaySeconds: 120
+    FollowsPrevious: 1
+  - Node: Story_09_Upgrades_Vee
+    Variants: []
+    Trigger: 0
+    Delivery: 1
+    DelaySeconds: 240
+    FollowsPrevious: 1
+  _callerBaseWeight: 10

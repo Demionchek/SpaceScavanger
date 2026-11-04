@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Narrative::Game.Narrative.NarrativeDirector
   _dialogueRunner: {fileID: 0}
   _eventCatalog: {fileID: 11400000, guid: 216c05217d7984646855af0b4fa1935c, type: 2}
+  _quotaGoal: {fileID: 11400000, guid: 465afb0809ab498b9669ccd53ef13a4a, type: 2}
   _effects:
   - {fileID: 11400000, guid: 4c5ae6de685edc044833b7d952176447, type: 2}

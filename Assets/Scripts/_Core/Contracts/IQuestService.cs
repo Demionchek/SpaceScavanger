@@ -15,5 +15,8 @@ namespace Game.Core
         QuestState GetState(QuestDefinition quest);
         bool StartQuest(QuestDefinition quest, GameContext ctx);
         bool TryTurnIn(QuestDefinition quest, GameContext ctx);
+
+        // Сданный квест снова можно выдать: так корпорация присылает следующую квоту.
+        void Reset(QuestDefinition quest);
     }
 }

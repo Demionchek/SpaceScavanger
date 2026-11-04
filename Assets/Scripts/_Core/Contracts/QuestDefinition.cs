@@ -8,6 +8,10 @@ namespace Game.Core
         public string Title;
         [TextArea] public string Description;
         public QuestGoalDefinition Goal;
+
+        [Tooltip("Ноды выдачи и сдачи. Пусто — берутся те, что заданы на самом NPC.")]
+        public string OfferNode;
+        public string TurnInNode;
         public ChoiceEffect[] OnStartEffects;
         public ChoiceEffect[] Rewards;
     }

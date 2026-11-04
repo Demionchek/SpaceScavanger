@@ -8,21 +8,34 @@ namespace Game.Gameplay.Ship
     public sealed class IntercomComponent : MonoBehaviour, IInteractable
     {
         [SerializeField] private string _prompt = "Answer intercom";
+
+        [Header("Сдача квоты")]
+        [SerializeField] private string _quotaPrompt = "Deliver quota";
+
+        [TextArea]
+        [SerializeField] private string _quotaConfirmMessage =
+            "A Corporation tender is standing by on the channel. Hand the quota over?";
+
+        [SerializeField] private string _quotaConfirmLabel = "Deliver";
+        [SerializeField] private string _quotaCancelLabel = "Not yet";
         [SerializeField] private Light2D _light;
         [SerializeField] private AudioSource _callAudioSource;
         [SerializeField] private float _blinkInterval = 0.5f;
 
         private EventBus _eventBus;
         private IStoryDialogueService _storyDialogues;
+        private IQuotaService _quotaService;
         private State _state;
         private string _activeNode;
         private float _nextBlinkTime;
 
         [Inject]
-        public void Construct(EventBus eventBus, IStoryDialogueService storyDialogues)
+        public void Construct(EventBus eventBus, IStoryDialogueService storyDialogues,
+            IQuotaService quotaService)
         {
             _eventBus = eventBus;
             _storyDialogues = storyDialogues;
+            _quotaService = quotaService;
 
             _eventBus.Subscribe<StoryDialoguePendingEvent>(OnCallIncoming);
             _eventBus.Subscribe<DialogueFinishedEvent>(OnDialogueFinished);
@@ -48,6 +61,17 @@ namespace Game.Gameplay.Ship
 
         private void Update()
         {
+            // Набранный груз держит лампу ровным светом: мигание означает звонок.
+            if (_state == State.Idle)
+            {
+                if (_light != null)
+                {
+                    _light.enabled = CanDeliverQuota;
+                }
+
+                return;
+            }
+
             if (_state != State.Calling || _light == null || Time.unscaledTime < _nextBlinkTime)
             {
                 return;
@@ -57,12 +81,21 @@ namespace Game.Gameplay.Ship
             _light.enabled = !_light.enabled;
         }
 
-        public string Prompt => _prompt;
+        // Звонок важнее: груз можно сдать и после разговора.
+        public string Prompt => _state == State.Calling || !CanDeliverQuota ? _prompt : _quotaPrompt;
+
+        private bool CanDeliverQuota => _quotaService != null && _quotaService.CanDeliver;
 
         public void Interact(PlayerContext ctx)
         {
             if (_state != State.Calling)
             {
+                if (CanDeliverQuota)
+                {
+                    ctx.EventBus.Publish(new ConfirmRequestedEvent(_quotaConfirmMessage,
+                        () => _quotaService.TryDeliver(), _quotaConfirmLabel, _quotaCancelLabel));
+                }
+
                 return;
             }
 
@@ -87,11 +120,17 @@ namespace Game.Gameplay.Ship
 
         private void OnDialogueFinished(DialogueFinishedEvent evt)
         {
-            if (_state == State.Talking && evt.Node == _activeNode)
+            if (_state != State.Talking || evt.Node != _activeNode)
             {
-                _activeNode = null;
-                SetState(State.Idle);
+                return;
             }
+
+            _activeNode = null;
+
+            // Звонков в очереди может быть несколько — тогда интерком звонит снова.
+            SetState(_storyDialogues.HasPendingFor(StoryDialogueDelivery.Intercom)
+                ? State.Calling
+                : State.Idle);
         }
 
         private void SetState(State state)

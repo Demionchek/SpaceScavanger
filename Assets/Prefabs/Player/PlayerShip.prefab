@@ -714,12 +714,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Flight::Game.Gameplay.Flight.ShipMovementController
   _thrustForce: 2
+  _passiveDeceleration: 1
+  _maxSpeed: 12
   _brakeDeceleration: 5
+  _allowReverse: 0
   _reverseThrustForce: 2
   _stopThreshold: 0.05
-  _torqueStrength: 0.5
+  _angularStopThreshold: 1
+  _torqueStrength: 0.25
   _maxAngularSpeed: 90
-  _angularDamping: 90
+  _angularDamping: 60
+  _brakeAngularDamping: 240
 --- !u!114 &8947707889212203856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -792,6 +797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Shared::Game.Gameplay.Shared.Health
   _maxHealth: 100
+  _destroyOnDeath: 0
 --- !u!114 &5864699060488603089
 MonoBehaviour:
   m_ObjectHideFlags: 0

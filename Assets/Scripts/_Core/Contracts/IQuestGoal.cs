@@ -13,4 +13,10 @@ namespace Game.Core
     {
         bool TryDeliver();
     }
+
+    // Цели, которым мало процента: панель квестов покажет эту строку вместо него.
+    public interface IQuestGoalStatus
+    {
+        string Status { get; }
+    }
 }

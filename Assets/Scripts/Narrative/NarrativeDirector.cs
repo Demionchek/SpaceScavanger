@@ -1,6 +1,7 @@
 using System;
 using Game.Core;
 using Game.Data;
+using Game.Gameplay.Shared;
 using UnityEngine;
 using VContainer;
 using Yarn.Unity;
@@ -13,6 +14,9 @@ namespace Game.Narrative
         [SerializeField] private RandomEventCatalog _eventCatalog;
         [SerializeField] private ChoiceEffect[] _effects;
         [SerializeField] private QuestDefinition[] _quests;
+
+        [Tooltip("Цель корпоративной квоты: из неё диалог офицера берёт числа.")]
+        [SerializeField] private QuotaGoalDefinition _quotaGoal;
 
         private EventBus _eventBus;
         private GameContext _gameContext;
@@ -43,6 +47,10 @@ namespace Game.Narrative
             _dialogueRunner.AddCommandHandler<string>("turn_in_quest", TurnInQuest);
             _dialogueRunner.AddFunction("quest_ready", (Func<string, bool>)IsQuestReady);
             _dialogueRunner.AddFunction("reputation", (Func<string, int>)GetReputation);
+            _dialogueRunner.AddFunction("attitude", (Func<string, int>)GetAttitude);
+            _dialogueRunner.AddFunction("sector", (Func<int>)GetSector);
+            _dialogueRunner.AddFunction("quota_amount", (Func<int>)GetQuotaAmount);
+            _dialogueRunner.AddFunction("quota_sectors", (Func<int>)GetQuotaSectors);
             _dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
         }
 
@@ -157,6 +165,24 @@ namespace Game.Narrative
             }
 
             return _gameContext.ReputationService.GetReputation(group);
+        }
+
+        private int GetSector() => _gameContext.SectorService.Current;
+
+        private int GetQuotaAmount() => _quotaGoal != null ? _quotaGoal.Amount : 0;
+
+        private int GetQuotaSectors() => _quotaGoal != null ? _quotaGoal.DeadlineSectors : 0;
+
+        private int GetAttitude(string characterName)
+        {
+            var character = _registry != null ? _registry.GetCharacter(characterName) : null;
+            if (character == null)
+            {
+                Debug.LogWarning($"Character '{characterName}' not found in SaveAssetRegistry — attitude() returns 0");
+                return 0;
+            }
+
+            return _gameContext.RelationshipService.Get(character);
         }
 
         private void TurnInQuest(string questName)

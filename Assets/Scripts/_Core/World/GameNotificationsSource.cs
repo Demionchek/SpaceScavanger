@@ -9,6 +9,7 @@ namespace Game.Core
         private readonly EventBus _eventBus;
         private readonly Dictionary<ResourceType, int> _lastResource = new();
         private readonly Dictionary<NpcGroup, int> _lastReputation = new();
+        private readonly Dictionary<CharacterDefinition, int> _lastRelationship = new();
         private bool _loading;
 
         public GameNotificationsSource(EventBus eventBus)
@@ -20,6 +21,9 @@ namespace Game.Core
         {
             _eventBus.Subscribe<ResourceChangedEvent>(OnResourceChanged);
             _eventBus.Subscribe<ReputationChangedEvent>(OnReputationChanged);
+            _eventBus.Subscribe<RelationshipChangedEvent>(OnRelationshipChanged);
+            _eventBus.Subscribe<StoryDialoguePendingEvent>(OnStoryDialoguePending);
+            _eventBus.Subscribe<SectorChangedEvent>(OnSectorChanged);
             _eventBus.Subscribe<GameLoadStartedEvent>(OnLoadStarted);
             _eventBus.Subscribe<GameLoadFinishedEvent>(OnLoadFinished);
         }
@@ -28,6 +32,9 @@ namespace Game.Core
         {
             _eventBus.Unsubscribe<ResourceChangedEvent>(OnResourceChanged);
             _eventBus.Unsubscribe<ReputationChangedEvent>(OnReputationChanged);
+            _eventBus.Unsubscribe<RelationshipChangedEvent>(OnRelationshipChanged);
+            _eventBus.Unsubscribe<StoryDialoguePendingEvent>(OnStoryDialoguePending);
+            _eventBus.Unsubscribe<SectorChangedEvent>(OnSectorChanged);
             _eventBus.Unsubscribe<GameLoadStartedEvent>(OnLoadStarted);
             _eventBus.Unsubscribe<GameLoadFinishedEvent>(OnLoadFinished);
         }
@@ -54,6 +61,47 @@ namespace Game.Core
             if (delta != 0 && !_loading)
             {
                 _eventBus.Publish(new NotificationRequestedEvent($"{evt.Group} reputation {Signed(delta)}"));
+            }
+        }
+
+        private void OnRelationshipChanged(RelationshipChangedEvent evt)
+        {
+            var delta = evt.NewValue - _lastRelationship.GetValueOrDefault(evt.Character);
+            _lastRelationship[evt.Character] = evt.NewValue;
+
+            if (delta != 0 && !_loading)
+            {
+                _eventBus.Publish(new NotificationRequestedEvent(
+                    $"{evt.Character.DisplayName} attitude {Signed(delta)}"));
+            }
+        }
+
+        // Звонок может прийти, когда игрок в полёте, а интерком — в ещё не загруженном интерьере.
+        private void OnStoryDialoguePending(StoryDialoguePendingEvent evt)
+        {
+            if (_loading)
+            {
+                return;
+            }
+
+            var message = evt.Delivery switch
+            {
+                StoryDialogueDelivery.Intercom => "Incoming call on the ship intercom",
+                StoryDialogueDelivery.ShipComputer => "New message on the ship computer",
+                _ => null
+            };
+
+            if (message != null)
+            {
+                _eventBus.Publish(new NotificationRequestedEvent(message));
+            }
+        }
+
+        private void OnSectorChanged(SectorChangedEvent evt)
+        {
+            if (!_loading)
+            {
+                _eventBus.Publish(new NotificationRequestedEvent($"Sector {evt.Number}"));
             }
         }
 

@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: FlightInstaller
   m_EditorClassIdentifier: Gameplay.Flight::Game.Gameplay.Flight.FlightInstaller
   _zoneConfig: {fileID: 11400000, guid: ee3745f13fbbabb499240c86166e4097, type: 2}
+  _zoneProgression: {fileID: 11400000, guid: 2be5beeb2a9b491d86ea0ad925b77703, type: 2}
   _zoneSeed: 0
   _generateZoneOnStart: 0
+  _playerExplosionPrefab: {fileID: 3723155621085781524, guid: c027a7fe342560e41a0a2469f5ef8aac, type: 3}
+  _playerDeathDelay: 1.5

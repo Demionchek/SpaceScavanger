@@ -7,15 +7,18 @@ namespace Game.Core
     public sealed class SaveAssetRegistry : ScriptableObject
     {
         [SerializeField] private NpcGroup[] _npcGroups;
+        [SerializeField] private CharacterDefinition[] _characters;
         [SerializeField] private ItemDefinition[] _items;
         [SerializeField] private CraftingRecipe[] _recipes;
         [SerializeField] private QuestDefinition[] _quests;
 
         public IReadOnlyList<NpcGroup> NpcGroups => _npcGroups;
+        public IReadOnlyList<CharacterDefinition> Characters => _characters;
 
         public string GetId(Object asset) => asset != null ? asset.name : null;
 
         public NpcGroup GetNpcGroup(string id) => Find(_npcGroups, id);
+        public CharacterDefinition GetCharacter(string id) => Find(_characters, id);
         public ItemDefinition GetItem(string id) => Find(_items, id);
         public CraftingRecipe GetRecipe(string id) => Find(_recipes, id);
         public QuestDefinition GetQuest(string id) => Find(_quests, id);

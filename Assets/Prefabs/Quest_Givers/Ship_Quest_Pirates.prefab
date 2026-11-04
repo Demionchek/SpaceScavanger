@@ -106,7 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cedb030980d9c9f48a2864423bb76397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Flight::Game.Gameplay.Flight.QuestGiverComponent
-  _quest: {fileID: 11400000, guid: 58a9e8fd41720174ea64999dfbf6690f, type: 2}
+  _quest: {fileID: 0}
+  _questPool: {fileID: 11400000, guid: f43a91a405a140c5b3e647cf9601dcb0, type: 2}
   _offerDialogueNode: QuestTrigger_Destroy_Pirates
   _turnInDialogueNode: QuestTurnIn_Destroy_Pirates
   _prompt: Quest_Pirates

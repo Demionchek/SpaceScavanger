@@ -31,7 +31,9 @@ namespace Game.Gameplay.Shared
             _saveables = new List<ISaveable>(saveables);
         }
 
-        private static string FilePath => Path.Combine(Application.persistentDataPath, "save.json");
+        public static string FilePath => Path.Combine(Application.persistentDataPath, "save.json");
+
+        public static bool HasSave => File.Exists(FilePath);
 
         public void Start()
         {

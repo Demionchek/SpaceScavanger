@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Core::Game.Core.SaveAssetRegistry
   _npcGroups:
   - {fileID: 11400000, guid: f6886da06c3c98d4a9c17b208c2c2c49, type: 2}
+  _characters:
+  - {fileID: 11400000, guid: 07f12c177efb4f0fb9cae7fbce6dcf7a, type: 2}
+  - {fileID: 11400000, guid: 49ba7e4cb1c14b2a8d0e8a6295c1dabf, type: 2}
   _items:
   - {fileID: 11400000, guid: 27d0c84103e27244cb3136a0c164b66d, type: 2}
   - {fileID: 11400000, guid: 35528336018755142992c56b6f8e91a7, type: 2}
@@ -23,3 +26,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 017147314a9521842a5948685d979073, type: 2}
   - {fileID: 11400000, guid: 58a9e8fd41720174ea64999dfbf6690f, type: 2}
   - {fileID: 11400000, guid: e398ee794d3fe204f84dfd324b60b1ca, type: 2}
+  - {fileID: 11400000, guid: 4a3b39451e5242068f7a48d56c1a8ddf, type: 2}
+  - {fileID: 11400000, guid: 112348666adc4037b0062b488f3198f4, type: 2}
+  - {fileID: 11400000, guid: 65789afa8b594882bef07cb075bed47a, type: 2}

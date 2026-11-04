@@ -60,7 +60,10 @@ namespace Game.Gameplay.Flight
             }
 
             _eventBus.Publish(new ZoneRegenerateRequestedEvent());
-            _eventBus.Publish(new StoryDialogueRequestedEvent());
+            _eventBus.Publish(new StoryDialogueRequestedEvent(StoryTrigger.WormholeJump));
+
+            // Контрольная точка сектора: сюда вернёт смерть, туториал второй раз не нужен.
+            _eventBus.Publish(new SaveGameRequestedEvent());
         }
     }
 }

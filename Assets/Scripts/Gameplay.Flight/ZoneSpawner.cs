@@ -11,6 +11,8 @@ namespace Game.Gameplay.Flight
     {
         private readonly IZoneGenerator _generator;
         private readonly ZoneConfig _config;
+        private readonly ZoneProgressionConfig _progression;
+        private readonly ISectorService _sectors;
         private readonly ZoneSeed _seed;
         private readonly LifetimeScope _rootScope;
         private readonly SpaceRoot _spaceRoot;
@@ -19,12 +21,19 @@ namespace Game.Gameplay.Flight
 
         private int _currentSeed;
 
-        public ZoneSpawner(IZoneGenerator generator, ZoneConfig config, ZoneSeed seed,
-            LifetimeScope rootScope, SpaceRoot spaceRoot, EventBus eventBus, bool generateOnStart)
+        // Сектор, под который сгенерировано содержимое: по нему же префабы ищутся
+        // при загрузке, иначе порядок ISaveable решал бы, из какого тира взят враг.
+        private int _contentSector = 1;
+
+        public ZoneSpawner(IZoneGenerator generator, ZoneConfig config, ZoneProgressionConfig progression,
+            ISectorService sectors, ZoneSeed seed, LifetimeScope rootScope, SpaceRoot spaceRoot,
+            EventBus eventBus, bool generateOnStart)
         {
             _generateOnStart = generateOnStart;
             _generator = generator;
             _config = config;
+            _progression = progression;
+            _sectors = sectors;
             _seed = seed;
             _rootScope = rootScope;
             _spaceRoot = spaceRoot;
@@ -51,7 +60,7 @@ namespace Game.Gameplay.Flight
 
         public string Save()
         {
-            var data = new SaveData { seed = _currentSeed };
+            var data = new SaveData { seed = _currentSeed, sector = _contentSector };
             var content = _spaceRoot.Content;
 
             for (var i = 0; i < content.childCount; i++)
@@ -82,6 +91,7 @@ namespace Game.Gameplay.Flight
             }
 
             _currentSeed = data.seed;
+            _contentSector = data.sector > 0 ? data.sector : 1;
             ClearContent();
 
             for (var i = 0; i < data.kinds.Count; i++)
@@ -100,7 +110,8 @@ namespace Game.Gameplay.Flight
 
         private void Generate()
         {
-            var content = _generator.Generate(_config, _currentSeed);
+            _contentSector = _sectors.Current;
+            var content = _generator.Generate(_config, Tier(), _currentSeed);
 
             foreach (var spawn in content.ResourceSpawns)
             {
@@ -122,6 +133,11 @@ namespace Game.Gameplay.Flight
                 SpawnItem(ZoneItemKind.QuestGiver, content.QuestGiverSpawn.Value.PrefabIndex, content.QuestGiverSpawn.Value.Position, 0f);
             }
 
+            foreach (var spawn in content.IslandSpawns)
+            {
+                SpawnItem(ZoneItemKind.Island, spawn.TileSetIndex, spawn.Position, 0f);
+            }
+
             if (content.WormholeSpawn.HasValue)
             {
                 SpawnItem(ZoneItemKind.Wormhole, 0, content.WormholeSpawn.Value, 0f);
@@ -130,6 +146,13 @@ namespace Game.Gameplay.Flight
 
         private void SpawnItem(ZoneItemKind kind, int prefabIndex, Vector2 position, float rotation)
         {
+            // Островок собирается кодом, префаба у него нет.
+            if (kind == ZoneItemKind.Island)
+            {
+                SpawnIsland(prefabIndex, position);
+                return;
+            }
+
             var prefab = GetPrefab(kind, prefabIndex);
             if (prefab == null)
             {
@@ -152,15 +175,61 @@ namespace Game.Gameplay.Flight
             instance.transform.position = position;
             instance.transform.rotation = Quaternion.Euler(0f, 0f, rotation);
 
+            if (kind == ZoneItemKind.Wormhole)
+            {
+                var tier = Tier();
+                if (tier != null && tier.JumpCost > 0 &&
+                    instance.TryGetComponent<WormholeComponent>(out var wormhole))
+                {
+                    wormhole.SetCost(tier.JumpCost);
+                }
+            }
+
             var tag = instance.AddComponent<ZoneItemTag>();
             tag.Kind = kind;
             tag.PrefabIndex = prefabIndex;
         }
 
+        // Форма и размер выводятся из позиции, поэтому в сейве хватает точки и
+        // номера набора тайлов — они уже лежат в ZoneItemTag.
+        private void SpawnIsland(int tileSetIndex, Vector2 position)
+        {
+            var sets = _config.IslandTileSets;
+            if (sets == null || tileSetIndex < 0 || tileSetIndex >= sets.Length || sets[tileSetIndex] == null)
+            {
+                return;
+            }
+
+            var instance = new GameObject("Island") { layer = _config.IslandLayer };
+            instance.transform.SetParent(_spaceRoot.Content, worldPositionStays: true);
+            instance.transform.position = position;
+
+            instance.AddComponent<AsteroidIsland>().Build(
+                sets[tileSetIndex],
+                AsteroidIsland.RadiusFor(position, _config.IslandRadiusTiles),
+                AsteroidIsland.SeedFor(position),
+                _config.IslandLayer,
+                _config.IslandSortingOrder,
+                _config.IslandDetailOrder,
+                _config.IslandDetailChance);
+
+            var tag = instance.AddComponent<ZoneItemTag>();
+            tag.Kind = ZoneItemKind.Island;
+            tag.PrefabIndex = tileSetIndex;
+        }
+
+        private ZoneTier Tier() => _progression != null ? _progression.GetTier(_contentSector) : null;
+
+        private GameObject[] EnemyPrefabs()
+        {
+            var tier = Tier();
+            return tier != null ? tier.EnemiesOr(_config) : _config.EnemyPrefabs;
+        }
+
         private GameObject GetPrefab(ZoneItemKind kind, int index) => kind switch
         {
             ZoneItemKind.Resource => At(_config.ResourcePrefabs, index),
-            ZoneItemKind.Enemy => At(_config.EnemyPrefabs, index),
+            ZoneItemKind.Enemy => At(EnemyPrefabs(), index),
             ZoneItemKind.Trader => At(_config.TraderPrefabs, index),
             ZoneItemKind.QuestGiver => At(_config.QuestGiverPrefabs, index),
             ZoneItemKind.Wormhole => _config.WormholePrefab,
@@ -194,6 +263,7 @@ namespace Game.Gameplay.Flight
         private sealed class SaveData
         {
             public int seed;
+            public int sector;
             public List<int> kinds = new();
             public List<int> prefabIndices = new();
             public List<float> xs = new();

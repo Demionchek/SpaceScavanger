@@ -15,6 +15,18 @@ namespace Game.Gameplay.Flight
         }
     }
 
+    public readonly struct IslandSpawnPoint
+    {
+        public readonly Vector2 Position;
+        public readonly int TileSetIndex;
+
+        public IslandSpawnPoint(Vector2 position, int tileSetIndex)
+        {
+            Position = position;
+            TileSetIndex = tileSetIndex;
+        }
+    }
+
     public sealed class ZoneContent
     {
         public readonly List<PrefabSpawnPoint> ResourceSpawns;
@@ -22,19 +34,22 @@ namespace Game.Gameplay.Flight
         public readonly PrefabSpawnPoint? TraderSpawn;
         public readonly PrefabSpawnPoint? QuestGiverSpawn;
         public readonly Vector2? WormholeSpawn;
+        public readonly List<IslandSpawnPoint> IslandSpawns;
 
         public ZoneContent(
             List<PrefabSpawnPoint> resourceSpawns,
             List<PrefabSpawnPoint> enemySpawns,
             PrefabSpawnPoint? traderSpawn,
             PrefabSpawnPoint? questGiverSpawn,
-            Vector2? wormholeSpawn)
+            Vector2? wormholeSpawn,
+            List<IslandSpawnPoint> islandSpawns)
         {
             ResourceSpawns = resourceSpawns;
             EnemySpawns = enemySpawns;
             TraderSpawn = traderSpawn;
             QuestGiverSpawn = questGiverSpawn;
             WormholeSpawn = wormholeSpawn;
+            IslandSpawns = islandSpawns;
         }
     }
 }

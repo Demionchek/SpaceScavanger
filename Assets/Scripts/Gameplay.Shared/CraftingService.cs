@@ -6,18 +6,29 @@ namespace Game.Gameplay.Shared
     {
         private readonly IResourceService _resources;
         private readonly IItemService _items;
+        private readonly IUpgradeService _upgrades;
         private readonly EventBus _eventBus;
 
-        public CraftingService(IResourceService resources, IItemService items, EventBus eventBus)
+        public CraftingService(IResourceService resources, IItemService items, IUpgradeService upgrades,
+            EventBus eventBus)
         {
             _resources = resources;
             _items = items;
+            _upgrades = upgrades;
             _eventBus = eventBus;
         }
 
         public bool CanCraft(CraftingRecipe recipe)
         {
             if (recipe == null || recipe.Output == null)
+            {
+                return false;
+            }
+
+            // Улучшение одно на корабль, поэтому второй экземпляр не крафтится —
+            // ни пока первый лежит в трюме, ни после установки.
+            if (recipe.Output is UpgradeItemDefinition upgrade &&
+                (_upgrades.IsInstalled(upgrade) || _items.GetAmount(upgrade) > 0))
             {
                 return false;
             }

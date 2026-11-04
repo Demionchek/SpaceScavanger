@@ -9,14 +9,17 @@ namespace Game.Gameplay.Shared
     {
         private readonly EventBus _eventBus;
         private readonly IResourceService _resources;
+        private readonly ISectorService _sectors;
         private readonly SaveAssetRegistry _registry;
         private readonly List<QuestRuntime> _active = new();
         private readonly HashSet<QuestDefinition> _turnedIn = new();
 
-        public QuestService(EventBus eventBus, IResourceService resources, SaveAssetRegistry registry)
+        public QuestService(EventBus eventBus, IResourceService resources, ISectorService sectors,
+            SaveAssetRegistry registry)
         {
             _eventBus = eventBus;
             _resources = resources;
+            _sectors = sectors;
             _registry = registry;
         }
 
@@ -39,7 +42,7 @@ namespace Game.Gameplay.Shared
                 return false;
             }
 
-            var goal = quest.Goal.CreateGoal(quest, new QuestGoalContext(_resources));
+            var goal = quest.Goal.CreateGoal(quest, new QuestGoalContext(_resources, _sectors));
             goal.Bind(_eventBus);
             _active.Add(new QuestRuntime(quest, goal));
 
@@ -85,6 +88,14 @@ namespace Game.Gameplay.Shared
 
             _eventBus.Publish(new QuestTurnedInEvent(quest));
             return true;
+        }
+
+        public void Reset(QuestDefinition quest)
+        {
+            if (quest != null)
+            {
+                _turnedIn.Remove(quest);
+            }
         }
 
         private QuestRuntime FindRuntime(QuestDefinition quest)
@@ -153,7 +164,7 @@ namespace Game.Gameplay.Shared
                     continue;
                 }
 
-                var goal = quest.Goal.CreateGoal(quest, new QuestGoalContext(_resources));
+                var goal = quest.Goal.CreateGoal(quest, new QuestGoalContext(_resources, _sectors));
                 goal.Bind(_eventBus);
 
                 if (goal is ISaveableGoal saveable && !string.IsNullOrEmpty(data.activeProgress[i]))

@@ -246,7 +246,7 @@ namespace Game.UI
 
             if (binding.AdvanceStoryOnFinish)
             {
-                _eventBus.Publish(new StoryDialogueRequestedEvent());
+                _eventBus.Publish(new StoryDialogueRequestedEvent(StoryTrigger.CutsceneEnd));
             }
         }
 

@@ -79,3 +79,53 @@ Race organizer: Fancy a race, pilot? Checkpoints around the sector, first come â
 -> Maybe later
     Race organizer: I'll be here.
 ===
+
+title: QuestGiver_Haul_Iron
+---
+Station agent: The foundry is short on iron again, and the heavy wrecks don't open themselves.
+Station agent: Twenty five units. If your hook can't bite that deep yet, come back when it can.
+-> Take the job
+    Station agent: Good. The furnaces don't care who hauls it.
+    <<apply_effect QuestTrigger_Haul_Iron>>
+-> Not now
+    Station agent: Then I'll keep waiting. The foundry is patient. I'm not.
+===
+
+title: QuestTurnIn_Haul_Iron
+---
+Station agent: Iron, pilot. Do you have it?
+-> Hand over the iron
+    <<if quest_ready("Haul_Iron_Quest")>>
+        <<turn_in_quest Haul_Iron_Quest>>
+        Station agent: That'll keep the furnaces lit. Credits are in your account.
+    <<else>>
+        Station agent: That's not twenty five. Back out you go.
+    <<endif>>
+-> Leave
+    Station agent: Mind the heavy wrecks. That's where it sits.
+===
+
+title: QuestGiver_Clear_Pirates
+---
+Station agent: There's a pack working this lane. Six of them, maybe more by now.
+Station agent: Every hauler who comes through here pays them in cargo or in hull. Put a stop to it.
+-> Take the contract
+    Station agent: They'll find you soon enough. They always do.
+    <<apply_effect QuestTrigger_Clear_Pirates>>
+-> That's a lot of guns
+    Station agent: It is. The offer stands until someone braver flies through.
+===
+
+title: QuestTurnIn_Clear_Pirates
+---
+Station agent: Well? Is the lane clear?
+-> Report the kills
+    <<if quest_ready("Clear_Pirates_Quest")>>
+        <<turn_in_quest Clear_Pirates_Quest>>
+        Station agent: Six confirmed. The scavengers heard about it before I did â€” that counts for something out here.
+    <<else>>
+        Station agent: Not yet it isn't. Finish the job.
+    <<endif>>
+-> Leave
+    Station agent: They won't come to you if you keep running quiet.
+===

@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Core::Game.Core.CraftingRecipe
   Costs:
   - Type: 0
-    Amount: 0
-  - Type: 1
-    Amount: 0
+    Amount: 80
   Output: {fileID: 11400000, guid: 27d0c84103e27244cb3136a0c164b66d, type: 2}
   OutputCount: 1

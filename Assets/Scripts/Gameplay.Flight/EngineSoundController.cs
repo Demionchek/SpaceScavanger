@@ -29,7 +29,8 @@ namespace Game.Gameplay.Flight
 
         private void Update()
         {
-            var throttling = !Mathf.Approximately(_shipInput.Throttle, 0f);
+            // Торможение — не работа двигателя, поэтому звук только на тяге вперёд.
+            var throttling = _shipInput.Throttle > 0f;
 
             if (throttling && !_engineOn)
             {

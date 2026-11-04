@@ -8,7 +8,8 @@ namespace Game.Gameplay.Flight
         Enemy,
         Trader,
         QuestGiver,
-        Wormhole
+        Wormhole,
+        Island
     }
 
     public sealed class ZoneItemTag : MonoBehaviour

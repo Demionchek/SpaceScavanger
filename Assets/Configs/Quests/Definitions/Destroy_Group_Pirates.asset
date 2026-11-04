@@ -15,6 +15,8 @@ MonoBehaviour:
   Title: Destroy Pirates
   Description: Those pirates in the area are a threat, eleminate them
   Goal: {fileID: 11400000, guid: 58247a12ff99dfa49808ece7ee3c695d, type: 2}
+  OfferNode: QuestTrigger_Destroy_Pirates
+  TurnInNode: QuestTurnIn_Destroy_Pirates
   OnStartEffects:
   - {fileID: 11400000, guid: 129344f7514d227419aac6852e635633, type: 2}
   Rewards:

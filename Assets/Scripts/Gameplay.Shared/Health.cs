@@ -9,6 +9,9 @@ namespace Game.Gameplay.Shared
     {
         [SerializeField] private float _maxHealth = 100f;
 
+        [Tooltip("Снять у игрока: его корабль нужен живым, чтобы загрузка вернула его в сектор.")]
+        [SerializeField] private bool _destroyOnDeath = true;
+
         private float _currentHealth;
         private float _maxHealthMultiplier = 1f;
 
@@ -45,7 +48,11 @@ namespace Game.Gameplay.Shared
             if (_currentHealth <= 0f)
             {
                 Died?.Invoke();
-                Destroy(gameObject);
+
+                if (_destroyOnDeath)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 

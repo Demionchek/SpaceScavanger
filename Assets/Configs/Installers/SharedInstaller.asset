@@ -17,3 +17,4 @@ MonoBehaviour:
   _startingResources:
   - Type: 5
     Amount: 5
+  _quotaQuest: {fileID: 11400000, guid: 4a3b39451e5242068f7a48d56c1a8ddf, type: 2}

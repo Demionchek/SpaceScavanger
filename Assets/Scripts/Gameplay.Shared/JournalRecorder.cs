@@ -22,8 +22,9 @@ namespace Game.Gameplay.Shared
             _eventBus.Subscribe<QuestCompletedEvent>(OnQuestCompleted);
             _eventBus.Subscribe<QuestTurnedInEvent>(OnQuestTurnedIn);
             _eventBus.Subscribe<ReputationChangedEvent>(OnReputationChanged);
+            _eventBus.Subscribe<RelationshipChangedEvent>(OnRelationshipChanged);
             _eventBus.Subscribe<ItemCraftedEvent>(OnItemCrafted);
-            _eventBus.Subscribe<WormholeTravelRequestedEvent>(OnTravel);
+            _eventBus.Subscribe<SectorChangedEvent>(OnSectorChanged);
             _eventBus.Subscribe<GameLoadStartedEvent>(OnLoadStarted);
             _eventBus.Subscribe<GameLoadFinishedEvent>(OnLoadFinished);
         }
@@ -34,8 +35,9 @@ namespace Game.Gameplay.Shared
             _eventBus.Unsubscribe<QuestCompletedEvent>(OnQuestCompleted);
             _eventBus.Unsubscribe<QuestTurnedInEvent>(OnQuestTurnedIn);
             _eventBus.Unsubscribe<ReputationChangedEvent>(OnReputationChanged);
+            _eventBus.Unsubscribe<RelationshipChangedEvent>(OnRelationshipChanged);
             _eventBus.Unsubscribe<ItemCraftedEvent>(OnItemCrafted);
-            _eventBus.Unsubscribe<WormholeTravelRequestedEvent>(OnTravel);
+            _eventBus.Unsubscribe<SectorChangedEvent>(OnSectorChanged);
             _eventBus.Unsubscribe<GameLoadStartedEvent>(OnLoadStarted);
             _eventBus.Unsubscribe<GameLoadFinishedEvent>(OnLoadFinished);
         }
@@ -63,10 +65,13 @@ namespace Game.Gameplay.Shared
         private void OnReputationChanged(ReputationChangedEvent e) =>
             Log(JournalCategory.Reputation, $"Reputation — {e.Group}: {e.NewValue}");
 
+        private void OnRelationshipChanged(RelationshipChangedEvent e) =>
+            Log(JournalCategory.Reputation, $"Attitude — {e.Character.DisplayName}: {e.NewValue}");
+
         private void OnItemCrafted(ItemCraftedEvent e) =>
             Log(JournalCategory.Crafting, $"Crafted: {e.Item.DisplayName}");
 
-        private void OnTravel(WormholeTravelRequestedEvent e) =>
-            Log(JournalCategory.Travel, "Traveled through a wormhole");
+        private void OnSectorChanged(SectorChangedEvent e) =>
+            Log(JournalCategory.Travel, $"Jumped to sector {e.Number}");
     }
 }
