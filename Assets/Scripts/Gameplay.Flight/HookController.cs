@@ -28,6 +28,8 @@ namespace Game.Gameplay.Flight
 
         public Vector2 HookAnchorPosition => _hookAnchor.position;
 
+        public int BaseHookLevel => _hookLevel;
+
         public void SetHookLevelBonus(int bonus)
         {
             _hookLevelBonus = bonus;

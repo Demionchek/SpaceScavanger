@@ -67,8 +67,36 @@ namespace Game.Gameplay.Flight
             Apply();
         }
 
+        // Базовые числа знают только сами компоненты, поэтому экран состояния
+        // получает их отсюда. Регистрация идемпотентна и ничего не публикует.
+        private void RegisterBases()
+        {
+            if (_movement != null)
+            {
+                _stats.SetBase(ShipStat.ThrustForce, _movement.BaseThrust);
+            }
+
+            if (_cannon != null)
+            {
+                _stats.SetBase(ShipStat.Damage, _cannon.BaseDamage);
+                _stats.SetBase(ShipStat.FireRate, _cannon.BaseFireRate);
+            }
+
+            if (_hook != null)
+            {
+                _stats.SetBase(ShipStat.HookLevel, _hook.BaseHookLevel);
+            }
+
+            if (_health != null)
+            {
+                _stats.SetBase(ShipStat.MaxHealth, _health.BaseMaxHealth);
+            }
+        }
+
         private void Apply()
         {
+            RegisterBases();
+
             if (_movement != null)
             {
                 _movement.SetThrustMultiplier(_stats.GetMultiplier(ShipStat.ThrustForce));

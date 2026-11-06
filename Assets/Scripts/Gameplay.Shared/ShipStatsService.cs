@@ -11,6 +11,9 @@ namespace Game.Gameplay.Shared
         private readonly Dictionary<ShipStat, float> _multipliers = new();
         private readonly Dictionary<ShipStat, int> _bonuses = new();
 
+        // Базы не сохраняются: их заново сообщают владельцы при каждом запуске.
+        private readonly Dictionary<ShipStat, float> _bases = new();
+
         public ShipStatsService(EventBus eventBus)
         {
             _eventBus = eventBus;
@@ -24,6 +27,23 @@ namespace Game.Gameplay.Shared
         public int GetBonus(ShipStat stat)
         {
             return _bonuses.GetValueOrDefault(stat);
+        }
+
+        public void SetBase(ShipStat stat, float value)
+        {
+            _bases[stat] = value;
+        }
+
+        public bool TryGetEffective(ShipStat stat, out float value)
+        {
+            if (!_bases.TryGetValue(stat, out var baseValue))
+            {
+                value = 0f;
+                return false;
+            }
+
+            value = baseValue * GetMultiplier(stat) + GetBonus(stat);
+            return true;
         }
 
         public void ApplyModifiers(ShipStatModifier[] modifiers)

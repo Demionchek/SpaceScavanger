@@ -22,6 +22,10 @@ namespace Game.Gameplay.Flight
         private float _damageMultiplier = 1f;
         private float _fireRateMultiplier = 1f;
 
+        public float BaseDamage => _weaponConfig != null ? _weaponConfig.Damage : 0f;
+
+        public float BaseFireRate => _weaponConfig != null ? _weaponConfig.FireRate : 0f;
+
         public void SetCombatMultipliers(float damageMultiplier, float fireRateMultiplier)
         {
             _damageMultiplier = damageMultiplier;

@@ -35,6 +35,8 @@ namespace Game.Gameplay.Flight
 
         public float CurrentThrottle => _shipInput.Throttle;
 
+        public float BaseThrust => _thrustForce;
+
         private bool IsStopped => _rigidbody.linearVelocity.magnitude <= _stopThreshold &&
                                   Mathf.Abs(_rigidbody.angularVelocity) <= _angularStopThreshold;
 
