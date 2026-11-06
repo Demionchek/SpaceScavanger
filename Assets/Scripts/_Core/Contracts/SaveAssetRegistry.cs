@@ -14,6 +14,7 @@ namespace Game.Core
 
         public IReadOnlyList<NpcGroup> NpcGroups => _npcGroups;
         public IReadOnlyList<CharacterDefinition> Characters => _characters;
+        public IReadOnlyList<ItemDefinition> Items => _items;
 
         public string GetId(Object asset) => asset != null ? asset.name : null;
 

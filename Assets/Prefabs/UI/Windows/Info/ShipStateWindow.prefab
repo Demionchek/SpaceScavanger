@@ -312,6 +312,13 @@ MonoBehaviour:
   _statsText: {fileID: 4758099373755453298}
   _upgradesText: {fileID: 990684808582593151}
   _closeButton: {fileID: 1860715714143277227}
+  _damageIcon: {fileID: -386529764843360228, guid: 0718d46a73603314381ff7684e884122, type: 3}
+  _hullIcon: {fileID: -103573806962080208, guid: 9027b88cf50fada4d8fb228e427a3b16, type: 3}
+  _fireRateIcon: {fileID: -5050639622579912417, guid: be9b066a43d451149842c38b88202ad4, type: 3}
+  _thrustIcon: {fileID: 1789153876186324478, guid: 39e31981f432de940ae339000f2424f4, type: 3}
+  _hookIcon: {fileID: 8448644022623066453, guid: ed1d66eee56cbd348ac5f12709e1fb30, type: 3}
+  _radarIcon: {fileID: -5624137179228441553, guid: cd0ca5568e917844bb5a23c2a6928c48, type: 3}
+  _repairButtonSprite: {fileID: 514401659604480986, guid: 3d9a86cb59c7dd44fb7c582bf517b2f8, type: 3}
 --- !u!1 &6501866410563419803
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,8 +428,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 662.5698, y: 178.557}
-  m_SizeDelta: {x: 498.4905, y: 289.7448}
+  m_AnchoredPosition: {x: -500, y: 350}
+  m_SizeDelta: {x: 720, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7125313208566801719
 CanvasRenderer:
@@ -487,7 +494,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -638,8 +645,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -315.84644, y: -65.89014}
-  m_SizeDelta: {x: 1142.6107, y: 661.2702}
+  m_AnchoredPosition: {x: -500, y: -85}
+  m_SizeDelta: {x: 720, y: 330}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3142955461010267246
 CanvasRenderer:
@@ -704,7 +711,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1

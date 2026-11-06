@@ -12,15 +12,24 @@ namespace Game.UI
         [SerializeField] private TMP_Text _ownedText;
         [SerializeField] private Button _installButton;
 
-        public void Set(Sprite icon, string name, int owned, Action onInstall)
+        public void Set(Sprite icon, string title, string status, bool canInstall, Action onInstall)
         {
             _icon.sprite = icon;
             _icon.enabled = icon != null;
-            _nameText.text = name;
-            _ownedText.text = $"x{owned}";
+            _nameText.text = title;
+            _ownedText.text = status;
 
             _installButton.onClick.RemoveAllListeners();
-            _installButton.onClick.AddListener(() => onInstall());
+
+            // Установленное улучшение остаётся в списке, но уже без кнопки:
+            // иначе игрок не видит, что именно у него стоит.
+            _installButton.gameObject.SetActive(canInstall);
+
+            if (canInstall)
+            {
+                _installButton.interactable = true;
+                _installButton.onClick.AddListener(() => onInstall());
+            }
         }
     }
 }

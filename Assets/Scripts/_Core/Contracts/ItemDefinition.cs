@@ -7,5 +7,9 @@ namespace Game.Core
     {
         public string DisplayName;
         public Sprite Icon;
+
+        [Tooltip("Зачем предмет нужен. Печатается в верстаке под названием.")]
+        [TextArea]
+        public string Description;
     }
 }
