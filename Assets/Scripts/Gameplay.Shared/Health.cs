@@ -18,6 +18,8 @@ namespace Game.Gameplay.Shared
         public float CurrentHealth => _currentHealth;
         public float MaxHealth => _maxHealth * _maxHealthMultiplier;
 
+        public float BaseMaxHealth => _maxHealth;
+
         public void SetMaxHealthMultiplier(float multiplier)
         {
             var oldMax = MaxHealth;
@@ -30,6 +32,14 @@ namespace Game.Gameplay.Shared
             }
 
             _currentHealth = Mathf.Min(_currentHealth, MaxHealth);
+        }
+
+        public void Heal(float amount)
+        {
+            if (amount > 0f)
+            {
+                _currentHealth = Mathf.Min(_currentHealth + amount, MaxHealth);
+            }
         }
 
         public event Action<DamageInfo> Damaged;

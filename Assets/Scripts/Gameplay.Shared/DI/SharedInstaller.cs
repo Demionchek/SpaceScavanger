@@ -19,6 +19,12 @@ namespace Game.Gameplay.Shared
         [Tooltip("Объявление о следующей квоте: висит в панели заданий от сдачи до прыжка.")]
         [SerializeField] private QuestDefinition _nextQuotaNotice;
 
+        [Header("Починка корпуса")]
+        [SerializeField] private ResourceType _repairResource = ResourceType.Scrap;
+
+        [Tooltip("Сколько единиц корпуса восстанавливает одна единица ресурса.")]
+        [SerializeField] private int _hullPerRepairUnit = 5;
+
         public override void Install(IContainerBuilder builder)
         {
             builder.RegisterInstance(_saveRegistry);
@@ -34,6 +40,9 @@ namespace Game.Gameplay.Shared
             builder.Register<CraftingService>(Lifetime.Singleton).As<ICraftingService>();
             builder.Register<UpgradeService>(Lifetime.Singleton).As<IUpgradeService>().As<ISaveable>();
             builder.Register<SoundService>(Lifetime.Singleton).As<ISoundService>();
+            builder.Register<RepairService>(Lifetime.Singleton).As<IRepairService>()
+                   .WithParameter("resource", _repairResource)
+                   .WithParameter("hullPerUnit", _hullPerRepairUnit);
             builder.Register<JournalService>(Lifetime.Singleton).As<IJournalService>().As<ISaveable>();
             builder.Register<InteractionHintService>(Lifetime.Singleton).As<IInteractionHintService>().As<ISaveable>();
             builder.RegisterEntryPoint<SectorService>(Lifetime.Singleton);
