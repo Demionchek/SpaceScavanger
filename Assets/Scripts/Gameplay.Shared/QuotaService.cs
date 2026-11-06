@@ -19,15 +19,17 @@ namespace Game.Gameplay.Shared
         private readonly IStoryDialogueService _storyDialogues;
         private readonly GameContext _context;
         private readonly QuestDefinition _quotaQuest;
+        private readonly QuestDefinition _waitingQuest;
 
         public QuotaService(EventBus eventBus, IQuestService quests, IStoryDialogueService storyDialogues,
-            GameContext context, QuestDefinition quotaQuest)
+            GameContext context, QuestDefinition quotaQuest, QuestDefinition waitingQuest)
         {
             _eventBus = eventBus;
             _quests = quests;
             _storyDialogues = storyDialogues;
             _context = context;
             _quotaQuest = quotaQuest;
+            _waitingQuest = waitingQuest;
         }
 
         public void Start()
@@ -49,6 +51,9 @@ namespace Game.Gameplay.Shared
                 return;
             }
 
+            // Напоминание о следующей квоте дождалось прыжка и больше не нужно.
+            _quests.Abandon(_waitingQuest);
+
             // Квест стартует сразу, а звонок только объясняет: иначе игрок, не снявший
             // трубку, остался бы без квоты и без срока.
             _quests.Reset(_quotaQuest);
@@ -67,6 +72,24 @@ namespace Game.Gameplay.Shared
             }
         }
 
+        public int Amount
+        {
+            get
+            {
+                var goal = ActiveGoal();
+                return goal != null ? goal.Amount : 0;
+            }
+        }
+
+        public int SectorsLeft
+        {
+            get
+            {
+                var goal = ActiveGoal();
+                return goal != null ? Math.Max(0, goal.SectorsLeft) : 0;
+            }
+        }
+
         public bool TryDeliver()
         {
             if (_quotaQuest == null || !_quests.TryTurnIn(_quotaQuest, _context))
@@ -75,6 +98,14 @@ namespace Game.Gameplay.Shared
             }
 
             _eventBus.Publish(new NotificationRequestedEvent("Quota delivered"));
+
+            // До прыжка корпорация молчит, поэтому в панели заданий остаётся строка,
+            // объясняющая, когда ждать следующую квоту.
+            if (_waitingQuest != null)
+            {
+                _quests.StartQuest(_waitingQuest, _context);
+            }
+
             return true;
         }
 

@@ -1,7 +1,6 @@
 using System;
 using Game.Core;
 using Game.Data;
-using Game.Gameplay.Shared;
 using UnityEngine;
 using VContainer;
 using Yarn.Unity;
@@ -15,13 +14,11 @@ namespace Game.Narrative
         [SerializeField] private ChoiceEffect[] _effects;
         [SerializeField] private QuestDefinition[] _quests;
 
-        [Tooltip("Цель корпоративной квоты: из неё диалог офицера берёт числа.")]
-        [SerializeField] private QuotaGoalDefinition _quotaGoal;
-
         private EventBus _eventBus;
         private GameContext _gameContext;
         private IPauseService _pauseService;
         private IQuestService _questService;
+        private IQuotaService _quotaService;
         private SaveAssetRegistry _registry;
         private bool _dialogueActive;
         private string _activeNode;
@@ -32,12 +29,14 @@ namespace Game.Narrative
             GameContext gameContext,
             IPauseService pauseService,
             IQuestService questService,
+            IQuotaService quotaService,
             SaveAssetRegistry registry)
         {
             _eventBus = eventBus;
             _gameContext = gameContext;
             _pauseService = pauseService;
             _questService = questService;
+            _quotaService = quotaService;
             _registry = registry;
         }
 
@@ -169,9 +168,10 @@ namespace Game.Narrative
 
         private int GetSector() => _gameContext.SectorService.Current;
 
-        private int GetQuotaAmount() => _quotaGoal != null ? _quotaGoal.Amount : 0;
+        // Числа берутся у живой квоты, а не из её описания: квота растёт с сектором.
+        private int GetQuotaAmount() => _quotaService != null ? _quotaService.Amount : 0;
 
-        private int GetQuotaSectors() => _quotaGoal != null ? _quotaGoal.DeadlineSectors : 0;
+        private int GetQuotaSectors() => _quotaService != null ? _quotaService.SectorsLeft : 0;
 
         private int GetAttitude(string characterName)
         {

@@ -16,6 +16,9 @@ namespace Game.Gameplay.Shared
         [Tooltip("Квест корпоративной квоты: по нему идёт звонок-приёмка и проверка срока.")]
         [SerializeField] private QuestDefinition _quotaQuest;
 
+        [Tooltip("Объявление о следующей квоте: висит в панели заданий от сдачи до прыжка.")]
+        [SerializeField] private QuestDefinition _nextQuotaNotice;
+
         public override void Install(IContainerBuilder builder)
         {
             builder.RegisterInstance(_saveRegistry);
@@ -35,7 +38,8 @@ namespace Game.Gameplay.Shared
             builder.Register<InteractionHintService>(Lifetime.Singleton).As<IInteractionHintService>().As<ISaveable>();
             builder.RegisterEntryPoint<SectorService>(Lifetime.Singleton);
             builder.RegisterEntryPoint<QuotaService>(Lifetime.Singleton)
-                .WithParameter<QuestDefinition>(_quotaQuest);
+                .WithParameter("quotaQuest", _quotaQuest)
+                .WithParameter("waitingQuest", _nextQuotaNotice);
             builder.RegisterEntryPoint<JournalRecorder>(Lifetime.Singleton);
             builder.RegisterEntryPoint<StoryDialogueService>(Lifetime.Singleton)
                 .WithParameter<StoryDialogueCatalog>(_storyDialogues);

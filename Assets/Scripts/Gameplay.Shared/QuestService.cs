@@ -98,6 +98,18 @@ namespace Game.Gameplay.Shared
             }
         }
 
+        public void Abandon(QuestDefinition quest)
+        {
+            var runtime = FindRuntime(quest);
+            if (runtime == null)
+            {
+                return;
+            }
+
+            runtime.Goal.Unbind(_eventBus);
+            _active.Remove(runtime);
+        }
+
         private QuestRuntime FindRuntime(QuestDefinition quest)
         {
             foreach (var runtime in _active)

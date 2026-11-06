@@ -18,3 +18,4 @@ MonoBehaviour:
   - Type: 5
     Amount: 5
   _quotaQuest: {fileID: 11400000, guid: 4a3b39451e5242068f7a48d56c1a8ddf, type: 2}
+  _nextQuotaNotice: {fileID: 11400000, guid: b2fb66b64d68483aa38a0cbd707601ef, type: 2}
