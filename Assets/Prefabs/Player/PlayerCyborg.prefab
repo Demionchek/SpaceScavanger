@@ -269,37 +269,7 @@ MonoBehaviour:
   _interactableMask:
     serializedVersion: 2
     m_Bits: 64
---- !u!1 &5529033401380345465
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3334456484273110171}
-  m_Layer: 0
-  m_Name: groundTransform
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3334456484273110171
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5529033401380345465}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0054, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2519754229297994237}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  _hintRefreshInterval: 0.1
 --- !u!82 &1950000001
 AudioSource:
   m_ObjectHideFlags: 0
@@ -309,7 +279,7 @@ AudioSource:
   m_GameObject: {fileID: 883959286443078190}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 4438181724115081795, guid: 1afed1eac13bece48b7b969825c0096d, type: 2}
+  OutputAudioMixerGroup: {fileID: 8157384614299946564, guid: 1afed1eac13bece48b7b969825c0096d, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -410,7 +380,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Ship::Game.Gameplay.Ship.CharacterFootsteps
   _source: {fileID: 1950000001}
-  _clips: []
-  _interval: 0.35
+  _clips:
+  - {fileID: 8300000, guid: 90d5d88e5da809745854fab7c379ecbb, type: 3}
+  - {fileID: 8300000, guid: bcb120f8c62db1e4a83ed93b1b21d330, type: 3}
+  - {fileID: 8300000, guid: 255418d392efd124586e18656f19a00b, type: 3}
+  - {fileID: 8300000, guid: a485d63e4ebbf57478a54dca9555ca55, type: 3}
+  _interval: 0.25
   _minSpeed: 0.3
   _pitchRange: {x: 0.95, y: 1.05}
+--- !u!1 &5529033401380345465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3334456484273110171}
+  m_Layer: 0
+  m_Name: groundTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3334456484273110171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5529033401380345465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0054, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2519754229297994237}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

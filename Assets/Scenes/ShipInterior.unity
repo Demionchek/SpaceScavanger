@@ -1425,7 +1425,7 @@ AudioSource:
   m_GameObject: {fileID: 215117933}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6095238807135495051, guid: 1afed1eac13bece48b7b969825c0096d, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 85e9999d55c9b98409af338e87b9e8be, type: 3}
   m_PlayOnAwake: 1
@@ -1437,10 +1437,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1.1854805
-  MaxDistance: 3.97
+  MinDistance: 0.6844802
+  MaxDistance: 19.56
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1448,23 +1448,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.50072
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -2.1803982
+      outSlope: -2.1803982
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0.05853973
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      time: 0.53826904
+      value: 0.0040845573
+      inSlope: -0.034152754
+      outSlope: -0.034152754
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.15513629
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -5260,9 +5260,9 @@ AudioSource:
   m_GameObject: {fileID: 1574647128}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 6095238807135495051, guid: 1afed1eac13bece48b7b969825c0096d, type: 2}
+  OutputAudioMixerGroup: {fileID: 5075130371988929705, guid: 1afed1eac13bece48b7b969825c0096d, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3caa12cdd1769ef439fc96e44846fcab, type: 3}
+  m_Resource: {fileID: 8300000, guid: 0e165d67ba55b944b950ce725c773569, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -6324,7 +6324,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: c67d8141d2ff0764b8ab78a453bbe748, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.802
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6882,26 +6882,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1561762135}
     m_Modifications:
-    - target: {fileID: 1950000002, guid: 1a1029bc1f00e0d41bb01939e8e79df6, type: 3}
-      propertyPath: _clips.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1950000002, guid: 1a1029bc1f00e0d41bb01939e8e79df6, type: 3}
-      propertyPath: '_clips.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 90d5d88e5da809745854fab7c379ecbb, type: 3}
-    - target: {fileID: 1950000002, guid: 1a1029bc1f00e0d41bb01939e8e79df6, type: 3}
-      propertyPath: '_clips.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: bcb120f8c62db1e4a83ed93b1b21d330, type: 3}
-    - target: {fileID: 1950000002, guid: 1a1029bc1f00e0d41bb01939e8e79df6, type: 3}
-      propertyPath: '_clips.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 255418d392efd124586e18656f19a00b, type: 3}
-    - target: {fileID: 1950000002, guid: 1a1029bc1f00e0d41bb01939e8e79df6, type: 3}
-      propertyPath: '_clips.Array.data[3]'
-      value: 
-      objectReference: {fileID: 8300000, guid: a485d63e4ebbf57478a54dca9555ca55, type: 3}
     - target: {fileID: 883959286443078190, guid: 1a1029bc1f00e0d41bb01939e8e79df6, type: 3}
       propertyPath: m_Name
       value: PlayerCyborg
