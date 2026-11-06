@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 3041252665349336083}
   - component: {fileID: 8533662588921436386}
   - component: {fileID: 4796817047082721285}
+  - component: {fileID: 1651554663831695594}
   m_Layer: 6
   m_Name: wormhole1_0
   m_TagString: Untagged
@@ -484,3 +485,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1651554663831695594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4550884761154311418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4e1d9ec9b342ff91bb83f67cb7e34d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Core::Game.Core.RadarLandmark
+  _icon: {fileID: -2837455598999575704, guid: 96af35ab7dea8674193340ec16289ba7, type: 3}
+  _tint: {r: 0.72, g: 0.5, b: 1.0, a: 1}

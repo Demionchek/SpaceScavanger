@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4542144210225365534}
   - component: {fileID: 2127203480628817110}
   - component: {fileID: 7722062049307733388}
+  - component: {fileID: 5633469241546773916}
   m_Layer: 6
   m_Name: Trader_ship
   m_TagString: Untagged
@@ -162,3 +163,17 @@ CapsuleCollider2D:
   m_Offset: {x: -0.028993677, y: -0.05881532}
   m_Size: {x: 0.9291785, y: 0.40634122}
   m_Direction: 1
+--- !u!114 &5633469241546773916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3995033229410401006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4e1d9ec9b342ff91bb83f67cb7e34d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Core::Game.Core.RadarLandmark
+  _icon: {fileID: 5211761458863702205, guid: bb402aac74509104a985294db6d409a5, type: 3}
+  _tint: {r: 0.45, g: 0.95, b: 0.65, a: 1}

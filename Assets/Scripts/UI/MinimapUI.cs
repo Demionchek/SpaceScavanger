@@ -23,6 +23,21 @@ namespace Game.UI
         [SerializeField] private Color _boundaryColor = new(1f, 0.4f, 0.1f, 1f);
         [SerializeField] private int _boundarySamples = 48;
 
+        [Header("Запомненные объекты (RadarLandmark)")]
+        [SerializeField] private int _maxLandmarks = 8;
+        [SerializeField] private float _landmarkSize = 34f;
+
+        [Tooltip("Насколько близко к краю радара прижимается метка вне дальности.")]
+        [SerializeField] private float _landmarkEdgeInset = 0.86f;
+
+        [Tooltip("Прозрачность метки, пока объект вне дальности радара.")]
+        [SerializeField] private float _offRangeAlpha = 0.7f;
+
+        [Tooltip("Указатель направления вне дальности. Спрайт должен смотреть вверх.")]
+        [SerializeField] private Sprite _directionArrow;
+
+        [SerializeField] private float _directionArrowSize = 18f;
+
         private IShipStatsService _stats;
         private IPlayerLocator _player;
         private ZoneBounds _bounds;
@@ -39,6 +54,9 @@ namespace Game.UI
         private readonly List<Collider2D> _hits = new();
         private readonly HashSet<Transform> _seen = new();
         private readonly List<Detected> _detected = new();
+        private readonly List<RadarLandmark> _landmarks = new();
+        private readonly List<Image> _landmarkIcons = new();
+        private readonly List<Image> _landmarkArrows = new();
         private ContactFilter2D _filter;
         private float _scanTimer;
 
@@ -52,6 +70,9 @@ namespace Game.UI
             _player = player;
             _bounds = bounds;
             _eventBus = eventBus;
+
+            // Дальность радара живёт здесь, поэтому экран состояния узнаёт её отсюда.
+            stats.SetBase(ShipStat.RadarRange, _baseRange);
 
             _eventBus.Subscribe<HudVisibilityChangedEvent>(OnHudVisibilityChanged);
             Root.SetActive(hud.IsVisible);
@@ -80,6 +101,21 @@ namespace Game.UI
                 blip.enabled = false;
                 _boundaryBlips.Add(blip);
             }
+
+            // Иконки создаются последними, чтобы рисоваться поверх точек.
+            for (var i = 0; i < _maxLandmarks; i++)
+            {
+                _landmarkArrows.Add(NewLandmarkImage(_directionArrowSize));
+                _landmarkIcons.Add(NewLandmarkImage(_landmarkSize));
+            }
+        }
+
+        private Image NewLandmarkImage(float size)
+        {
+            var image = Instantiate(_blipPrefab, _radarArea);
+            image.rectTransform.sizeDelta = new Vector2(size, size);
+            image.enabled = false;
+            return image;
         }
 
         private void OnDestroy()
@@ -99,6 +135,7 @@ namespace Game.UI
             }
 
             Render();
+            RenderLandmarks();
             RenderBoundary();
         }
 
@@ -122,10 +159,29 @@ namespace Game.UI
                     ? collider.attachedRigidbody.transform
                     : collider.transform;
 
-                if (_seen.Add(entity) && TryClassify(collider.gameObject.layer, out var color))
+                if (!_seen.Add(entity))
+                {
+                    continue;
+                }
+
+                // Торговец, квест-гивер и червоточина получают свою иконку вместо точки,
+                // и радар их запоминает — дальше метка держится сама.
+                if (entity.TryGetComponent<RadarLandmark>(out var landmark))
+                {
+                    Discover(landmark);
+                }
+                else if (TryClassify(collider.gameObject.layer, out var color))
                 {
                     _detected.Add(new Detected { Transform = entity, Color = color });
                 }
+            }
+        }
+
+        private void Discover(RadarLandmark landmark)
+        {
+            if (_landmarks.Count < _landmarkIcons.Count && !_landmarks.Contains(landmark))
+            {
+                _landmarks.Add(landmark);
             }
         }
 
@@ -159,6 +215,64 @@ namespace Game.UI
             for (; blipIndex < _blips.Count; blipIndex++)
             {
                 _blips[blipIndex].enabled = false;
+            }
+        }
+
+        // Найденный объект с радара больше не исчезает: внутри дальности метка стоит
+        // на своём месте, снаружи — прижата к краю и показывает направление.
+        private void RenderLandmarks()
+        {
+            var range = CurrentRange();
+            var radarRadius = _radarArea.rect.width * 0.5f;
+            var center = _player.Position;
+
+            for (var i = _landmarks.Count - 1; i >= 0; i--)
+            {
+                if (_landmarks[i] == null)
+                {
+                    _landmarks.RemoveAt(i);
+                }
+            }
+
+            var index = 0;
+
+            for (; index < _landmarks.Count && index < _landmarkIcons.Count; index++)
+            {
+                var landmark = _landmarks[index];
+                var offset = ((Vector2)landmark.transform.position - center) / range * radarRadius;
+                var inRange = offset.sqrMagnitude <= radarRadius * radarRadius;
+                var direction = offset.sqrMagnitude > 0.0001f ? offset.normalized : Vector2.up;
+                var tint = landmark.Tint;
+                var color = inRange ? tint : new Color(tint.r, tint.g, tint.b, tint.a * _offRangeAlpha);
+
+                var icon = _landmarkIcons[index];
+                icon.enabled = true;
+                icon.color = color;
+                icon.rectTransform.anchoredPosition =
+                    inRange ? offset : direction * (radarRadius * _landmarkEdgeInset);
+
+                if (landmark.Icon != null)
+                {
+                    icon.sprite = landmark.Icon;
+                }
+
+                var arrow = _landmarkArrows[index];
+                arrow.enabled = !inRange && _directionArrow != null;
+
+                if (arrow.enabled)
+                {
+                    arrow.sprite = _directionArrow;
+                    arrow.color = color;
+                    arrow.rectTransform.anchoredPosition = direction * radarRadius;
+                    arrow.rectTransform.localRotation = Quaternion.Euler(0f, 0f,
+                        Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
+                }
+            }
+
+            for (; index < _landmarkIcons.Count; index++)
+            {
+                _landmarkIcons[index].enabled = false;
+                _landmarkArrows[index].enabled = false;
             }
         }
 
