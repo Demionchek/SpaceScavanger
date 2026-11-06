@@ -66,20 +66,29 @@ filename before concluding the file is gone.
 
 `ResourceService`, `ItemService`, `TradeService`, `QuestService`, `ReputationService`,
 `ShipStatsService`, `RecipeService`, `CraftingService`, `UpgradeService`, `SoundService`,
-`JournalService`, `InteractionHintService` — most also registered `As<ISaveable>()`.
+`JournalService`, `InteractionHintService`, `RepairService` — most also registered
+`As<ISaveable>()`.
 An upgrade is unique per ship: `UpgradeService.IsInstalled` blocks a second install, `CanCraft`
 refuses an `UpgradeItemDefinition` that is already installed or already in the hold, and the
 service saves its installed list (`upgrades`) without re-applying modifiers on load —
 `ShipStatsService` restores those itself.
+The hull is mended in the hold, not in flight: `RepairService` turns one unit of
+`_repairResource` into `_hullPerRepairUnit` hull points (both on `SharedInstaller.asset`) and
+always spends only what the hold actually carries, because a partial repair reads better than a
+button that refuses to work. `ShipInfoUI` shows `Hull x/y` and the price on its `_repairButton`.
+The same scrap pays the quota, and that competition is the point — nothing else makes scrap
+feel scarce once the hook is good.
 Entry points: `JournalRecorder`, `StoryDialogueService`, `SectorService`, `StartingResources`,
 `SaveService`. `SectorService` counts sectors (1 at game start, +1 per wormhole jump),
 publishes `SectorChangedEvent`, saves under `sector` and backs the Yarn function `sector()`.
 The Corporation quota is a plain quest (`CorporateQuota_Quest`) whose goal is a
 `QuotaGoalDefinition`: a resource amount plus a deadline in sectors, counted from the sector it
 was issued in. That issuing sector is the goal's own saved progress (`ISaveableGoal`) — nothing
-else knows it. The officer's Yarn node starts the quest with `<<apply_effect QuestTrigger_Quota>>`
+else knows it, and the amount is derived from it (`_amount + _amountPerSector * (sector - 1)`),
+so a growing quota needs nothing extra in the save. The officer's Yarn node starts the quest with `<<apply_effect QuestTrigger_Quota>>`
 and prints its numbers through `quota_amount()` / `quota_sectors()`, so the text never hardcodes
-them. A goal implementing `IQuestGoalStatus` prints its own line in `QuestHudUI` instead of a
+them; both read the live goal through `IQuotaService.Amount` / `SectorsLeft`, never the
+definition, which only knows the first sector's figure. A goal implementing `IQuestGoalStatus` prints its own line in `QuestHudUI` instead of a
 percentage. Handing the load over is the player's move: with the full amount aboard,
 `IQuotaService.CanDeliver` turns the intercom's lamp to a steady light (blinking still means a
 call), its prompt to `_quotaPrompt`, and interacting raises a `ConfirmRequestedEvent` whose
@@ -88,7 +97,12 @@ confirm calls `TryDeliver()`. Nothing is taken automatically until the last allo
 the quota if the hold is full and otherwise publishes `PlayerDestroyedEvent`, so the ship blows up
 in space instead of behind the whiteout transition. Once a quota is delivered the next sector brings another: `QuotaService` sees the quest sitting in
 `TurnedIn` on `SectorChangedEvent` and calls `IQuestService.Reset` before starting it again, so the
-state of the quest is the only memory of the last delivery and nothing extra has to be saved. The
+state of the quest is the only memory of the last delivery and nothing extra has to be saved.
+Between the delivery and that jump the panel would otherwise go quiet, so `TryDeliver` starts a
+second quest — `_nextQuotaNotice` on `SharedInstaller.asset`, a `NoticeGoalDefinition` whose goal
+never completes and only prints its line — and `OnSectorChanged` drops it with
+`IQuestService.Abandon` (removes an active quest without marking it turned in) the moment the real
+quota arrives. The
 officer explains it over the intercom through `IStoryDialogueService.Enqueue` — a call put in the
 same queue as the story beats (so it rings the intercom, banners and saves like any other) without
 advancing the one-shot story list. The quest starts regardless of whether the player answers;
@@ -193,6 +207,17 @@ and it builds its own panel at runtime — the scene object only carries the fon
 layout to re-wire by hand. It hides with the rest of the flight HUD through
 `HudVisibilityChangedEvent`.
 
+`MinimapUI` (`Radar.prefab`) draws three kinds of dot by layer mask — resources, enemies, NPCs —
+plus a ring of boundary dots, all of them only while inside radar range. Anything carrying a
+`RadarLandmark` (`_Core/World/`, holding its own icon sprite and tint, added to the trader,
+quest-giver and wormhole prefabs) is treated differently: the scan that first sees it remembers it
+for good, it draws its icon instead of a dot, and out of range the icon is pinned to the rim in
+the object's direction and dimmed by `_offRangeAlpha`, with an optional `_directionArrow` sprite
+(must point up) rotated to the bearing. Memory is per transform, so a regenerated zone drops its
+landmarks by itself and nothing is saved; a reload therefore starts the sector unexplored again,
+which matches flying it from the centre. The component must sit on the object the scan actually
+returns — the rigidbody root, or the collider's own GameObject when there is no rigidbody.
+
 `BoardingTutorial` (Flight entry point) keeps the ship sealed in sector 1 with a `ModeLock` and
 lifts it on `SectorChangedEvent`, so the tutorial corridor can't be skipped by walking inside;
 a blocked switch now says so through `WarningMessageEvent` instead of silently doing nothing. The
@@ -255,6 +280,11 @@ so nothing is visible before the first line.
 
 ## HUD visibility
 
+`GameNotificationsSource` (root scope) also answers `QuestCompletedEvent`, publishing the same
+`Objective complete: <title>` line as a `NotificationRequestedEvent` **and** a
+`WarningMessageEvent`: in the feed alone it would queue behind the `+1 Scrap` lines that the same
+class emits, and the one moment the player must notice is the moment the hold is finally full.
+
 `HudVisibility` (root scope) owns one rule — flight HUD is visible only when **not** in the
 interior, **not** in a dialogue and **not** in a cutscene — and publishes
 `HudVisibilityChangedEvent`. `FlightHudVisibility` in the scene applies it by toggling the
@@ -274,6 +304,56 @@ and ship state, which otherwise only had their own toggle key or a button.
 `ConfirmRequestedEvent` (message + `Action` callback + button labels) → `ConfirmDialogUI`
 shows a paused modal and invokes the callback on confirm. Used by `WormholeComponent`,
 which spends the jump cost only after the player confirms the one-way warning.
+
+## Workbench and ship state
+
+Both windows exist so the player can decide what to spend scrap on, so neither prints raw
+save data.
+
+`WorkbenchUI` has two tabs under the title — `CraftTab` and `UpgradesTab` on `CraftUI.prefab`,
+both the same button sprite as the shop's, since one sprite has to serve as two states. The
+**open** tab is the switched-off one: `interactable` false and dimmed to `_openTab` (plate and
+label both), because there is nowhere to click it to; the closed tab stays bright at
+`_closedTab`. Their `m_DisabledColor` is set to opaque white on the prefab so Unity's own
+disabled tint doesn't dim the open tab a second time on top of ours. Both tabs sit at y 540 in
+the 1500×2000 panel, under the title and clear of the close button (whose bottom edge is 625),
+and the two scroll views start at 455 so nothing overlaps the frame's top furniture. Each row prints what the part
+does under its name (`UpgradeEffectText.Describe` turns `ShipStatModifier[]` into `Hook +1`,
+falling back to `ItemDefinition.Description`) and colours each cost green or red rather than
+only greying the button. Installed upgrades stay in the list without a button, and an empty
+list prints where to get the missing thing. There is deliberately no running total of
+resources in the window: every row already shows `have/needed` for what it costs.
+
+`ShipInfoUI` is laid out against the window art, not around it. `defeat_0039_window_bg` bakes
+a column of four icon cells into the frame on the right, so every readout row is built in code
+at fixed coordinates and each row lays its own crisp 31×31 tile over its cell
+(`_readoutIconX` 368, `_readoutFirstRowY` 291, `_rowSpacing` 76.7, `_iconSize` 78, measured
+from the panel centre — the baked cells are 28 px in a 775×391 sprite stretched to a 2000×1000
+panel). The overlay is slightly larger than the cell so the blurry baked copy can't show at
+the edge, and all four are overlaid rather than only the one that changed, so they stay equally
+sharp. Order top to bottom: Damage (`Damage_icon`), Hull (`element_0039_shield`), Fire rate
+(`element_0037_fire`), Thrust (`element_0036_lightning`). Four cells means four rows, so Hook
+level and Radar get the same row treatment in the left half with their own icons
+(`Hook_icon` / `radar_icon`, `_leftIconX` / `_leftFirstRowY`), and `_statsText` is reduced to
+the `SYSTEMS` heading above them. Values are **effective** numbers, `Damage 12  ×1.2`, never
+bare multipliers: a stat's base is known only to the component that owns it, so
+`ShipStatsReceiver` (and `MinimapUI` for radar range) push theirs into
+`IShipStatsService.SetBase`, and `TryGetEffective` returns `base × multiplier + bonus`. Bases
+are never saved — their owners re-register them every run. `_upgradesText` under them is the
+whole catalogue from `SaveAssetRegistry.Items`, each line marked *installed / in the hold /
+schematic known / not found yet*, because a list of what you already own is empty exactly when
+the player most needs direction. The ship contour behind all of it is a watermark — a faint
+wireframe — so text is meant to sit over it. The hull bar and the repair button are built in
+code inside `_panel` (`_hullBlockPosition` / `_hullBlockSize`), placed by hand rather than by a
+layout group because the left panel's edges come from the frame picture; the button wears the
+same sprite as the workbench tabs (`_repairButtonSprite`).
+
+The game font (`CyberpunkCraftpixPixel`) carries 117 glyphs: ASCII plus `×`, `—`, `–`, `…`,
+`−`, `÷`. Anything else — `■ □ · ² ° •` — falls through to the Liberation Sans fallback and
+breaks the pixel look, so player-facing strings use `[x]`/`[ ]` for checkboxes and `—` as a
+separator. New icons dropped into `Assets/Sprites/UI/Windows/Elements/` must be reimported with
+`filterMode: 0` and `textureCompression: 0` like the rest of that set, or they blur when the UI
+scales them up ~2.5×.
 
 ## Audio
 
