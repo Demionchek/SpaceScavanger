@@ -22,6 +22,7 @@ namespace Game.Core
             _eventBus.Subscribe<ResourceChangedEvent>(OnResourceChanged);
             _eventBus.Subscribe<ReputationChangedEvent>(OnReputationChanged);
             _eventBus.Subscribe<RelationshipChangedEvent>(OnRelationshipChanged);
+            _eventBus.Subscribe<QuestCompletedEvent>(OnQuestCompleted);
             _eventBus.Subscribe<StoryDialoguePendingEvent>(OnStoryDialoguePending);
             _eventBus.Subscribe<SectorChangedEvent>(OnSectorChanged);
             _eventBus.Subscribe<GameLoadStartedEvent>(OnLoadStarted);
@@ -33,6 +34,7 @@ namespace Game.Core
             _eventBus.Unsubscribe<ResourceChangedEvent>(OnResourceChanged);
             _eventBus.Unsubscribe<ReputationChangedEvent>(OnReputationChanged);
             _eventBus.Unsubscribe<RelationshipChangedEvent>(OnRelationshipChanged);
+            _eventBus.Unsubscribe<QuestCompletedEvent>(OnQuestCompleted);
             _eventBus.Unsubscribe<StoryDialoguePendingEvent>(OnStoryDialoguePending);
             _eventBus.Unsubscribe<SectorChangedEvent>(OnSectorChanged);
             _eventBus.Unsubscribe<GameLoadStartedEvent>(OnLoadStarted);
@@ -74,6 +76,20 @@ namespace Game.Core
                 _eventBus.Publish(new NotificationRequestedEvent(
                     $"{evt.Character.DisplayName} attitude {Signed(delta)}"));
             }
+        }
+
+        // Набрал нужное — узнать об этом надо сразу: в фиде строка встанет в очередь
+        // за «+1 Scrap», поэтому она же идёт баннером по центру экрана.
+        private void OnQuestCompleted(QuestCompletedEvent evt)
+        {
+            if (_loading || evt.Quest == null)
+            {
+                return;
+            }
+
+            var message = $"Objective complete: {evt.Quest.Title}";
+            _eventBus.Publish(new NotificationRequestedEvent(message));
+            _eventBus.Publish(new WarningMessageEvent(message));
         }
 
         // Звонок может прийти, когда игрок в полёте, а интерком — в ещё не загруженном интерьере.
