@@ -13,8 +13,12 @@ namespace Game.UI
         [SerializeField] private TMPWriter _writer;
         [SerializeField] private float _holdSeconds = 1.5f;
 
+        [Tooltip("Сообщение, пролежавшее в очереди дольше этого, уже не показывается: " +
+                 "события из корабля игрок видит там же, а не пачкой при выходе в космос.")]
+        [SerializeField] private float _staleSeconds = 6f;
+
         private EventBus _eventBus;
-        private readonly Queue<string> _queue = new();
+        private readonly Queue<Entry> _queue = new();
         private bool _showing;
 
         [Inject]
@@ -26,6 +30,9 @@ namespace Game.UI
 
         private void Awake()
         {
+            // Окна верстака и торговца держат паузу, а писатель по умолчанию считает
+            // по игровому времени: иначе строки копятся и выходят все разом потом.
+            _writer.UseScaledTime = false;
             _writer.OnFinishWriter.AddListener(OnWriteFinished);
 
             if (_root != null)
@@ -46,7 +53,7 @@ namespace Game.UI
 
         private void OnNotification(NotificationRequestedEvent evt)
         {
-            _queue.Enqueue(evt.Message);
+            _queue.Enqueue(new Entry(evt.Message, Time.unscaledTime));
 
             if (!_showing)
             {
@@ -56,25 +63,42 @@ namespace Game.UI
 
         private void ShowNext()
         {
-            if (_queue.Count == 0)
+            while (_queue.Count > 0)
             {
-                _showing = false;
-                if (_root != null)
+                var entry = _queue.Dequeue();
+                if (Time.unscaledTime - entry.Queued > _staleSeconds)
                 {
-                    _root.SetActive(false);
+                    continue;
                 }
 
+                _showing = true;
+                if (_root != null)
+                {
+                    _root.SetActive(true);
+                }
+
+                _writer.SetText(entry.Message);
+                _writer.RestartWriter();
                 return;
             }
 
-            _showing = true;
+            _showing = false;
             if (_root != null)
             {
-                _root.SetActive(true);
+                _root.SetActive(false);
             }
+        }
 
-            _writer.SetText(_queue.Dequeue());
-            _writer.RestartWriter();
+        private readonly struct Entry
+        {
+            public readonly string Message;
+            public readonly float Queued;
+
+            public Entry(string message, float queued)
+            {
+                Message = message;
+                Queued = queued;
+            }
         }
 
         private void OnWriteFinished(TMPWriter writer)

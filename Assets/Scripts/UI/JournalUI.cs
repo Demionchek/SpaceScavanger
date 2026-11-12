@@ -56,6 +56,14 @@ namespace Game.UI
 
         private void Toggle()
         {
+            // Поверх чужого окна журнал не открывается: паузу держит кто-то другой —
+            // диалог, торговец, мини-игра, — и "j" в наборе слов не должна
+            // выдёргивать игрока из неё.
+            if (!_open && _pauseService.IsPaused)
+            {
+                return;
+            }
+
             _open = !_open;
             if (_panel != null)
             {

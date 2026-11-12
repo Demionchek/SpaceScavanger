@@ -3,7 +3,7 @@ using Game.Core;
 namespace Game.Gameplay.Shared
 {
     // Цель выполнена, если игрок финишировал не последним.
-    public sealed class RaceGoal : IQuestGoal, ISaveableGoal
+    public sealed class RaceGoal : IQuestGoal, ISaveableGoal, IQuestGoalStatus
     {
         private readonly QuestDefinition _quest;
 
@@ -18,6 +18,8 @@ namespace Game.Gameplay.Shared
         public bool IsComplete => _complete;
 
         public float Progress => _complete ? 1f : 0f;
+
+        public string Status => "race not won yet";
 
         public void Bind(EventBus bus)
         {

@@ -284,6 +284,11 @@ namespace Game.UI
             {
                 detail = item.Description;
             }
+            else if (!string.IsNullOrEmpty(item.Description))
+            {
+                // «Hook +1» не говорит, ради чего это: цифра и повод стоят рядом.
+                detail = $"{detail} — {item.Description}";
+            }
 
             if (!string.IsNullOrEmpty(detail))
             {
@@ -308,6 +313,18 @@ namespace Game.UI
                 var have = _resourceService.GetAmount(cost.Type);
                 var color = have >= cost.Amount ? Enough : Short;
                 _costsBuilder.Append($"<color={color}>{cost.Type} {have}/{cost.Amount}</color>");
+            }
+
+            // Непоставленная предыдущая ступень — такая же причина, по которой кнопка
+            // не нажимается, как нехватка лома, и стоять она должна там же.
+            if (recipe.RequiredUpgrade != null && !_upgradeService.IsInstalled(recipe.RequiredUpgrade))
+            {
+                if (_costsBuilder.Length > 0)
+                {
+                    _costsBuilder.Append(", \n");
+                }
+
+                _costsBuilder.Append($"<color={Short}>needs {recipe.RequiredUpgrade.DisplayName}</color>");
             }
 
             return _costsBuilder.ToString();

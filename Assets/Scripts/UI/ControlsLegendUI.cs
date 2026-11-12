@@ -20,7 +20,8 @@ namespace Game.UI
         [SerializeField] private Vector2 _corner = new(40f, 40f);
         [Tooltip("Отступы панели от текста: по горизонтали и по вертикали.")]
         [SerializeField] private Vector2 _padding = new(28f, 18f);
-        [SerializeField] private Key _toggleKey = Key.F1;
+        [Tooltip("F1 занята рубильником отладочных клавиш.")]
+        [SerializeField] private Key _toggleKey = Key.F2;
         [SerializeField] private bool _visibleByDefault = true;
 
         private readonly StringBuilder _builder = new();

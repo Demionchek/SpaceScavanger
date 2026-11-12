@@ -98,7 +98,7 @@ namespace Game.UI
                 }
                 else
                 {
-                    _builder.AppendLine($"{quest.Definition.Title} — {Mathf.RoundToInt(quest.Goal.Progress * 100f)}%");
+                    _builder.AppendLine($"{quest.Definition.Title} — in progress");
                 }
             }
 

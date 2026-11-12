@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdded68460ecb5c49ad0267fa9ed9a35, type: 3}
   m_Name: Scavangers_Group
   m_EditorClassIdentifier: Core::Game.Core.NpcGroup
-  DisplayName: Scavangers
+  DisplayName: Scavengers
+  Icon: {fileID: 8448644022623066453, guid: ed1d66eee56cbd348ac5f12709e1fb30, type: 3}

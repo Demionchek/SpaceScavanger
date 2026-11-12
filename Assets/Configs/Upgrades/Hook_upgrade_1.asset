@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Core::Game.Core.UpgradeItemDefinition
   DisplayName: Hook 1
   Icon: {fileID: 1679495122, guid: 9d239becce4359d4ca663615119e8e29, type: 3}
+  Description: Strong enough for iron.
   Modifiers:
   - Stat: 3
     Multiplier: 0

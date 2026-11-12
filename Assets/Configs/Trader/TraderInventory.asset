@@ -25,7 +25,54 @@ MonoBehaviour:
   - Resource: 2
     BuyPrice: 80
     SellPrice: 40
+  - Resource: 3
+    BuyPrice: 30
+    SellPrice: 15
+  - Resource: 6
+    BuyPrice: 120
+    SellPrice: 60
+  - Resource: 5
+    BuyPrice: 60
+    SellPrice: 0
   ItemOffers: []
   RecipeOffers:
   - Recipe: {fileID: 11400000, guid: 775ddcce36db4514b861bb6054653665, type: 2}
-    Price: 0
+    Price: 40
+  - Recipe: {fileID: 11400000, guid: 82125fded9dc43e19c6700ef5133748d, type: 2}
+    Price: 150
+  - Recipe: {fileID: 11400000, guid: 891d9ea2a74b4f269d9ee7c578618a9c, type: 2}
+    Price: 350
+  - Recipe: {fileID: 11400000, guid: e3aa5f558b1443e88819ac1e6c24adf6, type: 2}
+    Price: 700
+  - Recipe: {fileID: 11400000, guid: 9cfd2530e04248caab9360c62253c4fa, type: 2}
+    Price: 1200
+  - Recipe: {fileID: 11400000, guid: f824260925224ee4901196af692796ab, type: 2}
+    Price: 120
+  - Recipe: {fileID: 11400000, guid: 6bae00f15f0a43138ee201b71b1167a5, type: 2}
+    Price: 400
+  - Recipe: {fileID: 11400000, guid: cc17b8d59ed14a39bc616de06cfeaccc, type: 2}
+    Price: 900
+  - Recipe: {fileID: 11400000, guid: ddc20007bb7248c7a22355077450212c, type: 2}
+    Price: 120
+  - Recipe: {fileID: 11400000, guid: c9959c77171648da8d37d0b94370d6d5, type: 2}
+    Price: 400
+  - Recipe: {fileID: 11400000, guid: a7444277de8f4834857d4ad9c3c8464d, type: 2}
+    Price: 900
+  - Recipe: {fileID: 11400000, guid: 2308caa0da1247c882941262203348a2, type: 2}
+    Price: 120
+  - Recipe: {fileID: 11400000, guid: 1f065fa66e4a4807b78e949acec4a88e, type: 2}
+    Price: 400
+  - Recipe: {fileID: 11400000, guid: a97cd99cbaaa4ad0a59b9c08dd1de8e0, type: 2}
+    Price: 900
+  - Recipe: {fileID: 11400000, guid: 3a797359270042eb908df2cc546cc6d6, type: 2}
+    Price: 120
+  - Recipe: {fileID: 11400000, guid: 516f584d287e4c0fb242d4a9a1f00902, type: 2}
+    Price: 400
+  - Recipe: {fileID: 11400000, guid: 20a86d1bcc004fdcbfe785af94c8e7b0, type: 2}
+    Price: 900
+  - Recipe: {fileID: 11400000, guid: 9e9ebb1dbd43492e85c0c120a932bd08, type: 2}
+    Price: 120
+  - Recipe: {fileID: 11400000, guid: ed3e6e7ff0e64b759760a8393d7559f4, type: 2}
+    Price: 400
+  - Recipe: {fileID: 11400000, guid: 3f9a5fb40e5a408394cee8bb9cb3b96a, type: 2}
+    Price: 900

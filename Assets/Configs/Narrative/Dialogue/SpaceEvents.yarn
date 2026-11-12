@@ -129,3 +129,27 @@ Station agent: Well? Is the lane clear?
 -> Leave
     Station agent: They won't come to you if you keep running quiet.
 ===
+
+title: Find_OreShaft
+---
+A cutting rig sits half-buried in the rock, and the shaft under it is still packed with ore.
+The clamp drum is the only thing still running down there, swinging past the opening on whatever is left in its cell.
+Your hook can take a load out while the drum is clear of the shaft.
+-> Work the drum
+    The pressure line down there is older than you are. Time it wrong and it lets go in your face.
+    <<apply_effect AcceptFind>>
+-> Leave it to the rock
+    You pull back. The drum keeps swinging at nothing.
+===
+
+title: Find_DeadSatellite
+---
+A corporate relay went down on this rock years ago, and its cargo hatch never opened.
+The service robot bolted to its side still answers, and it still takes typed commands.
+Its cell is nearly dead, so it will listen for a few seconds at most.
+-> Talk to the robot
+    Stall at the keyboard and the cell dumps what is left of itself into your hull.
+    <<apply_effect AcceptFind>>
+-> Leave the wreck alone
+    You back away. The robot goes on waiting for a command that will not come.
+===

@@ -325,7 +325,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 40
   m_TargetDisplay: 0
 --- !u!114 &1953866770708041736
 MonoBehaviour:
@@ -423,6 +423,7 @@ GameObject:
   - component: {fileID: 3474429526053576082}
   - component: {fileID: 6071432109394117550}
   - component: {fileID: 3690000000000000001}
+  - component: {fileID: 7038679251376370500}
   m_Layer: 10
   m_Name: Enemy_Gunner
   m_TagString: Untagged
@@ -589,6 +590,7 @@ MonoBehaviour:
   _movement: {fileID: 6071432109394117550}
   _cannon: {fileID: 2957513260169545507}
   _groupTag: {fileID: 3690000000000000001}
+  _explosion: {fileID: 7038679251376370500}
 --- !u!114 &2957513260169545507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,3 +697,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Gameplay.Shared::Game.Gameplay.Shared.EnemyGroupTag
   _groupTag: Pirates
+--- !u!114 &7038679251376370500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7038679251376370445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa0d63b17c84e2d9b3c81f4a7e05d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay.Flight::Game.Gameplay.Flight.ShipExplosion

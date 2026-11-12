@@ -111,7 +111,7 @@ MonoBehaviour:
   _questPool: {fileID: 11400000, guid: f43a91a405a140c5b3e647cf9601dcb0, type: 2}
   _offerDialogueNode: QuestTrigger_Destroy_Pirates
   _turnInDialogueNode: QuestTurnIn_Destroy_Pirates
-  _prompt: Quest_Pirates
+  _prompt: Job offer
 --- !u!114 &4305747688559425089
 MonoBehaviour:
   m_ObjectHideFlags: 0

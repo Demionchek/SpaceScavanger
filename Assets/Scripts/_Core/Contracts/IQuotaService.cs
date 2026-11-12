@@ -5,8 +5,8 @@ namespace Game.Core
         // Квота активна и груз набран — игрок может сдать её сам.
         bool CanDeliver { get; }
 
-        // Числа текущей квоты, их печатает диалог офицера. 0 — квоты нет.
-        int Amount { get; }
+        // Накладная текущей квоты словами, её печатает диалог офицера. Пусто — квоты нет.
+        string Demand { get; }
         int SectorsLeft { get; }
 
         bool TryDeliver();

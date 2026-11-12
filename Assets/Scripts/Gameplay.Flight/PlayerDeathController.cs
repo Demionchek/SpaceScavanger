@@ -14,6 +14,8 @@ namespace Game.Gameplay.Flight
         private readonly EventBus _eventBus;
         private readonly PlayerMarker _player;
         private readonly Health _health;
+        private readonly ISoundService _sound;
+        private readonly ExplosionKit _explosions;
         private readonly GameObject _explosionPrefab;
         private readonly float _deathDelay;
 
@@ -22,11 +24,13 @@ namespace Game.Gameplay.Flight
         private bool _pending;
 
         public PlayerDeathController(EventBus eventBus, PlayerMarker player, Health health,
-            GameObject explosionPrefab, float deathDelay)
+            ISoundService sound, ExplosionKit explosions, GameObject explosionPrefab, float deathDelay)
         {
             _eventBus = eventBus;
             _player = player;
             _health = health;
+            _sound = sound;
+            _explosions = explosions;
             _explosionPrefab = explosionPrefab;
             _deathDelay = deathDelay;
         }
@@ -101,6 +105,12 @@ namespace Game.Gameplay.Flight
                 var explosion = UnityEngine.Object.Instantiate(_explosionPrefab,
                     _player.transform.position, Quaternion.identity);
                 UnityEngine.Object.Destroy(explosion, _timer + 1f);
+            }
+
+            // Свой взрыв — в 2D: он не «где-то там», и затухать с расстоянием ему незачем.
+            if (_explosions != null)
+            {
+                _sound?.Play(_explosions.RandomClip(), _explosions.MixerGroup);
             }
 
             _player.gameObject.SetActive(false);

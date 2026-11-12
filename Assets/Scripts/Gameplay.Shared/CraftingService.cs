@@ -33,6 +33,13 @@ namespace Game.Gameplay.Shared
                 return false;
             }
 
+            // Ступень крюка собирается только поверх предыдущей: иначе игрок собрал бы
+            // «Hook 4», получил свой +1 и не понял, почему уран всё равно не берётся.
+            if (recipe.RequiredUpgrade != null && !_upgrades.IsInstalled(recipe.RequiredUpgrade))
+            {
+                return false;
+            }
+
             foreach (var cost in recipe.Costs)
             {
                 if (_resources.GetAmount(cost.Type) < cost.Amount)

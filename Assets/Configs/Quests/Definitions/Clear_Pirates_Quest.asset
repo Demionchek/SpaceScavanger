@@ -18,6 +18,7 @@ MonoBehaviour:
   Goal: {fileID: 11400000, guid: 8ba3887ce6e940a18314fb8a18a75906, type: 2}
   OfferNode: QuestGiver_Clear_Pirates
   TurnInNode: QuestTurnIn_Clear_Pirates
+  Repeatable: 1
   OnStartEffects:
   - {fileID: 11400000, guid: c8dbf790000c464290766d0a5e0c71ff, type: 2}
   Rewards:

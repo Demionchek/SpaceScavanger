@@ -16,40 +16,45 @@ MonoBehaviour:
   - FromSector: 1
     EnemyPrefabs:
     - {fileID: 7038679251376370445, guid: b1e4524b8c8d4b12a8ece5abb6273018, type: 3}
-    EnemyCount: 2
-    EnemySpawnChance: 0.5
+    - {fileID: 7038679251376370445, guid: 5d3c3312ef9b40c3b3d5dc36a948d1ad, type: 3}
+    EnemyCount: 4
+    EnemySpawnChance: 0.7
     GroupSize: {x: 1, y: 2}
     GroupRadius: 8
-    ResourceCount: 50
-    JumpCost: 3
+    ResourceCount: 16
+    JumpCost: 10
   - FromSector: 3
     EnemyPrefabs:
     - {fileID: 7038679251376370445, guid: b1e4524b8c8d4b12a8ece5abb6273018, type: 3}
     - {fileID: 7038679251376370445, guid: 5d3c3312ef9b40c3b3d5dc36a948d1ad, type: 3}
-    EnemyCount: 3
-    EnemySpawnChance: 0.75
-    GroupSize: {x: 1, y: 2}
-    GroupRadius: 8
-    ResourceCount: 48
-    JumpCost: 5
-  - FromSector: 5
-    EnemyPrefabs:
-    - {fileID: 7038679251376370445, guid: 5d3c3312ef9b40c3b3d5dc36a948d1ad, type: 3}
-    - {fileID: 7038679251376370445, guid: e3d9496d54384a428aac3d1155297548, type: 3}
-    EnemyCount: 3
-    EnemySpawnChance: 0.85
-    GroupSize: {x: 2, y: 3}
-    GroupRadius: 8
-    ResourceCount: 45
-    JumpCost: 8
-  - FromSector: 8
-    EnemyPrefabs:
-    - {fileID: 7038679251376370445, guid: 5d3c3312ef9b40c3b3d5dc36a948d1ad, type: 3}
-    - {fileID: 7038679251376370445, guid: e3d9496d54384a428aac3d1155297548, type: 3}
     - {fileID: 7038679251376370445, guid: 599e407498634b1b8f6d326a5808b2b2, type: 3}
     EnemyCount: 4
+    EnemySpawnChance: 0.85
+    GroupSize: {x: 1, y: 3}
+    GroupRadius: 8
+    ResourceCount: 16
+    JumpCost: 12
+  - FromSector: 5
+    EnemyPrefabs:
+    - {fileID: 7038679251376370445, guid: b1e4524b8c8d4b12a8ece5abb6273018, type: 3}
+    - {fileID: 7038679251376370445, guid: 5d3c3312ef9b40c3b3d5dc36a948d1ad, type: 3}
+    - {fileID: 7038679251376370445, guid: 599e407498634b1b8f6d326a5808b2b2, type: 3}
+    - {fileID: 7038679251376370445, guid: e3d9496d54384a428aac3d1155297548, type: 3}
+    EnemyCount: 4
+    EnemySpawnChance: 0.9
+    GroupSize: {x: 2, y: 3}
+    GroupRadius: 8
+    ResourceCount: 15
+    JumpCost: 14
+  - FromSector: 8
+    EnemyPrefabs:
+    - {fileID: 7038679251376370445, guid: b1e4524b8c8d4b12a8ece5abb6273018, type: 3}
+    - {fileID: 7038679251376370445, guid: 5d3c3312ef9b40c3b3d5dc36a948d1ad, type: 3}
+    - {fileID: 7038679251376370445, guid: 599e407498634b1b8f6d326a5808b2b2, type: 3}
+    - {fileID: 7038679251376370445, guid: e3d9496d54384a428aac3d1155297548, type: 3}
+    EnemyCount: 5
     EnemySpawnChance: 1
     GroupSize: {x: 2, y: 3}
     GroupRadius: 8
-    ResourceCount: 40
-    JumpCost: 12
+    ResourceCount: 14
+    JumpCost: 15

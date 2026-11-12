@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6777066d5ef60524595dd6b0305f860c, type: 3}
+  m_Name: hook_upgrade_5_Recipe
+  m_EditorClassIdentifier: Core::Game.Core.CraftingRecipe
+  Costs:
+  - Type: 0
+    Amount: 240
+  - Type: 4
+    Amount: 15
+  Output: {fileID: 11400000, guid: 98956b6bf234459a86d0082b6c3c71c2, type: 2}
+  OutputCount: 1
+  RequiredUpgrade: {fileID: 11400000, guid: aa1176a4e4c146b08ea0db901a741695, type: 2}

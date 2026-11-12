@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1754a7c265f970c4daa3f4184f964c5a, type: 3}
   m_Name: UiInstaller
   m_EditorClassIdentifier: UI::Game.UI.UiInstaller
+  _windowFrame: {fileID: 6025214163711916469, guid: dc9fd0c14997fc049884dfd51055b955, type: 3}
+  _windowField: {fileID: 8727465677411092525, guid: 88c70e0e11dcd2049b475b1cf07d17d6, type: 3}
+  _windowPixelsPerUnit: 0.25

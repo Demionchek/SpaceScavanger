@@ -48,7 +48,7 @@ namespace Game.UI
             return Builder.ToString();
         }
 
-        private static string Label(ShipStat stat) => stat switch
+        public static string Label(ShipStat stat) => stat switch
         {
             ShipStat.ThrustForce => "Thrust",
             ShipStat.Damage => "Damage",

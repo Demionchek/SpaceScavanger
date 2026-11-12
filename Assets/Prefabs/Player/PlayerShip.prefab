@@ -863,6 +863,13 @@ MonoBehaviour:
   _interactableMask:
     serializedVersion: 2
     m_Bits: 64
+  _hintFont: {fileID: 11400000, guid: 36877b1e464cf814a939b3e854f5fca7, type: 2}
+  _hintFontSize: 0.25
+  _hintColor: {r: 1, g: 1, b: 1, a: 1}
+  _hintSize: {x: 4, y: 0.5}
+  _hintMargin: 0.35
+  _hintSortingOrder: 40
+  _hintRefreshInterval: 0.1
 --- !u!114 &4408088517373371499
 MonoBehaviour:
   m_ObjectHideFlags: 0

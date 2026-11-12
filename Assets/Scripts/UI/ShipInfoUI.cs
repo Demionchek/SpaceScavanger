@@ -29,6 +29,14 @@ namespace Game.UI
             new("Thrust", ShipStat.ThrustForce, "{0:0.#}")
         };
 
+        // Каталог идёт семействами в этом порядке: крюк первым — он решает, какие
+        // ресурсы вообще доступны.
+        private static readonly ShipStat[] Families =
+        {
+            ShipStat.HookLevel, ShipStat.Damage, ShipStat.FireRate,
+            ShipStat.MaxHealth, ShipStat.ThrustForce, ShipStat.RadarRange
+        };
+
         private static readonly ReadoutRow[] LeftStats =
         {
             new("Hook level", ShipStat.HookLevel, "{0:0}"),
@@ -259,7 +267,11 @@ namespace Game.UI
         }
 
         // Экран показывает не только установленное, но и всё, что в игре есть:
-        // пустой список из нуля строк не говорит игроку, к чему он идёт.
+        // пустой список из нуля строк не говорит игроку, к чему он идёт. Но ступеней
+        // стало два десятка, поэтому строка — это семейство, а не предмет: сколько
+        // ступеней закрыто и что со следующей. Семейство — это стат, который оно
+        // двигает, у каждого свой. Весь блок обязан уложиться в семь строк: поле
+        // 720x330 при кегле 36, а сразу под ним начинается корпус с кнопкой ремонта.
         private string BuildUpgrades()
         {
             _builder.Clear();
@@ -267,18 +279,9 @@ namespace Game.UI
 
             var any = false;
 
-            if (_registry.Items != null)
+            foreach (var stat in Families)
             {
-                foreach (var item in _registry.Items)
-                {
-                    if (item is not UpgradeItemDefinition upgrade)
-                    {
-                        continue;
-                    }
-
-                    any = true;
-                    AppendUpgrade(upgrade);
-                }
+                any |= AppendFamily(stat);
             }
 
             if (!any)
@@ -289,36 +292,81 @@ namespace Game.UI
             return _builder.ToString();
         }
 
-        private void AppendUpgrade(UpgradeItemDefinition upgrade)
+        // Ступени идут в порядке реестра — он же порядок, в котором они собираются.
+        private bool AppendFamily(ShipStat stat)
         {
-            var installed = _upgradeService.IsInstalled(upgrade);
-            _builder.Append(installed ? "[x] " : "[ ] ").AppendLine(upgrade.DisplayName);
-            _builder.Append("   <size=80%>").Append(Status(upgrade, installed));
-
-            var effect = UpgradeEffectText.Describe(upgrade);
-            if (!string.IsNullOrEmpty(effect))
+            if (_registry.Items == null)
             {
-                _builder.Append($" <color={Dim}>— {effect}</color>");
+                return false;
             }
 
-            _builder.AppendLine("</size>");
+            UpgradeItemDefinition next = null;
+            var levels = 0;
+            var fitted = 0;
+
+            foreach (var item in _registry.Items)
+            {
+                if (item is not UpgradeItemDefinition upgrade || !Drives(upgrade, stat))
+                {
+                    continue;
+                }
+
+                levels++;
+
+                if (_upgradeService.IsInstalled(upgrade))
+                {
+                    fitted++;
+                }
+                else if (next == null)
+                {
+                    next = upgrade;
+                }
+            }
+
+            if (levels == 0)
+            {
+                return false;
+            }
+
+            _builder.Append(UpgradeEffectText.Label(stat))
+                .Append("<pos=45%>").Append(fitted).Append('/').Append(levels)
+                .Append("<pos=58%><size=80%>")
+                .Append(next != null ? Status(next) : $"<color={Good}>complete</color>")
+                .AppendLine("</size>");
+
+            return true;
         }
 
-        private string Status(UpgradeItemDefinition upgrade, bool installed)
+        private static bool Drives(UpgradeItemDefinition upgrade, ShipStat stat)
         {
-            if (installed)
+            if (upgrade.Modifiers == null)
             {
-                return $"<color={Good}>installed</color>";
+                return false;
             }
 
-            if (_itemService.GetAmount(upgrade) > 0)
+            foreach (var modifier in upgrade.Modifiers)
             {
-                return $"<color={Warn}>in the hold — fit it at the bench</color>";
+                if (modifier.Stat == stat)
+                {
+                    return true;
+                }
             }
 
-            return HasSchematic(upgrade)
-                ? $"<color={Dim}>schematic known — build it at the bench</color>"
-                : $"<color={Faint}>schematic not found yet</color>";
+            return false;
+        }
+
+        // Коротко: в третьей колонке около 300 px, и длинная строка тут же уезжает
+        // на второй ряд — а их всего семь, дальше начинается блок корпуса.
+        private string Status(UpgradeItemDefinition next)
+        {
+            if (_itemService.GetAmount(next) > 0)
+            {
+                return $"<color={Warn}>in the hold</color>";
+            }
+
+            return HasSchematic(next)
+                ? $"<color={Dim}>at the bench</color>"
+                : $"<color={Faint}>no schematic</color>";
         }
 
         private bool HasSchematic(UpgradeItemDefinition upgrade)

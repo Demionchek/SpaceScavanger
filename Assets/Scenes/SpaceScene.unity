@@ -260,7 +260,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1068,6 +1068,7 @@ RectTransform:
   - {fileID: 1748157454}
   - {fileID: 122127406}
   - {fileID: 1910000002}
+  - {fileID: 1950000002}
   m_Father: {fileID: 519420032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2671,7 +2672,7 @@ MonoBehaviour:
   _background: {r: 0, g: 0, b: 0, a: 0.55}
   _corner: {x: 40, y: 40}
   _padding: {x: 28, y: 18}
-  _toggleKey: 94
+  _toggleKey: 95
   _visibleByDefault: 1
 --- !u!1 &1920000001
 GameObject:
@@ -4794,7 +4795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2408561130579900555, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
       propertyPath: _effects.Array.size
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2408561130579900555, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
       propertyPath: '_quests.Array.data[0]'
@@ -4864,6 +4865,10 @@ PrefabInstance:
       propertyPath: '_effects.Array.data[12]'
       value: 
       objectReference: {fileID: 11400000, guid: 186e383349584e02a0b162bcb386e3f9, type: 2}
+    - target: {fileID: 2408561130579900555, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
+      propertyPath: '_effects.Array.data[13]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c25e7b03f9a4d16ae5713c9f0b4268d, type: 2}
     - target: {fileID: 3761060269368579049, guid: 2acc4a3ca29dd5541832eee56701cad8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1714.9805
@@ -5119,3 +5124,88 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1484514353}
   - {fileID: 649062114}
+--- !u!1 &1950000001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1950000002}
+  - component: {fileID: 1950000003}
+  - component: {fileID: 1950000004}
+  m_Layer: 5
+  m_Name: PuzzleWindows
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1950000002
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950000001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 695936564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1950000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950000001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3e8d1947af402c85d9e0c3b7a21f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UI::Game.UI.TimingPuzzleUI
+  _font: {fileID: 11400000, guid: 36877b1e464cf814a939b3e854f5fca7, type: 2}
+  _panelSize: {x: 1600, y: 1000}
+  _frameInset: {x: 120, y: 200}
+  _trackSize: {x: 1200, y: 140}
+  _bandInset: 46
+  _markerWidth: 20
+  _markerOverhang: 35
+  _actionKey: 19
+  _backdrop: {r: 0, g: 0, b: 0, a: 0.72}
+  _frameTint: {r: 1, g: 1, b: 1, a: 1}
+  _band: {r: 0.33, g: 0.85, b: 0.4, a: 1}
+  _marker: {r: 1, g: 1, b: 1, a: 1}
+  _textColor: {r: 1, g: 1, b: 1, a: 1}
+  _dimColor: {r: 0.65, g: 0.7, b: 0.78, a: 1}
+--- !u!114 &1950000004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950000001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f2c5a7e3d194b60a7c1e8b4d20f693a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UI::Game.UI.TypingPuzzleUI
+  _font: {fileID: 11400000, guid: 36877b1e464cf814a939b3e854f5fca7, type: 2}
+  _panelSize: {x: 1600, y: 1000}
+  _frameInset: {x: 120, y: 200}
+  _wordPlateSize: {x: 1200, y: 190}
+  _wordFontSize: 120
+  _backdrop: {r: 0, g: 0, b: 0, a: 0.72}
+  _frameTint: {r: 1, g: 1, b: 1, a: 1}
+  _typed: {r: 0.33, g: 0.85, b: 0.4, a: 1}
+  _textColor: {r: 1, g: 1, b: 1, a: 1}
+  _dimColor: {r: 0.65, g: 0.7, b: 0.78, a: 1}

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Core::Game.Core.CharacterDefinition
   DisplayName: Vee
   SpeakerName: Vee
-  Icon: {fileID: 0}
+  Icon: {fileID: 6887405896452322503, guid: 1aa040bcf223a8843bb985c3d703b4a9, type: 3}
   Faction: {fileID: 11400000, guid: f6886da06c3c98d4a9c17b208c2c2c49, type: 2}

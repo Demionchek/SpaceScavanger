@@ -21,6 +21,7 @@ namespace Game.Gameplay.Flight
         private GameContext _gameContext;
         private EventBus _eventBus;
         private QuestDefinition _resolved;
+        private bool _resolveTried;
 
         [Inject]
         public void Construct(IQuestService questService, ISectorService sectors, GameContext gameContext,
@@ -32,9 +33,33 @@ namespace Game.Gameplay.Flight
             _eventBus = eventBus;
         }
 
-        public string Prompt => _prompt;
+        // Подпись — название самого задания, а не имя префаба: один и тот же
+        // квестодатель берёт из пула что угодно, и "Quest_Pirates" над перевозчиком
+        // груза просто врал.
+        public string Prompt
+        {
+            get
+            {
+                var quest = Quest;
+                return quest != null && !string.IsNullOrEmpty(quest.Title) ? quest.Title : _prompt;
+            }
+        }
 
-        private QuestDefinition Quest => _resolved != null ? _resolved : _resolved = Resolve();
+        // Подсказку спрашивают десять раз в секунду, а Resolve обходит всю сцену:
+        // пустой результат запоминается так же, как найденный.
+        private QuestDefinition Quest
+        {
+            get
+            {
+                if (_resolved != null || _resolveTried)
+                {
+                    return _resolved;
+                }
+
+                _resolveTried = true;
+                return _resolved = Resolve();
+            }
+        }
 
         public void Interact(PlayerContext ctx)
         {
@@ -76,7 +101,8 @@ namespace Game.Gameplay.Flight
             string.IsNullOrEmpty(questNode) ? fallback : questNode;
 
         // Уже начатое задание важнее нового: иначе после загрузки этот же NPC
-        // предложил бы второе и не принял бы первое.
+        // предложил бы второе и не принял бы первое. Заказ, который уже выбрал
+        // сосед по сектору, не в счёт — квестодателей здесь несколько.
         private QuestDefinition Resolve()
         {
             if (_quest != null || _questPool == null)
@@ -84,30 +110,72 @@ namespace Game.Gameplay.Flight
                 return _quest;
             }
 
+            var others = FindObjectsByType<QuestGiverComponent>(FindObjectsInactive.Exclude,
+                FindObjectsSortMode.None);
+
             QuestDefinition fresh = null;
-            var seen = 0;
+            QuestDefinition repeat = null;
+            var freshSeen = 0;
+            var repeatSeen = 0;
 
             foreach (var quest in _questPool.ForSector(_sectors.Current))
             {
-                var state = _questService.GetState(quest);
-                if (state == QuestState.Active)
-                {
-                    return quest;
-                }
-
-                if (state != QuestState.NotStarted)
+                if (TakenByAnother(others, quest))
                 {
                     continue;
                 }
 
-                seen++;
-                if (Random.Range(0, seen) == 0)
+                switch (_questService.GetState(quest))
                 {
-                    fresh = quest;
+                    case QuestState.Active:
+                        return quest;
+
+                    case QuestState.NotStarted:
+                        freshSeen++;
+                        if (Random.Range(0, freshSeen) == 0)
+                        {
+                            fresh = quest;
+                        }
+
+                        break;
+
+                    case QuestState.TurnedIn when quest.Repeatable:
+                        repeatSeen++;
+                        if (Random.Range(0, repeatSeen) == 0)
+                        {
+                            repeat = quest;
+                        }
+
+                        break;
                 }
             }
 
-            return fresh;
+            if (fresh != null)
+            {
+                return fresh;
+            }
+
+            // Новых заказов в секторе не осталось: повторяемый возвращается в пул,
+            // иначе квестодатель стоял бы молча.
+            if (repeat != null)
+            {
+                _questService.Reset(repeat);
+            }
+
+            return repeat;
+        }
+
+        private bool TakenByAnother(QuestGiverComponent[] others, QuestDefinition quest)
+        {
+            foreach (var other in others)
+            {
+                if (other != this && other._resolved == quest)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

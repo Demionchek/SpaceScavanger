@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Core::Game.Core.CharacterDefinition
   DisplayName: Sid
   SpeakerName: Sid
-  Icon: {fileID: 0}
+  Icon: {fileID: -4188324876303207075, guid: 957f3128c1e324243a5b423a46e30168, type: 3}
   Faction: {fileID: 11400000, guid: f6886da06c3c98d4a9c17b208c2c2c49, type: 2}

@@ -72,12 +72,12 @@ namespace Game.Gameplay.Shared
             }
         }
 
-        public int Amount
+        public string Demand
         {
             get
             {
                 var goal = ActiveGoal();
-                return goal != null ? goal.Amount : 0;
+                return goal != null ? goal.DemandText : string.Empty;
             }
         }
 

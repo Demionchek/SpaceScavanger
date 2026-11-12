@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game.Core;
 using Game.Data;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -12,11 +13,16 @@ namespace Game.Gameplay.Flight
     {
         private const float CellSize = 0.64f;
 
+        // Шаг точек контура на радаре: реже — периметр рассыпается, чаще — сливается
+        // в линию и съедает пул точек миникарты.
+        private const float OutlineStep = 1.3f;
+
         private const int Full = SpaceTileSet.North | SpaceTileSet.East
                                  | SpaceTileSet.South | SpaceTileSet.West;
 
         private Tilemap _ground;
         private Tilemap _details;
+        private IslandOutline _outline;
 
         public float WorldRadius { get; private set; }
 
@@ -91,6 +97,102 @@ namespace Game.Gameplay.Flight
                     _details.SetTile(new Vector3Int(cell.x, cell.y, 0), Pick(set.Details, ref state));
                 }
             }
+
+            // Контур живёт на объекте с коллайдером: радар доходит до островка
+            // сканированием физики, а дальше читает точки с найденного объекта.
+            _outline = _ground.gameObject.AddComponent<IslandOutline>();
+            _outline.Set(Outline(shape));
+        }
+
+        // Точка на породе в сторону towards, плюс отступ наружу. Берётся с того же
+        // контура, что рисует радар: формульный радиус — это внешняя граница всех
+        // клеток, а настоящий силуэт после обрезки куда меньше, и находка у него
+        // висела бы в пустоте. Угол возвращается готовым поворотом спрайта: верх
+        // смотрит от островка, то есть находка стоит на поверхности.
+        public bool TrySurfacePoint(Vector2 towards, float standoff, out Vector2 point,
+            out float angleDegrees)
+        {
+            point = towards;
+            angleDegrees = 0f;
+
+            if (_outline == null || _outline.Points.Count == 0)
+            {
+                return false;
+            }
+
+            var center = (Vector2)transform.position;
+            var wanted = towards - center;
+            wanted = wanted.sqrMagnitude > 0.0001f ? wanted.normalized : Vector2.up;
+
+            var best = Vector2.zero;
+            var bestDot = float.NegativeInfinity;
+            foreach (var candidate in _outline.Points)
+            {
+                var offset = candidate - center;
+                if (offset.sqrMagnitude < 0.0001f)
+                {
+                    continue;
+                }
+
+                var dot = Vector2.Dot(offset.normalized, wanted);
+                if (dot > bestDot)
+                {
+                    bestDot = dot;
+                    best = candidate;
+                }
+            }
+
+            if (bestDot == float.NegativeInfinity)
+            {
+                return false;
+            }
+
+            var outward = (best - center).normalized;
+            point = best + outward * standoff;
+            angleDegrees = Mathf.Atan2(outward.y, outward.x) * Mathf.Rad2Deg - 90f;
+            return true;
+        }
+
+        // По одной точке на угловой сектор — самая дальняя кромка в нём. Контур
+        // снимается с настоящих клеток, а не с формулы края: обрезка тонких клеток
+        // сдвигает силуэт на пару тайлов, и на радаре это было бы видно.
+        private Vector2[] Outline(HashSet<Vector2Int> shape)
+        {
+            var sectors = Mathf.Clamp(
+                Mathf.RoundToInt(2f * Mathf.PI * WorldRadius / OutlineStep), 8, 32);
+            var best = new Vector2[sectors];
+            var bestSqr = new float[sectors];
+
+            foreach (var cell in shape)
+            {
+                if (Mask(shape, cell) == Full)
+                {
+                    continue;
+                }
+
+                var local = new Vector2((cell.x + 0.5f) * CellSize, (cell.y + 0.5f) * CellSize);
+                var angle = Mathf.Atan2(local.y, local.x) + Mathf.PI;
+                var index = Mathf.Clamp((int)(angle / (Mathf.PI * 2f) * sectors), 0, sectors - 1);
+
+                var sqr = local.sqrMagnitude;
+                if (sqr > bestSqr[index])
+                {
+                    bestSqr[index] = sqr;
+                    best[index] = local;
+                }
+            }
+
+            var origin = (Vector2)transform.position;
+            var points = new List<Vector2>(sectors);
+            for (var i = 0; i < sectors; i++)
+            {
+                if (bestSqr[i] > 0f)
+                {
+                    points.Add(origin + best[i]);
+                }
+            }
+
+            return points.ToArray();
         }
 
         private void EnsureTilemaps(int layer, int groundOrder, int detailOrder)

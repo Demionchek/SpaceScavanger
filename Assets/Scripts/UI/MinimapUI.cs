@@ -17,11 +17,20 @@ namespace Game.UI
         [SerializeField] private LayerMask _resourceMask;
         [SerializeField] private LayerMask _enemyMask;
         [SerializeField] private LayerMask _npcMask;
+
+        [Tooltip("Слой островков: должен совпадать с IslandLayer в ZoneConfig (3 — Ground).")]
+        [SerializeField] private LayerMask _islandMask = 1 << 3;
         [SerializeField] private Color _resourceColor = new(0.3f, 0.9f, 1f, 1f);
         [SerializeField] private Color _enemyColor = Color.red;
         [SerializeField] private Color _npcColor = Color.yellow;
         [SerializeField] private Color _boundaryColor = new(1f, 0.4f, 0.1f, 1f);
         [SerializeField] private int _boundarySamples = 48;
+
+        [Tooltip("Периметр островков. Точек хватает на все островки в дальности: " +
+                 "кончились — последний нарисуется не полностью.")]
+        [SerializeField] private Color _islandColor = new(0.55f, 0.55f, 0.55f, 1f);
+
+        [SerializeField] private int _maxIslandDots = 128;
 
         [Header("Запомненные объекты (RadarLandmark)")]
         [SerializeField] private int _maxLandmarks = 8;
@@ -51,6 +60,8 @@ namespace Game.UI
 
         private readonly List<Image> _blips = new();
         private readonly List<Image> _boundaryBlips = new();
+        private readonly List<Image> _islandDots = new();
+        private readonly List<IslandOutline> _islands = new();
         private readonly List<Collider2D> _hits = new();
         private readonly HashSet<Transform> _seen = new();
         private readonly List<Detected> _detected = new();
@@ -84,8 +95,17 @@ namespace Game.UI
             {
                 useLayerMask = true,
                 useTriggers = true,
-                layerMask = _resourceMask | _enemyMask | _npcMask
+                layerMask = _resourceMask | _enemyMask | _npcMask | _islandMask
             };
+
+            // Контуры создаются первыми, чтобы остальные точки рисовались поверх них.
+            for (var i = 0; i < _maxIslandDots; i++)
+            {
+                var dot = Instantiate(_blipPrefab, _radarArea);
+                dot.color = _islandColor;
+                dot.enabled = false;
+                _islandDots.Add(dot);
+            }
 
             for (var i = 0; i < _maxBlips; i++)
             {
@@ -134,6 +154,7 @@ namespace Game.UI
                 Scan();
             }
 
+            RenderIslands();
             Render();
             RenderLandmarks();
             RenderBoundary();
@@ -145,9 +166,10 @@ namespace Game.UI
             var count = Physics2D.OverlapCircle(center, CurrentRange(), _filter, _hits);
 
             _detected.Clear();
+            _islands.Clear();
             _seen.Clear();
 
-            for (var i = 0; i < count && _detected.Count < _blips.Count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var collider = _hits[i];
                 if (collider == null)
@@ -170,7 +192,12 @@ namespace Game.UI
                 {
                     Discover(landmark);
                 }
-                else if (TryClassify(collider.gameObject.layer, out var color))
+                else if (entity.TryGetComponent<IslandOutline>(out var outline))
+                {
+                    _islands.Add(outline);
+                }
+                else if (_detected.Count < _blips.Count &&
+                         TryClassify(collider.gameObject.layer, out var color))
                 {
                     _detected.Add(new Detected { Transform = entity, Color = color });
                 }
@@ -273,6 +300,44 @@ namespace Game.UI
             {
                 _landmarkIcons[index].enabled = false;
                 _landmarkArrows[index].enabled = false;
+            }
+        }
+
+        // Островок обозначается периметром, а не точкой: во что врезаешься — это его
+        // край, и на радаре он должен читаться как препятствие.
+        private void RenderIslands()
+        {
+            var range = CurrentRange();
+            var radarRadius = _radarArea.rect.width * 0.5f;
+            var center = _player.Position;
+            var dotIndex = 0;
+
+            for (var i = 0; i < _islands.Count && dotIndex < _islandDots.Count; i++)
+            {
+                var outline = _islands[i];
+                if (outline == null)
+                {
+                    continue;
+                }
+
+                var points = outline.Points;
+                for (var p = 0; p < points.Count && dotIndex < _islandDots.Count; p++)
+                {
+                    var offset = (points[p] - center) / range * radarRadius;
+                    if (offset.sqrMagnitude > radarRadius * radarRadius)
+                    {
+                        continue;
+                    }
+
+                    var dot = _islandDots[dotIndex++];
+                    dot.enabled = true;
+                    dot.rectTransform.anchoredPosition = offset;
+                }
+            }
+
+            for (; dotIndex < _islandDots.Count; dotIndex++)
+            {
+                _islandDots[dotIndex].enabled = false;
             }
         }
 

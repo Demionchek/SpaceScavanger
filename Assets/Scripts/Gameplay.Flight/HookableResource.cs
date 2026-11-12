@@ -24,6 +24,11 @@ namespace Game.Gameplay.Flight
 
         public int RequiredHookLevel => _requiredHookLevel;
         public Vector2 Position => transform.position;
+        public ResourceType ResourceType => _resourceType;
+
+        // Спрашивают и у префаба, мимо сцены: так награда за головоломку считается
+        // в том же выходе, что и обычный обломок этого вида.
+        public int RollYield() => _randomAmount ? Random.Range(_minAmount, _maxAmount + 1) : _minAmount;
 
         private ISoundService _soundService;
         private float _rotatationAngle;
@@ -64,8 +69,7 @@ namespace Game.Gameplay.Flight
 
         public void OnGrabbed(HookContext ctx)
         {
-            var amount = _randomAmount ? Random.Range(_minAmount, _maxAmount + 1) : _minAmount;
-            ctx.ResourceService.Add(_resourceType, amount);
+            ctx.ResourceService.Add(_resourceType, RollYield());
             _soundService.PlayAtPosition(_breakClip, transform.position, _breakMixerGroup);
             Destroy(gameObject);
         }

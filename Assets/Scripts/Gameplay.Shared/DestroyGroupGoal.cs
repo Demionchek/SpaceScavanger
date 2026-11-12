@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay.Shared
 {
-    public sealed class DestroyGroupGoal : IQuestGoal, ISaveableGoal
+    public sealed class DestroyGroupGoal : IQuestGoal, ISaveableGoal, IQuestGoalStatus
     {
         private readonly QuestDefinition _quest;
         private readonly string _groupTag;
@@ -22,6 +22,10 @@ namespace Game.Gameplay.Shared
         public bool IsComplete => _destroyedCount >= _targetCount;
 
         public float Progress => Mathf.Clamp01((float)_destroyedCount / _targetCount);
+
+        public string Status => string.IsNullOrEmpty(_groupTag)
+            ? $"{_destroyedCount}/{_targetCount} destroyed"
+            : $"{_groupTag} {_destroyedCount}/{_targetCount}";
 
         public void Bind(EventBus bus)
         {

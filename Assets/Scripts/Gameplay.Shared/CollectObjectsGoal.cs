@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay.Shared
 {
-    public sealed class CollectObjectsGoal : IQuestGoal, ISaveableGoal
+    public sealed class CollectObjectsGoal : IQuestGoal, ISaveableGoal, IQuestGoalStatus
     {
         private readonly QuestDefinition _quest;
         private readonly int _count;
@@ -20,6 +20,8 @@ namespace Game.Gameplay.Shared
         public bool IsComplete => _collected >= _count;
 
         public float Progress => Mathf.Clamp01((float)_collected / _count);
+
+        public string Status => $"{_collected}/{_count} collected";
 
         public void Bind(EventBus bus)
         {

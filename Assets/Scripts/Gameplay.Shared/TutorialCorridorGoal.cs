@@ -4,7 +4,7 @@ namespace Game.Gameplay.Shared
 {
     // Коридор обучения зачищен — та же проверка, что открывает сюжетный бит,
     // поэтому гейт червоточины и сюжет больше не расходятся.
-    public sealed class TutorialCorridorGoal : IQuestGoal, ISaveableGoal
+    public sealed class TutorialCorridorGoal : IQuestGoal, ISaveableGoal, IQuestGoalStatus
     {
         private readonly QuestDefinition _quest;
 
@@ -19,6 +19,8 @@ namespace Game.Gameplay.Shared
         public bool IsComplete => _cleared;
 
         public float Progress => _cleared ? 1f : 0f;
+
+        public string Status => "corridor not cleared";
 
         public void Bind(EventBus bus)
         {

@@ -18,6 +18,7 @@ MonoBehaviour:
   Goal: {fileID: 11400000, guid: 53f7c74080fa4adeba69d99d45ec15b7, type: 2}
   OfferNode: QuestGiver_Haul_Iron
   TurnInNode: QuestTurnIn_Haul_Iron
+  Repeatable: 1
   OnStartEffects: []
   Rewards:
   - {fileID: 11400000, guid: 70ab557d4a8dda64ea047aeac7ecc2ff, type: 2}

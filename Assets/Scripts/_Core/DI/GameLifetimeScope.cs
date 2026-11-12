@@ -38,6 +38,7 @@ namespace Game.Core
             builder.RegisterEntryPoint<CombatStateTracker>(Lifetime.Singleton);
             builder.RegisterEntryPoint<HudVisibility>(Lifetime.Singleton).AsSelf();
             builder.RegisterEntryPoint<GameNotificationsSource>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<DebugMode>(Lifetime.Singleton).AsSelf();
             builder.RegisterEntryPoint<DebugStateHotkeys>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugRandomEventHotkey>(Lifetime.Singleton);
             builder.RegisterEntryPoint<DebugRegenerateHotkey>(Lifetime.Singleton);

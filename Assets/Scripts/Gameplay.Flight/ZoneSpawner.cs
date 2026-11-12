@@ -111,7 +111,7 @@ namespace Game.Gameplay.Flight
         private void Generate()
         {
             _contentSector = _sectors.Current;
-            var content = _generator.Generate(_config, Tier(), _currentSeed);
+            var content = _generator.Generate(_config, Tier(), _contentSector, _currentSeed);
 
             foreach (var spawn in content.ResourceSpawns)
             {
@@ -128,14 +128,35 @@ namespace Game.Gameplay.Flight
                 SpawnItem(ZoneItemKind.Trader, content.TraderSpawn.Value.PrefabIndex, content.TraderSpawn.Value.Position, 0f);
             }
 
-            if (content.QuestGiverSpawn.HasValue)
+            foreach (var spawn in content.QuestGiverSpawns)
             {
-                SpawnItem(ZoneItemKind.QuestGiver, content.QuestGiverSpawn.Value.PrefabIndex, content.QuestGiverSpawn.Value.Position, 0f);
+                SpawnItem(ZoneItemKind.QuestGiver, spawn.PrefabIndex, spawn.Position, 0f);
             }
 
             foreach (var spawn in content.IslandSpawns)
             {
                 SpawnItem(ZoneItemKind.Island, spawn.TileSetIndex, spawn.Position, 0f);
+            }
+
+            // Генератор целит в сторону островка, но силуэт известен только после
+            // постройки, поэтому находка садится на кромку уже здесь. В сейв уходит
+            // готовая точка, и загрузка ничего не пересчитывает — иначе отступ
+            // накапливался бы с каждым разом.
+            var islands = _spaceRoot.Content.GetComponentsInChildren<AsteroidIsland>();
+            foreach (var spawn in content.PuzzleSpawns)
+            {
+                var position = spawn.Position;
+                var rotation = spawn.Rotation;
+                var island = NearestIsland(islands, position);
+
+                if (island != null && island.TrySurfacePoint(position, _config.PuzzleIslandMargin,
+                        out var surface, out var angle))
+                {
+                    position = surface;
+                    rotation = angle;
+                }
+
+                SpawnItem(ZoneItemKind.Puzzle, spawn.PrefabIndex, position, rotation);
             }
 
             if (content.WormholeSpawn.HasValue)
@@ -218,6 +239,24 @@ namespace Game.Gameplay.Flight
             tag.PrefabIndex = tileSetIndex;
         }
 
+        private static AsteroidIsland NearestIsland(AsteroidIsland[] islands, Vector2 point)
+        {
+            AsteroidIsland best = null;
+            var bestSqr = float.PositiveInfinity;
+
+            foreach (var island in islands)
+            {
+                var sqr = ((Vector2)island.transform.position - point).sqrMagnitude;
+                if (sqr < bestSqr)
+                {
+                    bestSqr = sqr;
+                    best = island;
+                }
+            }
+
+            return best;
+        }
+
         private ZoneTier Tier() => _progression != null ? _progression.GetTier(_contentSector) : null;
 
         private GameObject[] EnemyPrefabs()
@@ -228,13 +267,22 @@ namespace Game.Gameplay.Flight
 
         private GameObject GetPrefab(ZoneItemKind kind, int index) => kind switch
         {
-            ZoneItemKind.Resource => At(_config.ResourcePrefabs, index),
+            ZoneItemKind.Resource => ResourcePrefab(index),
             ZoneItemKind.Enemy => At(EnemyPrefabs(), index),
             ZoneItemKind.Trader => At(_config.TraderPrefabs, index),
             ZoneItemKind.QuestGiver => At(_config.QuestGiverPrefabs, index),
             ZoneItemKind.Wormhole => _config.WormholePrefab,
+            ZoneItemKind.Puzzle => At(_config.PuzzlePrefabs, index),
             _ => null
         };
+
+        private GameObject ResourcePrefab(int index)
+        {
+            var spawns = _config.ResourceSpawns;
+            return spawns != null && index >= 0 && index < spawns.Length && spawns[index] != null
+                ? spawns[index].Prefab
+                : null;
+        }
 
         private static GameObject At(GameObject[] array, int index) =>
             array != null && index >= 0 && index < array.Length ? array[index] : null;

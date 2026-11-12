@@ -49,7 +49,56 @@ namespace Game.UI
         private void Awake()
         {
             _closeButton.onClick.AddListener(Close);
+            EnsureScroll();
             _panel.SetActive(false);
+        }
+
+        // Список у торговца длиннее окна — схемы одни чего стоят, — а в префабе он
+        // просто лежит в панели и уходит за край. Прокрутка собирается кодом, чтобы
+        // окно не пришлось перекладывать руками.
+        private void EnsureScroll()
+        {
+            if (_offersContainer is not RectTransform content
+                || content.GetComponentInParent<ScrollRect>() != null
+                || content.parent is not RectTransform parent)
+            {
+                return;
+            }
+
+            var viewport = new GameObject("Viewport", typeof(RectTransform), typeof(RectMask2D));
+            var viewportRect = (RectTransform)viewport.transform;
+            viewportRect.SetParent(parent, false);
+
+            // На месте контейнера в иерархии, иначе список ляжет поверх кнопки закрытия.
+            viewportRect.SetSiblingIndex(content.GetSiblingIndex());
+            viewportRect.anchorMin = content.anchorMin;
+            viewportRect.anchorMax = content.anchorMax;
+            viewportRect.pivot = content.pivot;
+            viewportRect.anchoredPosition = content.anchoredPosition;
+            viewportRect.sizeDelta = content.sizeDelta;
+
+            content.SetParent(viewportRect, false);
+            content.anchorMin = new Vector2(0f, 1f);
+            content.anchorMax = new Vector2(1f, 1f);
+            content.pivot = new Vector2(0.5f, 1f);
+            content.anchoredPosition = Vector2.zero;
+            content.sizeDelta = Vector2.zero;
+
+            // Без фиттера высота контента остаётся нулевой и прокручивать нечего.
+            var fitter = content.gameObject.AddComponent<ContentSizeFitter>();
+            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+            // Прозрачная подложка ловит колесо и над пустым местом списка: без
+            // графики ScrollRect получает события только поверх самих строк.
+            viewport.AddComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
+
+            var scroll = viewport.AddComponent<ScrollRect>();
+            scroll.content = content;
+            scroll.viewport = viewportRect;
+            scroll.horizontal = false;
+            scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            scroll.scrollSensitivity = 60f;
         }
 
         private void OnEnable()
@@ -162,15 +211,44 @@ namespace Game.UI
 
         private void TryBuyRecipe(RecipeTradeOffer offer)
         {
-            _tradeService.BuyRecipe(offer.Recipe, offer.Price);
+            if (!_tradeService.BuyRecipe(offer.Recipe, offer.Price))
+            {
+                WarnShortOnCredits(offer.Price);
+            }
+
             Refresh();
+        }
+
+        // Кнопка, которая молча ничего не делает, читается как сломанная.
+        private void WarnShortOnCredits(int price)
+        {
+            _eventBus.Publish(new WarningMessageEvent(
+                $"Not enough credits: {price} needed, {_resourceService.GetAmount(ResourceType.Credits)} aboard"));
+        }
+
+        private void WarnNothingToSell(string what)
+        {
+            _eventBus.Publish(new WarningMessageEvent($"Not enough {what} in the hold to sell"));
         }
 
         private void AddRow(Sprite icon, string name, int owned, int buyPrice, int sellPrice, Action<int> onBuy, Action<int> onSell)
         {
             var row = Instantiate(_offerRowPrefab, _offersContainer);
             _rows.Add(row);
-            row.GetComponent<TradeOfferRowUI>().Set(icon, name, owned, $"Buy {buyPrice} / Sell {sellPrice}", onBuy, onSell);
+            row.GetComponent<TradeOfferRowUI>().Set(icon, name, owned, PriceLabel(buyPrice, sellPrice),
+                onBuy, onSell);
+        }
+
+        // Антиматерия продаётся в одну сторону, и "Sell 0" в такой строке читалось бы
+        // как поломка, а не как отказ торговца её выкупать. Рецепты так и печатались.
+        private static string PriceLabel(int buyPrice, int sellPrice)
+        {
+            if (buyPrice <= 0)
+            {
+                return $"Sell {sellPrice}";
+            }
+
+            return sellPrice > 0 ? $"Buy {buyPrice} / Sell {sellPrice}" : $"Buy {buyPrice}";
         }
 
         private void ClearRows()
@@ -185,25 +263,41 @@ namespace Game.UI
 
         private void TryBuyResource(ResourceTradeOffer offer, int quantity)
         {
-            _tradeService.BuyResource(offer.Resource, offer.BuyPrice, quantity);
+            if (!_tradeService.BuyResource(offer.Resource, offer.BuyPrice, quantity))
+            {
+                WarnShortOnCredits(offer.BuyPrice * quantity);
+            }
+
             Refresh();
         }
 
         private void TrySellResource(ResourceTradeOffer offer, int quantity)
         {
-            _tradeService.SellResource(offer.Resource, offer.SellPrice, quantity);
+            if (!_tradeService.SellResource(offer.Resource, offer.SellPrice, quantity))
+            {
+                WarnNothingToSell(offer.Resource.ToString());
+            }
+
             Refresh();
         }
 
         private void TryBuyItem(ItemTradeOffer offer, int quantity)
         {
-            _tradeService.BuyItem(offer.Item, offer.BuyPrice, quantity);
+            if (!_tradeService.BuyItem(offer.Item, offer.BuyPrice, quantity))
+            {
+                WarnShortOnCredits(offer.BuyPrice * quantity);
+            }
+
             Refresh();
         }
 
         private void TrySellItem(ItemTradeOffer offer, int quantity)
         {
-            _tradeService.SellItem(offer.Item, offer.SellPrice, quantity);
+            if (!_tradeService.SellItem(offer.Item, offer.SellPrice, quantity))
+            {
+                WarnNothingToSell(offer.Item.DisplayName);
+            }
+
             Refresh();
         }
     }

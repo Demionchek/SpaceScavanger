@@ -1,3 +1,11 @@
+title: Variables
+---
+// Declared for the compiler only: the quota invoice is written from C# before the
+// officer's node starts. A function returning a string cannot be typed here, because
+// nothing in the project declares it to the Yarn compiler.
+<<declare $quota_invoice = "">>
+===
+
 title: Story_01_Intro
 ---
 Terminal: NEW ASSIGNMENT RECEIVED. COORDINATES ATTACHED.
@@ -144,7 +152,7 @@ title: Story_07_Quota_Corp
 ---
 <<apply_effect QuestTrigger_Quota>>
 Officer: Asset. Transit confirmed. Welcome to your assigned deep field.
-Officer: Your quota is now active: {quota_amount()} units of scrap.
+Officer: Your quota is now active: {$quota_invoice}.
 Officer: You have {quota_sectors()} sectors to haul it, this one included. Hand it over at your intercom whenever you are carrying the full load.
 Officer: At the last gate a tender takes it off you either way. If your hold is short when that gate comes, your sentence resumes on the spot.
 Officer: The figure and the sectors you have left are posted on your assignment log — the panel that sits at the top of your display. It does not go away. Neither does the deadline.
@@ -169,7 +177,7 @@ Vee: Start with the hook. A better hook pulls the heavy wrecks, and the heavy on
 title: Story_10_Quota_Next
 ---
 Officer: Asset. Your last consignment is logged and weighed. The foundry has it.
-Officer: A new quota is already posted on your board: {quota_amount()} units of scrap, {quota_sectors()} sectors to run it.
+Officer: A new quota is already posted on your board: {$quota_invoice}, {quota_sectors()} sectors to run it.
 Officer: The terms don't soften because you met them once. Neither does what happens if you fall short.
 -> Understood.
     Officer: Naturally. Haul well, asset.

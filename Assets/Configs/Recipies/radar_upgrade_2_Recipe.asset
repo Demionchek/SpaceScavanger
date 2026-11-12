@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6777066d5ef60524595dd6b0305f860c, type: 3}
+  m_Name: radar_upgrade_2_Recipe
+  m_EditorClassIdentifier: Core::Game.Core.CraftingRecipe
+  Costs:
+  - Type: 0
+    Amount: 170
+  - Type: 1
+    Amount: 35
+  Output: {fileID: 11400000, guid: 3205eda95be5451785ce8d10516d496c, type: 2}
+  OutputCount: 1
+  RequiredUpgrade: {fileID: 11400000, guid: e59c132d6df44fd7b28fd27eed38b62c, type: 2}

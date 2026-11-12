@@ -18,3 +18,11 @@ MonoBehaviour:
   _generateZoneOnStart: 0
   _playerExplosionPrefab: {fileID: 3723155621085781524, guid: c027a7fe342560e41a0a2469f5ef8aac, type: 3}
   _playerDeathDelay: 1.5
+  _explosionClips:
+  - {fileID: 8300000, guid: 887ed80f41dc7e947b12fb977307f2bb, type: 3}
+  - {fileID: 8300000, guid: dd8a370444fc5234b8f7468b4ec4c961, type: 3}
+  - {fileID: 8300000, guid: 4284d9c72d2b4c8439405a8c32684020, type: 3}
+  _explosionMixerGroup: {fileID: 6095238807135495051, guid: 1afed1eac13bece48b7b969825c0096d, type: 2}
+  _explosionLifetime: 1.5
+  _enemyExplosionScale: 0.8
+  _spaceMusicGroup: {fileID: 3278566100252816052, guid: 1afed1eac13bece48b7b969825c0096d, type: 2}

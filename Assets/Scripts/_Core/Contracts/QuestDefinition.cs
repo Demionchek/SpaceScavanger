@@ -12,6 +12,11 @@ namespace Game.Core
         [Tooltip("Ноды выдачи и сдачи. Пусто — берутся те, что заданы на самом NPC.")]
         public string OfferNode;
         public string TurnInNode;
+
+        [Tooltip("Заказ можно выдать снова после сдачи: такие возвращаются в пул, " +
+                 "когда новых в секторе уже не осталось.")]
+        public bool Repeatable;
+
         public ChoiceEffect[] OnStartEffects;
         public ChoiceEffect[] Rewards;
     }

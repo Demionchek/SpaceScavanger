@@ -1,12 +1,23 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using VContainer.Unity;
 
 namespace Game.Core
 {
-    public sealed class GameNotificationsSource : IStartable, IDisposable
+    public sealed class GameNotificationsSource : IStartable, ITickable, IDisposable
     {
+        // Продать десять раз по единице — это десять одинаковых строк подряд, и фид
+        // занят ими на полминуты. Поэтому изменения ресурсов копятся и уходят одной
+        // строкой на ресурс: ждём, пока поток утихнет, но не дольше потолка.
+        private const float CoalesceQuiet = 0.6f;
+        private const float CoalesceMaxHold = 2.5f;
+
         private readonly EventBus _eventBus;
+        private readonly Dictionary<ResourceType, int> _pending = new();
+        private readonly List<string> _flush = new();
+        private float _quiet;
+        private float _held;
         private readonly Dictionary<ResourceType, int> _lastResource = new();
         private readonly Dictionary<NpcGroup, int> _lastReputation = new();
         private readonly Dictionary<CharacterDefinition, int> _lastRelationship = new();
@@ -41,18 +52,61 @@ namespace Game.Core
             _eventBus.Unsubscribe<GameLoadFinishedEvent>(OnLoadFinished);
         }
 
-        private void OnLoadStarted(GameLoadStartedEvent _) => _loading = true;
+        private void OnLoadStarted(GameLoadStartedEvent _)
+        {
+            _loading = true;
+            _pending.Clear();
+        }
+
         private void OnLoadFinished(GameLoadFinishedEvent _) => _loading = false;
+
+        // Окна торговца и верстака держат паузу, поэтому время тут нескалированное.
+        public void Tick()
+        {
+            if (_pending.Count == 0)
+            {
+                return;
+            }
+
+            _quiet -= Time.unscaledDeltaTime;
+            _held += Time.unscaledDeltaTime;
+
+            if (_quiet > 0f && _held < CoalesceMaxHold)
+            {
+                return;
+            }
+
+            _flush.Clear();
+
+            foreach (var pair in _pending)
+            {
+                if (pair.Value != 0)
+                {
+                    _flush.Add($"{Signed(pair.Value)} {pair.Key}");
+                }
+            }
+
+            _pending.Clear();
+            _held = 0f;
+
+            foreach (var line in _flush)
+            {
+                _eventBus.Publish(new NotificationRequestedEvent(line));
+            }
+        }
 
         private void OnResourceChanged(ResourceChangedEvent evt)
         {
             var delta = evt.NewAmount - _lastResource.GetValueOrDefault(evt.Type);
             _lastResource[evt.Type] = evt.NewAmount;
 
-            if (delta != 0 && !_loading)
+            if (delta == 0 || _loading)
             {
-                _eventBus.Publish(new NotificationRequestedEvent($"{Signed(delta)} {evt.Type}"));
+                return;
             }
+
+            _pending[evt.Type] = _pending.GetValueOrDefault(evt.Type) + delta;
+            _quiet = CoalesceQuiet;
         }
 
         private void OnReputationChanged(ReputationChangedEvent evt)
@@ -62,7 +116,8 @@ namespace Game.Core
 
             if (delta != 0 && !_loading)
             {
-                _eventBus.Publish(new NotificationRequestedEvent($"{evt.Group} reputation {Signed(delta)}"));
+                _eventBus.Publish(new NotificationRequestedEvent(
+                    $"{Name(evt.Group)} reputation {Signed(delta)}"));
             }
         }
 
@@ -120,6 +175,11 @@ namespace Game.Core
                 _eventBus.Publish(new NotificationRequestedEvent($"Sector {evt.Number}"));
             }
         }
+
+        // Без этого в ленту уезжал ToString() ассета — "Scavangers_Group (Game.Core.NpcGroup)".
+        private static string Name(NpcGroup group) =>
+            group == null ? "Unknown" :
+            string.IsNullOrEmpty(group.DisplayName) ? group.name : group.DisplayName;
 
         private static string Signed(int value) => value > 0 ? $"+{value}" : value.ToString();
     }

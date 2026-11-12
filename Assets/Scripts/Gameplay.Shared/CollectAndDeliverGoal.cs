@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay.Shared
 {
-    public sealed class CollectAndDeliverGoal : IQuestGoal, IDeliverableGoal
+    public sealed class CollectAndDeliverGoal : IQuestGoal, IDeliverableGoal, IQuestGoalStatus
     {
         private readonly QuestDefinition _quest;
         private readonly ResourceType _resource;
@@ -24,6 +24,8 @@ namespace Game.Gameplay.Shared
         public bool IsComplete => _resources.GetAmount(_resource) >= _amount;
 
         public float Progress => Mathf.Clamp01((float)_resources.GetAmount(_resource) / _amount);
+
+        public string Status => $"{_resource} {Mathf.Min(_resources.GetAmount(_resource), _amount)}/{_amount}";
 
         public void Bind(EventBus bus)
         {

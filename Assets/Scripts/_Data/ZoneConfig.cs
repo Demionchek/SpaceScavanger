@@ -7,9 +7,22 @@ namespace Game.Data
     {
         public Vector2 AreaSize = new(20f, 20f);
 
-        public GameObject[] ResourcePrefabs;
+        [Tooltip("Ресурсы сектора: у каждого свой вес в жребии и свой сектор, " +
+                 "с которого он начинает попадаться.")]
+        public ResourceSpawn[] ResourceSpawns;
+
+        [Tooltip("Сколько кучек разыгрывается за сектор, а не сколько обломков.")]
         public int ResourceCount = 10;
         [Range(0f, 1f)] public float ResourceSpawnChance = 0.7f;
+
+        [Tooltip("Размер кучки: от и до. Тип у всей кучки один — тот, что выпал первому обломку.")]
+        public Vector2Int ResourceGroupSize = new(2, 5);
+
+        [Tooltip("В каком радиусе от первого обломка лежит остальная кучка.")]
+        public float ResourceGroupRadius = 5f;
+
+        [Tooltip("Свободный радиус между обломками одной кучки: внутри неё тесно.")]
+        public float ResourceMemberClearance = 3f;
 
         public GameObject[] EnemyPrefabs;
         public int EnemyCount = 3;
@@ -19,6 +32,9 @@ namespace Game.Data
         [Range(0f, 1f)] public float TraderSpawnChance = 0.5f;
 
         public GameObject[] QuestGiverPrefabs;
+        [Tooltip("Сколько квестодателей разыгрывается за сектор. Префаб каждому " +
+                 "достаётся свой, поэтому больше, чем префабов, их не будет.")]
+        public int QuestGiverCount = 1;
         [Range(0f, 1f)] public float QuestGiverSpawnChance = 0.5f;
 
         public GameObject WormholePrefab;
@@ -38,9 +54,22 @@ namespace Game.Data
         public int IslandDetailOrder = -9;
         [Range(0f, 1f)] public float IslandDetailChance = 0.25f;
 
+        [Header("Puzzles")]
+        [Tooltip("Находки на островках: шахта и разбитый спутник. Пусто — не будет.")]
+        public GameObject[] PuzzlePrefabs;
+
+        [Tooltip("Сколько находок разыгрывается за сектор. Больше, чем островков " +
+                 "и чем самих префабов, их не будет: на островок — одна, и все разные.")]
+        public int PuzzleCount = 2;
+        [Range(0f, 1f)] public float PuzzleSpawnChance = 0.6f;
+
+        [Tooltip("Насколько находка отходит от кромки породы. Считается от центра " +
+                 "крайней клетки (0.64), так что половина отступа уходит в саму клетку.")]
+        public float PuzzleIslandMargin = 0.45f;
+
         [Header("Spacing")]
-        [Tooltip("Свободный радиус вокруг ресурса, в мировых единицах.")]
-        public float ResourceClearance = 6f;
+        [Tooltip("Свободный радиус вокруг кучки — расстояние между кучками.")]
+        public float ResourceClearance = 14f;
         [Tooltip("Свободный радиус вокруг врага — расстояние между группами.")]
         public float EnemyClearance = 10f;
         [Tooltip("Свободный радиус между соседями по группе: внутри группы тесно.")]

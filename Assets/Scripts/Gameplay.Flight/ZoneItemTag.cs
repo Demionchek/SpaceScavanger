@@ -9,7 +9,11 @@ namespace Game.Gameplay.Flight
         Trader,
         QuestGiver,
         Wormhole,
-        Island
+        Island,
+
+        // Только в конец: номер пишется в сейв, и старые сохранения иначе
+        // передумают, что в них лежит.
+        Puzzle
     }
 
     public sealed class ZoneItemTag : MonoBehaviour

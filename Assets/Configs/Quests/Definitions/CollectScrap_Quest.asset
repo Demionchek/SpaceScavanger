@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b11c2c668fdea140b0a930cb815e737, type: 3}
   m_Name: CollectScrap_Quest
   m_EditorClassIdentifier: Core::Game.Core.QuestDefinition
-  Title: CollectScrap
+  Title: Scrap haul
   Description: 'My ship needs repair, i need scrap! '
   Goal: {fileID: 11400000, guid: 73fd608c60b79714a943f0c8b65b69b1, type: 2}
   OfferNode: QuestGiver_Collect_Scrap_10
   TurnInNode: QuestTurnIn_Collect_Scrap_10
+  Repeatable: 1
   Rewards:
   - {fileID: 11400000, guid: 52cd361887e9353419596548cab17c2f, type: 2}
   - {fileID: 11400000, guid: 4b6c530302f768844ab9a662f0681b8e, type: 2}

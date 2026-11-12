@@ -8,10 +8,15 @@ namespace Game.Gameplay.Flight
         public readonly Vector2 Position;
         public readonly int PrefabIndex;
 
-        public PrefabSpawnPoint(Vector2 position, int prefabIndex)
+        // Поворот нужен только находкам на островках: они стоят на породе, а не
+        // висят в пустоте. Остальное содержимое зоны его не задаёт.
+        public readonly float Rotation;
+
+        public PrefabSpawnPoint(Vector2 position, int prefabIndex, float rotation = 0f)
         {
             Position = position;
             PrefabIndex = prefabIndex;
+            Rotation = rotation;
         }
     }
 
@@ -32,24 +37,27 @@ namespace Game.Gameplay.Flight
         public readonly List<PrefabSpawnPoint> ResourceSpawns;
         public readonly List<PrefabSpawnPoint> EnemySpawns;
         public readonly PrefabSpawnPoint? TraderSpawn;
-        public readonly PrefabSpawnPoint? QuestGiverSpawn;
+        public readonly List<PrefabSpawnPoint> QuestGiverSpawns;
         public readonly Vector2? WormholeSpawn;
         public readonly List<IslandSpawnPoint> IslandSpawns;
+        public readonly List<PrefabSpawnPoint> PuzzleSpawns;
 
         public ZoneContent(
             List<PrefabSpawnPoint> resourceSpawns,
             List<PrefabSpawnPoint> enemySpawns,
             PrefabSpawnPoint? traderSpawn,
-            PrefabSpawnPoint? questGiverSpawn,
+            List<PrefabSpawnPoint> questGiverSpawns,
             Vector2? wormholeSpawn,
-            List<IslandSpawnPoint> islandSpawns)
+            List<IslandSpawnPoint> islandSpawns,
+            List<PrefabSpawnPoint> puzzleSpawns)
         {
             ResourceSpawns = resourceSpawns;
             EnemySpawns = enemySpawns;
             TraderSpawn = traderSpawn;
-            QuestGiverSpawn = questGiverSpawn;
+            QuestGiverSpawns = questGiverSpawns;
             WormholeSpawn = wormholeSpawn;
             IslandSpawns = islandSpawns;
+            PuzzleSpawns = puzzleSpawns;
         }
     }
 }

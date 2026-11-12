@@ -12,7 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b134c3b34144db4914a15b079c10026, type: 3}
   m_Name: QuotaGoal_Scrap_120
   m_EditorClassIdentifier: Gameplay.Shared::Game.Gameplay.Shared.QuotaGoalDefinition
-  _resource: 0
-  _amount: 120
-  _amountPerSector: 20
+  _demands:
+  - Resource: 0
+    FromSector: 1
+    Amount: 180
+    AmountPerSector: 0
+  - Resource: 1
+    FromSector: 2
+    Amount: 60
+    AmountPerSector: 2
+  - Resource: 2
+    FromSector: 7
+    Amount: 20
+    AmountPerSector: 1
+  - Resource: 3
+    FromSector: 10
+    Amount: 15
+    AmountPerSector: 1
+  - Resource: 4
+    FromSector: 13
+    Amount: 10
+    AmountPerSector: 0
   _deadlineSectors: 3

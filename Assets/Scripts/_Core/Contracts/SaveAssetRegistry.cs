@@ -16,6 +16,10 @@ namespace Game.Core
         public IReadOnlyList<CharacterDefinition> Characters => _characters;
         public IReadOnlyList<ItemDefinition> Items => _items;
 
+        // Весь список чертежей: из него головоломки выдают тот, который игрок
+        // ещё не знает.
+        public IReadOnlyList<CraftingRecipe> Recipes => _recipes;
+
         public string GetId(Object asset) => asset != null ? asset.name : null;
 
         public NpcGroup GetNpcGroup(string id) => Find(_npcGroups, id);

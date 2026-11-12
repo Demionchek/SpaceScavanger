@@ -16,5 +16,9 @@ namespace Game.Core
         public ResourceCost[] Costs;
         public ItemDefinition Output;
         public int OutputCount = 1;
+
+        [Tooltip("Улучшение, без которого рецепт не собрать. Так ступени крюка идут " +
+                 "по порядку: каждая следующая ставится поверх предыдущей.")]
+        public UpgradeItemDefinition RequiredUpgrade;
     }
 }

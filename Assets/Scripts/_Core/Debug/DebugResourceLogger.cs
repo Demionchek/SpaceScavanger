@@ -7,10 +7,12 @@ namespace Game.Core
     public sealed class DebugResourceLogger : IStartable, IDisposable
     {
         private readonly EventBus _eventBus;
+        private readonly DebugMode _debug;
 
-        public DebugResourceLogger(EventBus eventBus)
+        public DebugResourceLogger(EventBus eventBus, DebugMode debug)
         {
             _eventBus = eventBus;
+            _debug = debug;
         }
 
         public void Start()
@@ -23,9 +25,12 @@ namespace Game.Core
             _eventBus.Unsubscribe<ResourceChangedEvent>(OnResourceChanged);
         }
 
-        private static void OnResourceChanged(ResourceChangedEvent evt)
+        private void OnResourceChanged(ResourceChangedEvent evt)
         {
-            Debug.Log($"Resource {evt.Type}: {evt.NewAmount}");
+            if (_debug.Enabled)
+            {
+                Debug.Log($"Resource {evt.Type}: {evt.NewAmount}");
+            }
         }
     }
 }

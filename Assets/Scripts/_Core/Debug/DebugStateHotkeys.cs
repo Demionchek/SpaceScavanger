@@ -7,14 +7,21 @@ namespace Game.Core
     public sealed class DebugStateHotkeys : ITickable
     {
         private readonly GameStateMachine _stateMachine;
+        private readonly DebugMode _debug;
 
-        public DebugStateHotkeys(GameStateMachine stateMachine)
+        public DebugStateHotkeys(GameStateMachine stateMachine, DebugMode debug)
         {
             _stateMachine = stateMachine;
+            _debug = debug;
         }
 
         public void Tick()
         {
+            if (!_debug.Enabled)
+            {
+                return;
+            }
+
             var keyboard = Keyboard.current;
             if (keyboard == null)
             {

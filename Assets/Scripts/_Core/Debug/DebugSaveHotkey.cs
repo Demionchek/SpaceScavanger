@@ -6,14 +6,21 @@ namespace Game.Core
     public sealed class DebugSaveHotkey : ITickable
     {
         private readonly EventBus _eventBus;
+        private readonly DebugMode _debug;
 
-        public DebugSaveHotkey(EventBus eventBus)
+        public DebugSaveHotkey(EventBus eventBus, DebugMode debug)
         {
             _eventBus = eventBus;
+            _debug = debug;
         }
 
         public void Tick()
         {
+            if (!_debug.Enabled)
+            {
+                return;
+            }
+
             var keyboard = Keyboard.current;
             if (keyboard == null)
             {

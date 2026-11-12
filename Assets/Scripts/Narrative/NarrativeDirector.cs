@@ -9,6 +9,8 @@ namespace Game.Narrative
 {
     public sealed class NarrativeDirector : MonoBehaviour
     {
+        private const string QuotaInvoiceVariable = "$quota_invoice";
+
         [SerializeField] private DialogueRunner _dialogueRunner;
         [SerializeField] private RandomEventCatalog _eventCatalog;
         [SerializeField] private ChoiceEffect[] _effects;
@@ -48,7 +50,6 @@ namespace Game.Narrative
             _dialogueRunner.AddFunction("reputation", (Func<string, int>)GetReputation);
             _dialogueRunner.AddFunction("attitude", (Func<string, int>)GetAttitude);
             _dialogueRunner.AddFunction("sector", (Func<int>)GetSector);
-            _dialogueRunner.AddFunction("quota_amount", (Func<int>)GetQuotaAmount);
             _dialogueRunner.AddFunction("quota_sectors", (Func<int>)GetQuotaSectors);
             _dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
         }
@@ -94,6 +95,8 @@ namespace Game.Narrative
                 return;
             }
 
+            PushQuotaInvoice();
+
             _dialogueActive = true;
             _activeNode = node;
             _pauseService.RequestPause();
@@ -128,6 +131,10 @@ namespace Game.Narrative
                 if (effect != null && effect.name == effectName)
                 {
                     effect.Apply(_gameContext);
+
+                    // Офицер объявляет квоту в том же узле, который её и выдаёт:
+                    // накладная должна быть свежей уже к следующей строке.
+                    PushQuotaInvoice();
                     return;
                 }
             }
@@ -168,8 +175,14 @@ namespace Game.Narrative
 
         private int GetSector() => _gameContext.SectorService.Current;
 
-        // Числа берутся у живой квоты, а не из её описания: квота растёт с сектором.
-        private int GetQuotaAmount() => _quotaService != null ? _quotaService.Amount : 0;
+        // Накладная берётся у живой квоты, а не из её описания, и едет в переменную,
+        // а не в функцию: тип функции, возвращающей строку, компилятор Yarn вывести не
+        // может, и на этом разваливается сборка всего проекта диалогов.
+        private void PushQuotaInvoice()
+        {
+            _dialogueRunner.VariableStorage.SetValue(QuotaInvoiceVariable,
+                _quotaService != null ? _quotaService.Demand : string.Empty);
+        }
 
         private int GetQuotaSectors() => _quotaService != null ? _quotaService.SectorsLeft : 0;
 

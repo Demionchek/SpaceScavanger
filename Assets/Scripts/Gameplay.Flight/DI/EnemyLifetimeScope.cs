@@ -13,6 +13,10 @@ namespace Game.Gameplay.Flight
         [SerializeField] private ShipCannon _cannon;
         [SerializeField] private EnemyGroupTag _groupTag;
 
+        [Tooltip("Взрыв при гибели. Scope инъектит только то, что здесь зарегистрировано, " +
+                 "autoInjectGameObjects у префаба пуст.")]
+        [SerializeField] private ShipExplosion _explosion;
+
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponent<IShipInputProvider>(_combatInput);
@@ -22,6 +26,11 @@ namespace Game.Gameplay.Flight
             if (_groupTag != null)
             {
                 builder.RegisterComponent(_groupTag);
+            }
+
+            if (_explosion != null)
+            {
+                builder.RegisterComponent(_explosion);
             }
         }
     }

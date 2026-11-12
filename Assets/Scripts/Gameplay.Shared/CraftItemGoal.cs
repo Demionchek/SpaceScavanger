@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay.Shared
 {
-    public sealed class CraftItemGoal : IQuestGoal, ISaveableGoal
+    public sealed class CraftItemGoal : IQuestGoal, ISaveableGoal, IQuestGoalStatus
     {
         private readonly QuestDefinition _quest;
         private readonly ItemDefinition _item;
@@ -22,6 +22,10 @@ namespace Game.Gameplay.Shared
         public bool IsComplete => _craftedCount >= _targetCount;
 
         public float Progress => Mathf.Clamp01((float)_craftedCount / _targetCount);
+
+        public string Status => _item != null
+            ? $"{_item.DisplayName} {_craftedCount}/{_targetCount}"
+            : $"{_craftedCount}/{_targetCount} built";
 
         public void Bind(EventBus bus)
         {
